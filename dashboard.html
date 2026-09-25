@@ -26,7 +26,7 @@ body{
     color:#172033;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
     background:#063b52;
@@ -36,6 +36,7 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     gap:15px;
 }
 
@@ -53,10 +54,14 @@ header{
 .logout{
     background:#d92d20;
     color:white;
+
     border:0;
     padding:11px 18px;
+
     border-radius:8px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
@@ -64,38 +69,53 @@ header{
     background:#b42318;
 }
 
-/* ================= LAYOUT ================= */
+/* LAYOUT */
 
 .layout{
     display:flex;
     min-height:calc(100vh - 80px);
 }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 
 .sidebar{
     width:255px;
+
     background:white;
-    border-right:1px solid #e4e7ec;
+
+    border-right:
+    1px solid #e4e7ec;
+
     padding:20px 12px;
 }
 
 .sidebar-title{
     font-size:12px;
+
     color:#667085;
+
     font-weight:bold;
+
     padding:10px 14px;
+
     margin-bottom:5px;
 }
 
 .sidebar a{
     display:block;
+
     text-decoration:none;
+
     color:#344054;
+
     padding:13px 14px;
+
     margin:4px 0;
+
     border-radius:8px;
+
     font-size:15px;
+
     transition:.2s;
 }
 
@@ -109,7 +129,7 @@ header{
     color:white;
 }
 
-/* ================= CONTENT ================= */
+/* CONTENT */
 
 .content{
     flex:1;
@@ -117,16 +137,18 @@ header{
     overflow:hidden;
 }
 
-/* ================= WELCOME ================= */
-
 .welcome{
     background:white;
+
     border-radius:15px;
+
     padding:25px;
+
     margin-bottom:25px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
+    0 4px 15px
+    rgba(0,0,0,.06);
 }
 
 .welcome h1{
@@ -139,24 +161,27 @@ header{
     line-height:1.6;
 }
 
-/* ================= CARDS ================= */
+/* CARDS */
 
 .cards{
     display:grid;
 
     grid-template-columns:
-    repeat(5,1fr);
+    repeat(4,1fr);
 
     gap:18px;
 }
 
 .card{
     background:white;
+
     padding:22px;
+
     border-radius:14px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
+    0 4px 15px
+    rgba(0,0,0,.06);
 }
 
 .card-icon{
@@ -171,17 +196,25 @@ header{
 
 .card-number{
     font-size:26px;
+
     font-weight:bold;
+
     color:#063b52;
+
     margin-top:7px;
 }
 
 .card-link{
     display:inline-block;
+
     margin-top:14px;
+
     color:#087ea4;
+
     text-decoration:none;
+
     font-size:13px;
+
     font-weight:bold;
 }
 
@@ -189,66 +222,7 @@ header{
     text-decoration:underline;
 }
 
-/* ================= RESULTS ================= */
-
-.results-section{
-    margin-top:25px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:18px;
-}
-
-.result-card{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-
-    box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
-}
-
-.result-card h2{
-    color:#063b52;
-    margin-bottom:8px;
-}
-
-.result-card p{
-    color:#667085;
-    margin-bottom:15px;
-    line-height:1.5;
-}
-
-.result-number{
-    font-size:28px;
-    font-weight:bold;
-    color:#063b52;
-    margin-bottom:15px;
-}
-
-.result-button{
-    display:inline-block;
-
-    background:#063b52;
-    color:white;
-
-    text-decoration:none;
-
-    padding:11px 18px;
-
-    border-radius:8px;
-
-    font-weight:bold;
-}
-
-.result-button:hover{
-    background:#087ea4;
-}
-
-/* ================= PAYMENT ================= */
+/* PAYMENT */
 
 .payment-section{
     margin-top:25px;
@@ -269,7 +243,8 @@ header{
     border-radius:15px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
+    0 4px 15px
+    rgba(0,0,0,.06);
 }
 
 .payment-card h2{
@@ -279,14 +254,19 @@ header{
 
 .payment-card p{
     color:#667085;
+
     margin-bottom:18px;
+
     line-height:1.5;
 }
 
 .payment-amount{
     font-size:28px;
+
     color:#063b52;
+
     font-weight:bold;
+
     margin-bottom:15px;
 }
 
@@ -294,6 +274,7 @@ header{
     display:inline-block;
 
     background:#063b52;
+
     color:white;
 
     text-decoration:none;
@@ -309,7 +290,7 @@ header{
     background:#087ea4;
 }
 
-/* ================= QUICK LINKS ================= */
+/* QUICK LINKS */
 
 .quick-section{
     margin-top:25px;
@@ -321,7 +302,8 @@ header{
     border-radius:15px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
+    0 4px 15px
+    rgba(0,0,0,.06);
 }
 
 .quick-section h2{
@@ -343,7 +325,8 @@ header{
 
     padding:15px;
 
-    border:1px solid #e4e7ec;
+    border:
+    1px solid #e4e7ec;
 
     border-radius:9px;
 
@@ -364,7 +347,7 @@ header{
     color:#063b52;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
     text-align:center;
@@ -376,23 +359,9 @@ footer{
     font-size:13px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
-@media(max-width:1100px){
-
-    .cards{
-        grid-template-columns:
-        repeat(3,1fr);
-    }
-
-    .results-section{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:800px){
+@media(max-width:1000px){
 
     .cards{
         grid-template-columns:
@@ -400,10 +369,6 @@ footer{
     }
 
     .payment-section{
-        grid-template-columns:1fr;
-    }
-
-    .results-section{
         grid-template-columns:1fr;
     }
 
@@ -468,9 +433,7 @@ footer{
 
 <body>
 
-<!-- =================================================
-     HEADER
-================================================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -499,17 +462,13 @@ Logout
 
 <div class="layout">
 
-
-<!-- =================================================
-     SIDEBAR
-================================================= -->
+<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
 <div class="sidebar-title">
 MAIN MENU
 </div>
-
 
 <a
 href="dashboard.html"
@@ -519,116 +478,72 @@ class="active">
 
 </a>
 
-
-<a
-href="students.html">
-
+<a href="students.html">
 👨‍🎓 Student Management
-
 </a>
 
-
-<a
-href="teachers.html">
-
+<a href="teachers.html">
 👨‍🏫 Teacher Management
-
 </a>
 
-
-<a
-href="classes.html">
-
+<a href="classes.html">
 🏫 Classes
-
 </a>
 
-
-<a
-href="subjects.html">
-
+<a href="subjects.html">
 📚 Subjects
-
 </a>
 
-
-<a
-href="attendance.html">
-
+<a href="attendance.html">
 📋 Attendance
-
 </a>
 
-
-<a
-href="results.html">
-
+<a href="results.html">
 📝 Results
-
 </a>
 
-
-<a
-href="timetable.html">
-
+<a href="timetable.html">
 🗓️ Timetable
-
 </a>
 
-
-<a
-href="announcements.html">
-
+<a href="announcements.html">
 📢 Announcements
-
 </a>
 
-
-<a
-href="payments.html">
-
+<a href="payments.html">
 💰 Fees / Payments
+</a>
 
+<a href="reports.html">
+📊 Reports
 </a>
 
 </aside>
 
 
-<!-- =================================================
-     MAIN CONTENT
-================================================= -->
+<!-- MAIN CONTENT -->
 
 <main class="content">
-
-
-<!-- WELCOME -->
 
 <section class="welcome">
 
 <h1>
-
 Welcome to KITEGA School Management System 👋
-
 </h1>
 
 <p>
-
 Manage students, teachers, classes,
 subjects, attendance, results,
-timetable, announcements and payments
-from one dashboard.
-
+timetable, announcements, payments
+and school reports from one dashboard.
 </p>
 
 </section>
 
 
-<!-- =================================================
-     STATISTICS CARDS
-================================================= -->
+<!-- STATISTICS -->
 
 <section class="cards">
-
 
 <!-- STUDENTS -->
 
@@ -723,37 +638,6 @@ Manage Classes →
 </div>
 
 
-<!-- RESULTS -->
-
-<div class="card">
-
-<div class="card-icon">
-📝
-</div>
-
-<div class="card-title">
-Results
-</div>
-
-<div
-id="resultCount"
-class="card-number">
-
-...
-
-</div>
-
-<a
-href="results.html"
-class="card-link">
-
-Manage Results →
-
-</a>
-
-</div>
-
-
 <!-- PAYMENTS -->
 
 <div class="card">
@@ -784,119 +668,12 @@ Manage Payments →
 
 </div>
 
-
 </section>
 
 
-<!-- =================================================
-     RESULTS INFORMATION
-================================================= -->
-
-<section class="results-section">
-
-
-<!-- TOTAL RESULTS -->
-
-<div class="result-card">
-
-<h2>
-📝 Total Results
-</h2>
-
-<p>
-Number of result records stored in the system.
-</p>
-
-<div
-id="totalResults"
-class="result-number">
-
-0
-
-</div>
-
-<a
-href="results.html"
-class="result-button">
-
-Open Results
-
-</a>
-
-</div>
-
-
-<!-- AVERAGE -->
-
-<div class="result-card">
-
-<h2>
-📊 Average Marks
-</h2>
-
-<p>
-Average marks from all recorded results.
-</p>
-
-<div
-id="averageMarks"
-class="result-number">
-
-0
-
-</div>
-
-<a
-href="results.html"
-class="result-button">
-
-View Results
-
-</a>
-
-</div>
-
-
-<!-- PASSED -->
-
-<div class="result-card">
-
-<h2>
-✅ Passed Results
-</h2>
-
-<p>
-Results with an average mark of 40 or above.
-</p>
-
-<div
-id="passedResults"
-class="result-number">
-
-0
-
-</div>
-
-<a
-href="results.html"
-class="result-button">
-
-Manage Results
-
-</a>
-
-</div>
-
-
-</section>
-
-
-<!-- =================================================
-     PAYMENT INFORMATION
-================================================= -->
+<!-- PAYMENT INFORMATION -->
 
 <section class="payment-section">
-
 
 <div class="payment-card">
 
@@ -905,10 +682,8 @@ Manage Results
 </h2>
 
 <p>
-
 Total amount recorded in the
 payments database.
-
 </p>
 
 <div
@@ -937,11 +712,9 @@ Open Payments
 </h2>
 
 <p>
-
 View all student payment records,
 add new payments, edit records
 or delete incorrect payments.
-
 </p>
 
 <div
@@ -962,13 +735,69 @@ View Payment Records
 
 </div>
 
+</section>
+
+
+<!-- REPORT -->
+
+<section class="payment-section">
+
+<div class="payment-card">
+
+<h2>
+📊 School Reports
+</h2>
+
+<p>
+Generate and view reports for
+students, teachers, results,
+payments and attendance.
+</p>
+
+<div class="payment-amount">
+📑
+</div>
+
+<a
+href="reports.html"
+class="payment-button">
+
+Open Reports →
+
+</a>
+
+</div>
+
+
+<div class="payment-card">
+
+<h2>
+🖨️ Reports & Printing
+</h2>
+
+<p>
+View school information and
+print reports whenever needed.
+</p>
+
+<div class="payment-amount">
+🖨️
+</div>
+
+<a
+href="reports.html"
+class="payment-button">
+
+View Reports →
+
+</a>
+
+</div>
 
 </section>
 
 
-<!-- =================================================
-     QUICK LINKS
-================================================= -->
+<!-- QUICK ACCESS -->
 
 <section class="quick-section">
 
@@ -978,101 +807,76 @@ View Payment Records
 
 <div class="quick-grid">
 
-
 <a
 href="students.html"
 class="quick-button">
-
 👨‍🎓 Students
-
 </a>
-
 
 <a
 href="teachers.html"
 class="quick-button">
-
 👨‍🏫 Teachers
-
 </a>
-
 
 <a
 href="classes.html"
 class="quick-button">
-
 🏫 Classes
-
 </a>
-
 
 <a
 href="subjects.html"
 class="quick-button">
-
 📚 Subjects
-
 </a>
-
 
 <a
 href="attendance.html"
 class="quick-button">
-
 📋 Attendance
-
 </a>
-
 
 <a
 href="results.html"
 class="quick-button">
-
 📝 Results
-
 </a>
-
 
 <a
 href="timetable.html"
 class="quick-button">
-
 🗓️ Timetable
-
 </a>
-
 
 <a
 href="announcements.html"
 class="quick-button">
-
 📢 Announcements
-
 </a>
-
 
 <a
 href="payments.html"
 class="quick-button">
-
 💰 Fees / Payments
-
 </a>
 
+<a
+href="reports.html"
+class="quick-button">
+📊 Reports
+</a>
 
 </div>
 
 </section>
-
 
 </main>
 
 </div>
 
 
-<!-- =================================================
-     FOOTER
-================================================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1087,9 +891,9 @@ Made by MsAbBe
 
 <script>
 
-/* =================================================
+/* ==========================================
    SUPABASE
-================================================= */
+========================================== */
 
 const SUPABASE_URL =
 "https://fifqskyooaxadfnhxlnq.supabase.co";
@@ -1104,20 +908,17 @@ window.supabase.createClient(
 );
 
 
-/* =================================================
-   LOAD DASHBOARD
-================================================= */
+/* ==========================================
+   DASHBOARD STATISTICS
+========================================== */
 
 async function loadDashboardStats(){
 
-
-    /* ================= STUDENTS ================= */
+    /* STUDENTS */
 
     const studentsResult =
     await supabaseClient
-
     .from("students")
-
     .select(
         "id",
         {
@@ -1127,37 +928,19 @@ async function loadDashboardStats(){
     );
 
 
-    if(!studentsResult.error){
-
-        document.getElementById(
-            "studentCount"
-        ).textContent =
-        studentsResult.count || 0;
-
-    }
-
-    else{
-
-        console.error(
-            "Students:",
-            studentsResult.error
-        );
-
-        document.getElementById(
-            "studentCount"
-        ).textContent =
-        "0";
-
-    }
+    document.getElementById(
+        "studentCount"
+    ).textContent =
+    studentsResult.error
+    ? "0"
+    : studentsResult.count || 0;
 
 
-    /* ================= TEACHERS ================= */
+    /* TEACHERS */
 
     const teachersResult =
     await supabaseClient
-
     .from("teachers")
-
     .select(
         "id",
         {
@@ -1167,37 +950,19 @@ async function loadDashboardStats(){
     );
 
 
-    if(!teachersResult.error){
-
-        document.getElementById(
-            "teacherCount"
-        ).textContent =
-        teachersResult.count || 0;
-
-    }
-
-    else{
-
-        console.error(
-            "Teachers:",
-            teachersResult.error
-        );
-
-        document.getElementById(
-            "teacherCount"
-        ).textContent =
-        "0";
-
-    }
+    document.getElementById(
+        "teacherCount"
+    ).textContent =
+    teachersResult.error
+    ? "0"
+    : teachersResult.count || 0;
 
 
-    /* ================= CLASSES ================= */
+    /* CLASSES */
 
     const classesResult =
     await supabaseClient
-
     .from("classes")
-
     .select(
         "id",
         {
@@ -1207,268 +972,105 @@ async function loadDashboardStats(){
     );
 
 
-    if(!classesResult.error){
-
-        document.getElementById(
-            "classCount"
-        ).textContent =
-        classesResult.count || 0;
-
-    }
-
-    else{
-
-        console.error(
-            "Classes:",
-            classesResult.error
-        );
-
-        document.getElementById(
-            "classCount"
-        ).textContent =
-        "0";
-
-    }
+    document.getElementById(
+        "classCount"
+    ).textContent =
+    classesResult.error
+    ? "0"
+    : classesResult.count || 0;
 
 
-    /* ================= RESULTS ================= */
-
-    const resultsResult =
-    await supabaseClient
-
-    .from("results")
-
-    .select(
-        "id,average",
-        {
-            count:"exact"
-        }
-    );
-
-
-    if(!resultsResult.error){
-
-        const results =
-        resultsResult.data || [];
-
-
-        /* TOTAL RESULTS */
-
-        document.getElementById(
-            "resultCount"
-        ).textContent =
-        resultsResult.count || 0;
-
-
-        document.getElementById(
-            "totalResults"
-        ).textContent =
-        resultsResult.count || 0;
-
-
-        /* AVERAGE */
-
-        const marks =
-        results
-        .map(
-            function(result){
-
-                return Number(
-                    result.average
-                );
-
-            }
-        )
-        .filter(
-            function(value){
-
-                return !isNaN(value);
-
-            }
-        );
-
-
-        let average = 0;
-
-
-        if(marks.length > 0){
-
-            average =
-            marks.reduce(
-                function(sum,value){
-
-                    return sum + value;
-
-                },
-                0
-            ) / marks.length;
-
-        }
-
-
-        document.getElementById(
-            "averageMarks"
-        ).textContent =
-        average.toFixed(2);
-
-
-        /* PASSED */
-
-        const passed =
-        marks.filter(
-            function(value){
-
-                return value >= 40;
-
-            }
-        ).length;
-
-
-        document.getElementById(
-            "passedResults"
-        ).textContent =
-        passed;
-
-    }
-
-    else{
-
-        console.error(
-            "Results:",
-            resultsResult.error
-        );
-
-
-        document.getElementById(
-            "resultCount"
-        ).textContent =
-        "0";
-
-
-        document.getElementById(
-            "totalResults"
-        ).textContent =
-        "0";
-
-
-        document.getElementById(
-            "averageMarks"
-        ).textContent =
-        "0";
-
-
-        document.getElementById(
-            "passedResults"
-        ).textContent =
-        "0";
-
-    }
-
-
-    /* ================= PAYMENTS ================= */
+    /* PAYMENTS */
 
     const paymentsResult =
     await supabaseClient
-
     .from("payments")
-
     .select(
         "id,amount,status"
     );
 
 
-    if(!paymentsResult.error){
-
-        const payments =
-        paymentsResult.data || [];
-
-
-        /* RECORD COUNT */
+    if(
+        paymentsResult.error
+    ){
 
         document.getElementById(
             "paymentCount"
-        ).textContent =
-        payments.length;
-
-
-        /* TOTAL AMOUNT */
-
-        const total =
-        payments.reduce(
-            function(sum,payment){
-
-                return sum +
-                Number(
-                    payment.amount || 0
-                );
-
-            },
-            0
-        );
-
+        ).textContent = "0";
 
         document.getElementById(
             "totalPaymentAmount"
-        ).textContent =
-        "TZS " +
-        total.toLocaleString();
-
-
-        /* PAID RECORDS */
-
-        const paid =
-        payments.filter(
-            function(payment){
-
-                return String(
-                    payment.status || ""
-                ).toLowerCase()
-                === "paid";
-
-            }
-        ).length;
-
+        ).textContent = "TZS 0";
 
         document.getElementById(
             "paidPaymentCount"
-        ).textContent =
-        paid;
+        ).textContent = "0";
 
+        return;
     }
 
-    else{
 
-        console.error(
-            "Payments:",
-            paymentsResult.error
-        );
+    const payments =
+    paymentsResult.data || [];
 
 
-        document.getElementById(
-            "paymentCount"
-        ).textContent =
-        "0";
+    /* PAYMENT COUNT */
+
+    document.getElementById(
+        "paymentCount"
+    ).textContent =
+    payments.length;
 
 
-        document.getElementById(
-            "totalPaymentAmount"
-        ).textContent =
-        "TZS 0";
+    /* TOTAL PAYMENT */
+
+    const total =
+    payments.reduce(
+        function(sum,payment){
+
+            return sum +
+            Number(
+                payment.amount || 0
+            );
+
+        },
+        0
+    );
 
 
-        document.getElementById(
-            "paidPaymentCount"
-        ).textContent =
-        "0";
+    document.getElementById(
+        "totalPaymentAmount"
+    ).textContent =
+    "TZS " +
+    total.toLocaleString();
 
-    }
+
+    /* PAID */
+
+    const paid =
+    payments.filter(
+        function(payment){
+
+            return String(
+                payment.status || ""
+            ).toLowerCase()
+            === "paid";
+
+        }
+    ).length;
+
+
+    document.getElementById(
+        "paidPaymentCount"
+    ).textContent =
+    paid;
 
 }
 
 
-/* =================================================
+/* ==========================================
    LOGOUT
-================================================= */
+========================================== */
 
 function logout(){
 
@@ -1478,9 +1080,9 @@ function logout(){
 }
 
 
-/* =================================================
+/* ==========================================
    START
-================================================= */
+========================================== */
 
 loadDashboardStats();
 
