@@ -12,7 +12,6 @@ content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
 
 *{
@@ -22,12 +21,10 @@ content="width=device-width, initial-scale=1.0">
     font-family:Arial,sans-serif;
 }
 
-
 body{
     background:#f4f7fb;
     color:#172033;
 }
-
 
 /* ================= HEADER ================= */
 
@@ -39,16 +36,13 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     gap:15px;
 }
-
 
 .logo{
     font-size:23px;
     font-weight:bold;
 }
-
 
 .subtitle{
     font-size:13px;
@@ -56,138 +50,94 @@ header{
     opacity:.9;
 }
 
-
 .logout{
     background:#d92d20;
     color:white;
-
     border:0;
     padding:11px 18px;
-
     border-radius:8px;
-
     cursor:pointer;
-
     font-weight:bold;
 }
-
 
 .logout:hover{
     background:#b42318;
 }
 
-
 /* ================= LAYOUT ================= */
 
 .layout{
     display:flex;
-
-    min-height:
-    calc(100vh - 80px);
+    min-height:calc(100vh - 80px);
 }
-
 
 /* ================= SIDEBAR ================= */
 
 .sidebar{
     width:255px;
-
     background:white;
-
-    border-right:
-    1px solid #e4e7ec;
-
+    border-right:1px solid #e4e7ec;
     padding:20px 12px;
 }
 
-
 .sidebar-title{
     font-size:12px;
-
     color:#667085;
-
     font-weight:bold;
-
-    padding:
-    10px 14px;
-
+    padding:10px 14px;
     margin-bottom:5px;
 }
 
-
 .sidebar a{
     display:block;
-
     text-decoration:none;
-
     color:#344054;
-
-    padding:
-    13px 14px;
-
+    padding:13px 14px;
     margin:4px 0;
-
     border-radius:8px;
-
     font-size:15px;
-
     transition:.2s;
 }
 
-
 .sidebar a:hover{
     background:#eef8fb;
-
     color:#063b52;
 }
 
-
 .sidebar a.active{
     background:#063b52;
-
     color:white;
 }
-
 
 /* ================= CONTENT ================= */
 
 .content{
     flex:1;
-
     padding:30px;
-
     overflow:hidden;
 }
 
+/* ================= WELCOME ================= */
 
 .welcome{
     background:white;
-
     border-radius:15px;
-
     padding:25px;
-
     margin-bottom:25px;
 
     box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.06);
+    0 4px 15px rgba(0,0,0,.06);
 }
-
 
 .welcome h1{
     color:#063b52;
-
     margin-bottom:8px;
 }
 
-
 .welcome p{
     color:#667085;
-
     line-height:1.6;
 }
-
 
 /* ================= CARDS ================= */
 
@@ -195,69 +145,108 @@ header{
     display:grid;
 
     grid-template-columns:
-    repeat(4,1fr);
+    repeat(5,1fr);
 
     gap:18px;
 }
 
-
 .card{
     background:white;
-
     padding:22px;
-
     border-radius:14px;
 
     box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.06);
+    0 4px 15px rgba(0,0,0,.06);
 }
-
 
 .card-icon{
     font-size:28px;
-
     margin-bottom:12px;
 }
 
-
 .card-title{
     color:#667085;
-
     font-size:14px;
 }
 
-
 .card-number{
     font-size:26px;
-
     font-weight:bold;
-
     color:#063b52;
-
     margin-top:7px;
 }
 
-
 .card-link{
     display:inline-block;
-
     margin-top:14px;
-
     color:#087ea4;
-
     text-decoration:none;
-
     font-size:13px;
-
     font-weight:bold;
 }
-
 
 .card-link:hover{
     text-decoration:underline;
 }
 
+/* ================= RESULTS ================= */
+
+.results-section{
+    margin-top:25px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.result-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+}
+
+.result-card h2{
+    color:#063b52;
+    margin-bottom:8px;
+}
+
+.result-card p{
+    color:#667085;
+    margin-bottom:15px;
+    line-height:1.5;
+}
+
+.result-number{
+    font-size:28px;
+    font-weight:bold;
+    color:#063b52;
+    margin-bottom:15px;
+}
+
+.result-button{
+    display:inline-block;
+
+    background:#063b52;
+    color:white;
+
+    text-decoration:none;
+
+    padding:11px 18px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+}
+
+.result-button:hover{
+    background:#087ea4;
+}
 
 /* ================= PAYMENT ================= */
 
@@ -272,7 +261,6 @@ header{
     gap:18px;
 }
 
-
 .payment-card{
     background:white;
 
@@ -281,43 +269,31 @@ header{
     border-radius:15px;
 
     box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.06);
+    0 4px 15px rgba(0,0,0,.06);
 }
-
 
 .payment-card h2{
     color:#063b52;
-
     margin-bottom:8px;
 }
 
-
 .payment-card p{
     color:#667085;
-
     margin-bottom:18px;
-
     line-height:1.5;
 }
 
-
 .payment-amount{
     font-size:28px;
-
     color:#063b52;
-
     font-weight:bold;
-
     margin-bottom:15px;
 }
-
 
 .payment-button{
     display:inline-block;
 
     background:#063b52;
-
     color:white;
 
     text-decoration:none;
@@ -329,11 +305,9 @@ header{
     font-weight:bold;
 }
 
-
 .payment-button:hover{
     background:#087ea4;
 }
-
 
 /* ================= QUICK LINKS ================= */
 
@@ -347,17 +321,13 @@ header{
     border-radius:15px;
 
     box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.06);
+    0 4px 15px rgba(0,0,0,.06);
 }
-
 
 .quick-section h2{
     color:#063b52;
-
     margin-bottom:18px;
 }
-
 
 .quick-grid{
     display:grid;
@@ -368,14 +338,12 @@ header{
     gap:12px;
 }
 
-
 .quick-button{
     display:block;
 
     padding:15px;
 
-    border:
-    1px solid #e4e7ec;
+    border:1px solid #e4e7ec;
 
     border-radius:9px;
 
@@ -388,7 +356,6 @@ header{
     transition:.2s;
 }
 
-
 .quick-button:hover{
     background:#eef8fb;
 
@@ -396,7 +363,6 @@ header{
 
     color:#063b52;
 }
-
 
 /* ================= FOOTER ================= */
 
@@ -410,10 +376,23 @@ footer{
     font-size:13px;
 }
 
-
 /* ================= MOBILE ================= */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:
+        repeat(3,1fr);
+    }
+
+    .results-section{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:800px){
 
     .cards{
         grid-template-columns:
@@ -424,6 +403,10 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .results-section{
+        grid-template-columns:1fr;
+    }
+
     .quick-grid{
         grid-template-columns:
         repeat(2,1fr);
@@ -431,20 +414,16 @@ footer{
 
 }
 
-
 @media(max-width:700px){
 
     header{
         flex-direction:column;
-
         align-items:stretch;
     }
-
 
     .layout{
         display:block;
     }
-
 
     .sidebar{
         width:100%;
@@ -457,7 +436,6 @@ footer{
         padding:10px;
     }
 
-
     .sidebar a{
         display:inline-block;
 
@@ -465,22 +443,18 @@ footer{
 
         margin:3px;
 
-        padding:
-        10px 12px;
+        padding:10px 12px;
 
         font-size:13px;
     }
-
 
     .content{
         padding:18px;
     }
 
-
     .cards{
         grid-template-columns:1fr;
     }
-
 
     .quick-grid{
         grid-template-columns:1fr;
@@ -492,9 +466,7 @@ footer{
 
 </head>
 
-
 <body>
-
 
 <!-- =================================================
      HEADER
@@ -502,24 +474,17 @@ footer{
 
 <header>
 
-
 <div>
 
 <div class="logo">
-
 🏫 KITEGA SCHOOL
-
 </div>
-
 
 <div class="subtitle">
-
 School Management System
-
 </div>
 
 </div>
-
 
 <button
 class="logout"
@@ -529,9 +494,7 @@ Logout
 
 </button>
 
-
 </header>
-
 
 
 <div class="layout">
@@ -543,11 +506,8 @@ Logout
 
 <aside class="sidebar">
 
-
 <div class="sidebar-title">
-
 MAIN MENU
-
 </div>
 
 
@@ -631,9 +591,7 @@ href="payments.html">
 
 </a>
 
-
 </aside>
-
 
 
 <!-- =================================================
@@ -647,13 +605,11 @@ href="payments.html">
 
 <section class="welcome">
 
-
 <h1>
 
 Welcome to KITEGA School Management System 👋
 
 </h1>
-
 
 <p>
 
@@ -664,9 +620,7 @@ from one dashboard.
 
 </p>
 
-
 </section>
-
 
 
 <!-- =================================================
@@ -680,20 +634,13 @@ from one dashboard.
 
 <div class="card">
 
-
 <div class="card-icon">
-
 👨‍🎓
-
 </div>
-
 
 <div class="card-title">
-
 Students
-
 </div>
-
 
 <div
 id="studentCount"
@@ -703,7 +650,6 @@ class="card-number">
 
 </div>
 
-
 <a
 href="students.html"
 class="card-link">
@@ -712,29 +658,20 @@ Manage Students →
 
 </a>
 
-
 </div>
-
 
 
 <!-- TEACHERS -->
 
 <div class="card">
 
-
 <div class="card-icon">
-
 👨‍🏫
-
 </div>
-
 
 <div class="card-title">
-
 Teachers
-
 </div>
-
 
 <div
 id="teacherCount"
@@ -744,7 +681,6 @@ class="card-number">
 
 </div>
 
-
 <a
 href="teachers.html"
 class="card-link">
@@ -753,29 +689,20 @@ Manage Teachers →
 
 </a>
 
-
 </div>
-
 
 
 <!-- CLASSES -->
 
 <div class="card">
 
-
 <div class="card-icon">
-
 🏫
-
 </div>
-
 
 <div class="card-title">
-
 Classes
-
 </div>
-
 
 <div
 id="classCount"
@@ -785,7 +712,6 @@ class="card-number">
 
 </div>
 
-
 <a
 href="classes.html"
 class="card-link">
@@ -794,29 +720,51 @@ Manage Classes →
 
 </a>
 
+</div>
+
+
+<!-- RESULTS -->
+
+<div class="card">
+
+<div class="card-icon">
+📝
+</div>
+
+<div class="card-title">
+Results
+</div>
+
+<div
+id="resultCount"
+class="card-number">
+
+...
 
 </div>
 
+<a
+href="results.html"
+class="card-link">
+
+Manage Results →
+
+</a>
+
+</div>
 
 
 <!-- PAYMENTS -->
 
 <div class="card">
 
-
 <div class="card-icon">
-
 💰
-
 </div>
-
 
 <div class="card-title">
-
 Payment Records
-
 </div>
-
 
 <div
 id="paymentCount"
@@ -826,7 +774,6 @@ class="card-number">
 
 </div>
 
-
 <a
 href="payments.html"
 class="card-link">
@@ -835,12 +782,113 @@ Manage Payments →
 
 </a>
 
-
 </div>
 
 
 </section>
 
+
+<!-- =================================================
+     RESULTS INFORMATION
+================================================= -->
+
+<section class="results-section">
+
+
+<!-- TOTAL RESULTS -->
+
+<div class="result-card">
+
+<h2>
+📝 Total Results
+</h2>
+
+<p>
+Number of result records stored in the system.
+</p>
+
+<div
+id="totalResults"
+class="result-number">
+
+0
+
+</div>
+
+<a
+href="results.html"
+class="result-button">
+
+Open Results
+
+</a>
+
+</div>
+
+
+<!-- AVERAGE -->
+
+<div class="result-card">
+
+<h2>
+📊 Average Marks
+</h2>
+
+<p>
+Average marks from all recorded results.
+</p>
+
+<div
+id="averageMarks"
+class="result-number">
+
+0
+
+</div>
+
+<a
+href="results.html"
+class="result-button">
+
+View Results
+
+</a>
+
+</div>
+
+
+<!-- PASSED -->
+
+<div class="result-card">
+
+<h2>
+✅ Passed Results
+</h2>
+
+<p>
+Results with an average mark of 40 or above.
+</p>
+
+<div
+id="passedResults"
+class="result-number">
+
+0
+
+</div>
+
+<a
+href="results.html"
+class="result-button">
+
+Manage Results
+
+</a>
+
+</div>
+
+
+</section>
 
 
 <!-- =================================================
@@ -852,13 +900,9 @@ Manage Payments →
 
 <div class="payment-card">
 
-
 <h2>
-
 💰 Total Payments
-
 </h2>
-
 
 <p>
 
@@ -866,7 +910,6 @@ Total amount recorded in the
 payments database.
 
 </p>
-
 
 <div
 id="totalPaymentAmount"
@@ -876,7 +919,6 @@ TZS 0
 
 </div>
 
-
 <a
 href="payments.html"
 class="payment-button">
@@ -885,20 +927,14 @@ Open Payments
 
 </a>
 
-
 </div>
-
 
 
 <div class="payment-card">
 
-
 <h2>
-
 📊 Payment Records
-
 </h2>
-
 
 <p>
 
@@ -908,7 +944,6 @@ or delete incorrect payments.
 
 </p>
 
-
 <div
 id="paidPaymentCount"
 class="payment-amount">
@@ -916,7 +951,6 @@ class="payment-amount">
 0
 
 </div>
-
 
 <a
 href="payments.html"
@@ -926,12 +960,10 @@ View Payment Records
 
 </a>
 
-
 </div>
 
 
 </section>
-
 
 
 <!-- =================================================
@@ -940,13 +972,9 @@ View Payment Records
 
 <section class="quick-section">
 
-
 <h2>
-
 ⚡ Quick Access
-
 </h2>
-
 
 <div class="quick-grid">
 
@@ -1034,15 +1062,12 @@ class="quick-button">
 
 </div>
 
-
 </section>
 
 
 </main>
 
-
 </div>
-
 
 
 <!-- =================================================
@@ -1060,9 +1085,7 @@ Made by MsAbBe
 </footer>
 
 
-
 <script>
-
 
 /* =================================================
    SUPABASE
@@ -1071,10 +1094,8 @@ Made by MsAbBe
 const SUPABASE_URL =
 "https://fifqskyooaxadfnhxlnq.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
-
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1083,9 +1104,8 @@ window.supabase.createClient(
 );
 
 
-
 /* =================================================
-   LOAD COUNT
+   LOAD DASHBOARD
 ================================================= */
 
 async function loadDashboardStats(){
@@ -1107,9 +1127,7 @@ async function loadDashboardStats(){
     );
 
 
-    if(
-        !studentsResult.error
-    ){
+    if(!studentsResult.error){
 
         document.getElementById(
             "studentCount"
@@ -1120,13 +1138,17 @@ async function loadDashboardStats(){
 
     else{
 
+        console.error(
+            "Students:",
+            studentsResult.error
+        );
+
         document.getElementById(
             "studentCount"
         ).textContent =
         "0";
 
     }
-
 
 
     /* ================= TEACHERS ================= */
@@ -1145,9 +1167,7 @@ async function loadDashboardStats(){
     );
 
 
-    if(
-        !teachersResult.error
-    ){
+    if(!teachersResult.error){
 
         document.getElementById(
             "teacherCount"
@@ -1158,13 +1178,17 @@ async function loadDashboardStats(){
 
     else{
 
+        console.error(
+            "Teachers:",
+            teachersResult.error
+        );
+
         document.getElementById(
             "teacherCount"
         ).textContent =
         "0";
 
     }
-
 
 
     /* ================= CLASSES ================= */
@@ -1183,9 +1207,7 @@ async function loadDashboardStats(){
     );
 
 
-    if(
-        !classesResult.error
-    ){
+    if(!classesResult.error){
 
         document.getElementById(
             "classCount"
@@ -1196,6 +1218,11 @@ async function loadDashboardStats(){
 
     else{
 
+        console.error(
+            "Classes:",
+            classesResult.error
+        );
+
         document.getElementById(
             "classCount"
         ).textContent =
@@ -1203,6 +1230,139 @@ async function loadDashboardStats(){
 
     }
 
+
+    /* ================= RESULTS ================= */
+
+    const resultsResult =
+    await supabaseClient
+
+    .from("results")
+
+    .select(
+        "id,average",
+        {
+            count:"exact"
+        }
+    );
+
+
+    if(!resultsResult.error){
+
+        const results =
+        resultsResult.data || [];
+
+
+        /* TOTAL RESULTS */
+
+        document.getElementById(
+            "resultCount"
+        ).textContent =
+        resultsResult.count || 0;
+
+
+        document.getElementById(
+            "totalResults"
+        ).textContent =
+        resultsResult.count || 0;
+
+
+        /* AVERAGE */
+
+        const marks =
+        results
+        .map(
+            function(result){
+
+                return Number(
+                    result.average
+                );
+
+            }
+        )
+        .filter(
+            function(value){
+
+                return !isNaN(value);
+
+            }
+        );
+
+
+        let average = 0;
+
+
+        if(marks.length > 0){
+
+            average =
+            marks.reduce(
+                function(sum,value){
+
+                    return sum + value;
+
+                },
+                0
+            ) / marks.length;
+
+        }
+
+
+        document.getElementById(
+            "averageMarks"
+        ).textContent =
+        average.toFixed(2);
+
+
+        /* PASSED */
+
+        const passed =
+        marks.filter(
+            function(value){
+
+                return value >= 40;
+
+            }
+        ).length;
+
+
+        document.getElementById(
+            "passedResults"
+        ).textContent =
+        passed;
+
+    }
+
+    else{
+
+        console.error(
+            "Results:",
+            resultsResult.error
+        );
+
+
+        document.getElementById(
+            "resultCount"
+        ).textContent =
+        "0";
+
+
+        document.getElementById(
+            "totalResults"
+        ).textContent =
+        "0";
+
+
+        document.getElementById(
+            "averageMarks"
+        ).textContent =
+        "0";
+
+
+        document.getElementById(
+            "passedResults"
+        ).textContent =
+        "0";
+
+    }
 
 
     /* ================= PAYMENTS ================= */
@@ -1217,9 +1377,7 @@ async function loadDashboardStats(){
     );
 
 
-    if(
-        !paymentsResult.error
-    ){
+    if(!paymentsResult.error){
 
         const payments =
         paymentsResult.data || [];
@@ -1262,8 +1420,10 @@ async function loadDashboardStats(){
         payments.filter(
             function(payment){
 
-                return payment.status ===
-                "Paid";
+                return String(
+                    payment.status || ""
+                ).toLowerCase()
+                === "paid";
 
             }
         ).length;
@@ -1279,6 +1439,7 @@ async function loadDashboardStats(){
     else{
 
         console.error(
+            "Payments:",
             paymentsResult.error
         );
 
@@ -1305,7 +1466,6 @@ async function loadDashboardStats(){
 }
 
 
-
 /* =================================================
    LOGOUT
 ================================================= */
@@ -1318,16 +1478,13 @@ function logout(){
 }
 
 
-
 /* =================================================
    START
 ================================================= */
 
 loadDashboardStats();
 
-
 </script>
-
 
 </body>
 
