@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management - KITEGA</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #063b52;
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .title {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 7px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .back {
+            background: #087ea4;
+            color: white;
+        }
+
+        .logout {
+            background: #d92d20;
+            color: white;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1200px;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.07);
+            margin-bottom: 25px;
+        }
+
+        h1, h2 {
+            color: #063b52;
+            margin-bottom: 18px;
+        }
+
+        .form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #344054;
+        }
+
+        input, select {
+            padding: 12px;
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #087ea4;
+        }
+
+        .save {
+            grid-column: 1 / -1;
+            background: #063b52;
+            color: white;
+            font-size: 15px;
+        }
+
+        .message {
+            grid-column: 1 / -1;
+            font-weight: bold;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .search {
+            width: 300px;
+            padding: 11px;
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+        }
+
+        .table-box {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #eaecf0;
+            text-align: left;
+        }
+
+        th {
+            background: #eef8fb;
+            color: #063b52;
+        }
+
+        .delete {
+            background: #d92d20;
+            color: white;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #667085;
+        }
+
+        .present {
+            color: #067647;
+            font-weight: bold;
+        }
+
+        .absent {
+            color: #b42318;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #98a2b3;
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .buttons {
+                justify-content: flex-end;
+            }
+
+            .form {
+                grid-template-columns: 1fr;
+            }
+
+            .save,
+            .message {
+                grid-column: auto;
+            }
+
+            .top {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div>
+        <div class="title">📅 ATTENDANCE MANAGEMENT</div>
+        <div class="subtitle">KITEGA Primary School</div>
+    </div>
+
+    <div class="buttons">
+        <button class="back" onclick="goDashboard()">← Dashboard</button>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="section">
+
+        <h1>📝 Record Attendance</h1>
+
+        <form id="attendanceForm" class="form">
+
+            <div class="group">
+                <label>Student</label>
+
+                <select id="student" required>
+                    <option value="">Loading students...</option>
+                </select>
+            </div>
+
+
+            <div class="group">
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    id="attendanceDate"
+                    required
+                >
+            </div>
+
+
+            <div class="group">
+                <label>Status</label>
+
+                <select id="status" required>
+
+                    <option value="">
+                        Select attendance
+                    </option>
+
+                    <option value="Present">
+                        Present
+                    </option>
+
+                    <option value="Absent">
+                        Absent
+                    </option>
+
+                </select>
+            </div>
+
+
+            <div class="group">
+                <label>Remarks</label>
+
+                <input
+                    type="text"
+                    id="remarks"
+                    placeholder="Optional remarks"
+                >
+            </div>
+
+
+            <button
+                type="submit"
+                class="save"
+            >
+                💾 SAVE ATTENDANCE
+            </button>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+        </form>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="top">
+
+            <h2>📋 Attendance Records</h2>
+
+            <input
+                type="text"
+                id="search"
+                class="search"
+                placeholder="🔍 Search student..."
+            >
+
+        </div>
+
+
+        <div class="table-box">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Student</th>
+                        <th>Registration No.</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    © 2026 KITEGA PRIMARY SCHOOL
+    <br>
+    School Management System
+</footer>
+
+
+<script>
+
+/* =================================
+   SUPABASE CONNECTION
+================================= */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =================================
+   ESCAPE HTML
+================================= */
+
+function escapeHTML(value) {
+
+    const div = document.createElement("div");
+
+    div.textContent = value ?? "";
+
+    return div.innerHTML;
+}
+
+
+/* =================================
+   TODAY'S DATE
+================================= */
+
+document.getElementById(
+    "attendanceDate"
+).value =
+new Date().toISOString().split("T")[0];
+
+
+/* =================================
+   LOAD STUDENTS
+================================= */
+
+async function loadStudents() {
+
+    const select =
+        document.getElementById("student");
+
+
+    const { data, error } =
+        await supabaseClient
+        .from("students")
+        .select(
+            "id, registration_no, full_name"
+        )
+        .order(
+            "full_name",
+            { ascending: true }
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        select.innerHTML = `
+            <option value="">
+                Failed to load students
+            </option>
+        `;
+
+        return;
+    }
+
+
+    select.innerHTML = `
+        <option value="">
+            Select student
+        </option>
+    `;
+
+
+    if (!data || data.length === 0) {
+
+        select.innerHTML = `
+            <option value="">
+                No students registered
+            </option>
+        `;
+
+        return;
+    }
+
+
+    data.forEach(function(student) {
+
+        const option =
+            document.createElement("option");
+
+
+        option.value =
+            student.id;
+
+
+        option.textContent =
+            (student.registration_no || "") +
+            " - " +
+            (student.full_name || "");
+
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+/* =================================
+   SAVE ATTENDANCE
+================================= */
+
+document
+.getElementById("attendanceForm")
+.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const studentId =
+            document.getElementById(
+                "student"
+            ).value;
+
+
+        const date =
+            document.getElementById(
+                "attendanceDate"
+            ).value;
+
+
+        const status =
+            document.getElementById(
+                "status"
+            ).value;
+
+
+        const remarks =
+            document.getElementById(
+                "remarks"
+            ).value.trim();
+
+
+        if (!studentId) {
+
+            message.style.color = "red";
+
+            message.textContent =
+                "Please select a student.";
+
+            return;
+        }
+
+
+        const { error } =
+            await supabaseClient
+            .from("attendance")
+            .insert({
+
+                student_id:
+                    Number(studentId),
+
+                attendance_date:
+                    date,
+
+                status:
+                    status,
+
+                remarks:
+                    remarks || null
+
+            });
+
+
+        if (error) {
+
+            console.error(error);
+
+            message.style.color = "red";
+
+            message.textContent =
+                "Failed to save attendance: " +
+                error.message;
+
+            return;
+        }
+
+
+        message.style.color = "green";
+
+        message.textContent =
+            "Attendance saved successfully.";
+
+
+        document
+        .getElementById(
+            "attendanceForm"
+        )
+        .reset();
+
+
+        document.getElementById(
+            "attendanceDate"
+        ).value =
+            new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+        loadAttendance();
+
+    }
+);
+
+
+/* =================================
+   LOAD ATTENDANCE
+================================= */
+
+async function loadAttendance(
+    searchText = ""
+) {
+
+    const table =
+        document.getElementById(
+            "attendanceTable"
+        );
+
+
+    table.innerHTML = `
+        <tr>
+            <td colspan="7"
+                class="empty">
+                Loading attendance...
+            </td>
+        </tr>
+    `;
+
+
+    const { data, error } =
+        await supabaseClient
+        .from("attendance")
+        .select(`
+            *,
+            students(
+                registration_no,
+                full_name
+            )
+        `)
+        .order(
+            "attendance_date",
+            { ascending: false }
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7"
+                    class="empty">
+
+                    Failed to load attendance.
+
+                    <br><br>
+
+                    ${escapeHTML(
+                        error.message
+                    )}
+
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    let records =
+        data || [];
+
+
+    const search =
+        searchText
+        .toLowerCase()
+        .trim();
+
+
+    if (search) {
+
+        records =
+            records.filter(
+                function(record) {
+
+                    const student =
+                        record.students || {};
+
+
+                    const text =
+                        (student.full_name || "") +
+                        " " +
+                        (student.registration_no || "") +
+                        " " +
+                        (record.status || "");
+
+
+                    return text
+                        .toLowerCase()
+                        .includes(search);
+                }
+            );
+    }
+
+
+    table.innerHTML = "";
+
+
+    if (records.length === 0) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7"
+                    class="empty">
+
+                    No attendance records found.
+
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    records.forEach(
+        function(record, index) {
+
+            const row =
+                document.createElement("tr");
+
+
+            const student =
+                record.students || {};
+
+
+            const statusClass =
+                record.status === "Present"
+                ? "present"
+                : "absent";
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        student.full_name || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        student.registration_no || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        record.attendance_date || "-"
+                    )}
+                </td>
+
+                <td class="${statusClass}">
+                    ${escapeHTML(
+                        record.status || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        record.remarks || "-"
+                    )}
+                </td>
+
+                <td>
+
+                    <button
+                        class="delete"
+                        onclick="
+                        deleteAttendance(
+                            ${record.id}
+                        )"
+                    >
+                        Delete
+                    </button>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =================================
+   DELETE ATTENDANCE
+================================= */
+
+async function deleteAttendance(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this attendance record?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const { error } =
+        await supabaseClient
+        .from("attendance")
+        .delete()
+        .eq(
+            "id",
+            id
+        );
+
+
+    if (error) {
+
+        alert(
+            "Failed to delete attendance: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    loadAttendance();
+
+}
+
+
+/* =================================
+   SEARCH
+================================= */
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    function() {
+
+        loadAttendance(
+            this.value
+        );
+
+    }
+);
+
+
+/* =================================
+   NAVIGATION
+================================= */
+
+function goDashboard() {
+
+    window.location.href =
+        "dashboard.html";
+}
+
+
+function logout() {
+
+    window.location.href =
+        "index.html";
+}
+
+
+/* =================================
+   START
+================================= */
+
+loadStudents();
+
+loadAttendance();
+
+</script>
+
+</body>
+</html>
