@@ -1,356 +1,1334 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>KITEGA School Management System</title>
+<meta charset="UTF-8">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-        body {
-            background: #f4f7fb;
-            color: #172033;
-        }
+<title>KITEGA School Management System</title>
 
-        header {
-            background: #063b52;
-            color: white;
-            padding: 18px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        .school-name {
-            font-size: 21px;
-            font-weight: bold;
-        }
 
-        .subtitle {
-            font-size: 13px;
-            margin-top: 5px;
-            opacity: .9;
-        }
+<style>
 
-        .logout {
-            background: #d92d20;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 7px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
 
-        .container {
-            width: 94%;
-            max-width: 1200px;
-            margin: 25px auto;
-        }
 
-        .welcome {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.07);
-            margin-bottom: 25px;
-        }
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
 
-        .welcome h1 {
-            color: #063b52;
-            margin-bottom: 8px;
-        }
 
-        .welcome p {
-            color: #667085;
-        }
+/* ================= HEADER ================= */
 
-        .menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 18px;
-        }
+header{
+    background:#063b52;
+    color:white;
+    padding:18px 25px;
 
-        .menu-card {
-            background: white;
-            text-decoration: none;
-            color: #172033;
-            padding: 25px 18px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,.07);
-            transition: .2s;
-            border: 2px solid transparent;
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-        .menu-card:hover {
-            transform: translateY(-4px);
-            border-color: #063b52;
-        }
+    gap:15px;
+}
 
-        .icon {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
 
-        .menu-card h3 {
-            color: #063b52;
-            margin-bottom: 7px;
-        }
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
 
-        .menu-card p {
-            color: #667085;
-            font-size: 14px;
-        }
 
-        footer {
-            text-align: center;
-            color: #98a2b3;
-            padding: 35px 10px;
-            font-size: 13px;
-        }
+.subtitle{
+    font-size:13px;
+    margin-top:5px;
+    opacity:.9;
+}
 
-        @media (max-width: 600px) {
-            header {
-                padding: 15px;
-            }
 
-            .school-name {
-                font-size: 17px;
-            }
+.logout{
+    background:#d92d20;
+    color:white;
 
-            .logout {
-                padding: 8px 11px;
-            }
+    border:0;
+    padding:11px 18px;
 
-            .container {
-                width: 92%;
-            }
-        }
-    </style>
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+
+.logout:hover{
+    background:#b42318;
+}
+
+
+/* ================= LAYOUT ================= */
+
+.layout{
+    display:flex;
+
+    min-height:
+    calc(100vh - 80px);
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:255px;
+
+    background:white;
+
+    border-right:
+    1px solid #e4e7ec;
+
+    padding:20px 12px;
+}
+
+
+.sidebar-title{
+    font-size:12px;
+
+    color:#667085;
+
+    font-weight:bold;
+
+    padding:
+    10px 14px;
+
+    margin-bottom:5px;
+}
+
+
+.sidebar a{
+    display:block;
+
+    text-decoration:none;
+
+    color:#344054;
+
+    padding:
+    13px 14px;
+
+    margin:4px 0;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    transition:.2s;
+}
+
+
+.sidebar a:hover{
+    background:#eef8fb;
+
+    color:#063b52;
+}
+
+
+.sidebar a.active{
+    background:#063b52;
+
+    color:white;
+}
+
+
+/* ================= CONTENT ================= */
+
+.content{
+    flex:1;
+
+    padding:30px;
+
+    overflow:hidden;
+}
+
+
+.welcome{
+    background:white;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 4px 15px
+    rgba(0,0,0,.06);
+}
+
+
+.welcome h1{
+    color:#063b52;
+
+    margin-bottom:8px;
+}
+
+
+.welcome p{
+    color:#667085;
+
+    line-height:1.6;
+}
+
+
+/* ================= CARDS ================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+}
+
+
+.card{
+    background:white;
+
+    padding:22px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 15px
+    rgba(0,0,0,.06);
+}
+
+
+.card-icon{
+    font-size:28px;
+
+    margin-bottom:12px;
+}
+
+
+.card-title{
+    color:#667085;
+
+    font-size:14px;
+}
+
+
+.card-number{
+    font-size:26px;
+
+    font-weight:bold;
+
+    color:#063b52;
+
+    margin-top:7px;
+}
+
+
+.card-link{
+    display:inline-block;
+
+    margin-top:14px;
+
+    color:#087ea4;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+
+.card-link:hover{
+    text-decoration:underline;
+}
+
+
+/* ================= PAYMENT ================= */
+
+.payment-section{
+    margin-top:25px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:18px;
+}
+
+
+.payment-card{
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 4px 15px
+    rgba(0,0,0,.06);
+}
+
+
+.payment-card h2{
+    color:#063b52;
+
+    margin-bottom:8px;
+}
+
+
+.payment-card p{
+    color:#667085;
+
+    margin-bottom:18px;
+
+    line-height:1.5;
+}
+
+
+.payment-amount{
+    font-size:28px;
+
+    color:#063b52;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+}
+
+
+.payment-button{
+    display:inline-block;
+
+    background:#063b52;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+}
+
+
+.payment-button:hover{
+    background:#087ea4;
+}
+
+
+/* ================= QUICK LINKS ================= */
+
+.quick-section{
+    margin-top:25px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 4px 15px
+    rgba(0,0,0,.06);
+}
+
+
+.quick-section h2{
+    color:#063b52;
+
+    margin-bottom:18px;
+}
+
+
+.quick-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+}
+
+
+.quick-button{
+    display:block;
+
+    padding:15px;
+
+    border:
+    1px solid #e4e7ec;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    color:#344054;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+
+.quick-button:hover{
+    background:#eef8fb;
+
+    border-color:#087ea4;
+
+    color:#063b52;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+
+    padding:25px;
+
+    color:#98a2b3;
+
+    font-size:13px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .cards{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .payment-section{
+        grid-template-columns:1fr;
+    }
+
+    .quick-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    header{
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+
+    .layout{
+        display:block;
+    }
+
+
+    .sidebar{
+        width:100%;
+
+        border-right:0;
+
+        border-bottom:
+        1px solid #e4e7ec;
+
+        padding:10px;
+    }
+
+
+    .sidebar a{
+        display:inline-block;
+
+        width:auto;
+
+        margin:3px;
+
+        padding:
+        10px 12px;
+
+        font-size:13px;
+    }
+
+
+    .content{
+        padding:18px;
+    }
+
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
+<!-- =================================================
+     HEADER
+================================================= -->
+
 <header>
 
-    <div>
-        <div class="school-name">
-            🏫 KITEGA PRIMARY SCHOOL
-        </div>
 
-        <div class="subtitle">
-            School Management System
-        </div>
-    </div>
+<div>
 
-    <button class="logout" onclick="logout()">
-        Logout
-    </button>
+<div class="logo">
+
+🏫 KITEGA SCHOOL
+
+</div>
+
+
+<div class="subtitle">
+
+School Management System
+
+</div>
+
+</div>
+
+
+<button
+class="logout"
+onclick="logout()">
+
+Logout
+
+</button>
+
 
 </header>
 
 
-<main class="container">
 
-    <section class="welcome">
+<div class="layout">
 
-        <h1>
-            Welcome to Dashboard 👋
-        </h1>
 
-        <p>
-            Select a section below to manage the school.
-        </p>
+<!-- =================================================
+     SIDEBAR
+================================================= -->
 
-    </section>
+<aside class="sidebar">
 
 
-    <section class="menu">
+<div class="sidebar-title">
 
+MAIN MENU
 
-        <!-- STUDENTS -->
+</div>
 
-        <a href="students.html" class="menu-card">
 
-            <div class="icon">
-                👨‍🎓
-            </div>
+<a
+href="dashboard.html"
+class="active">
 
-            <h3>
-                Student Management
-            </h3>
+🏠 Dashboard
 
-            <p>
-                Register and manage students
-            </p>
+</a>
 
-        </a>
 
+<a
+href="students.html">
 
-        <!-- TEACHERS -->
+👨‍🎓 Student Management
 
-        <a href="teachers.html" class="menu-card">
+</a>
 
-            <div class="icon">
-                👨‍🏫
-            </div>
 
-            <h3>
-                Teacher Management
-            </h3>
+<a
+href="teachers.html">
 
-            <p>
-                Register and manage teachers
-            </p>
+👨‍🏫 Teacher Management
 
-        </a>
+</a>
 
 
-        <!-- RESULTS -->
+<a
+href="classes.html">
 
-        <a href="results.html" class="menu-card">
+🏫 Classes
 
-            <div class="icon">
-                📊
-            </div>
+</a>
 
-            <h3>
-                Results
-            </h3>
 
-            <p>
-                Manage student academic results
-            </p>
+<a
+href="subjects.html">
 
-        </a>
+📚 Subjects
 
+</a>
 
-        <!-- ATTENDANCE -->
 
-        <a href="attendance.html" class="menu-card">
+<a
+href="attendance.html">
 
-            <div class="icon">
-                📅
-            </div>
+📋 Attendance
 
-            <h3>
-                Attendance
-            </h3>
+</a>
 
-            <p>
-                Manage student attendance
-            </p>
 
-        </a>
+<a
+href="results.html">
 
+📝 Results
 
-        <!-- CLASSES -->
+</a>
 
-        <a href="classes.html" class="menu-card">
 
-            <div class="icon">
-                🏫
-            </div>
+<a
+href="timetable.html">
 
-            <h3>
-                Classes
-            </h3>
+🗓️ Timetable
 
-            <p>
-                Manage school classes
-            </p>
+</a>
 
-        </a>
 
+<a
+href="announcements.html">
 
-        <!-- SUBJECTS -->
+📢 Announcements
 
-        <a href="subjects.html" class="menu-card">
+</a>
 
-            <div class="icon">
-                📚
-            </div>
 
-            <h3>
-                Subjects
-            </h3>
+<a
+href="payments.html">
 
-            <p>
-                Manage school subjects
-            </p>
+💰 Fees / Payments
 
-        </a>
+</a>
 
 
-        <!-- TIMETABLE -->
+</aside>
 
-        <a href="timetable.html" class="menu-card">
 
-            <div class="icon">
-                🕐
-            </div>
 
-            <h3>
-                Timetable
-            </h3>
+<!-- =================================================
+     MAIN CONTENT
+================================================= -->
 
-            <p>
-                Manage school timetable
-            </p>
+<main class="content">
 
-        </a>
 
+<!-- WELCOME -->
 
-        <!-- ANNOUNCEMENTS -->
+<section class="welcome">
 
-        <a href="announcements.html" class="menu-card">
 
-            <div class="icon">
-                📢
-            </div>
+<h1>
 
-            <h3>
-                Announcements
-            </h3>
+Welcome to KITEGA School Management System 👋
 
-            <p>
-                School announcements
-            </p>
+</h1>
 
-        </a>
 
+<p>
 
-    </section>
+Manage students, teachers, classes,
+subjects, attendance, results,
+timetable, announcements and payments
+from one dashboard.
+
+</p>
+
+
+</section>
+
+
+
+<!-- =================================================
+     STATISTICS CARDS
+================================================= -->
+
+<section class="cards">
+
+
+<!-- STUDENTS -->
+
+<div class="card">
+
+
+<div class="card-icon">
+
+👨‍🎓
+
+</div>
+
+
+<div class="card-title">
+
+Students
+
+</div>
+
+
+<div
+id="studentCount"
+class="card-number">
+
+...
+
+</div>
+
+
+<a
+href="students.html"
+class="card-link">
+
+Manage Students →
+
+</a>
+
+
+</div>
+
+
+
+<!-- TEACHERS -->
+
+<div class="card">
+
+
+<div class="card-icon">
+
+👨‍🏫
+
+</div>
+
+
+<div class="card-title">
+
+Teachers
+
+</div>
+
+
+<div
+id="teacherCount"
+class="card-number">
+
+...
+
+</div>
+
+
+<a
+href="teachers.html"
+class="card-link">
+
+Manage Teachers →
+
+</a>
+
+
+</div>
+
+
+
+<!-- CLASSES -->
+
+<div class="card">
+
+
+<div class="card-icon">
+
+🏫
+
+</div>
+
+
+<div class="card-title">
+
+Classes
+
+</div>
+
+
+<div
+id="classCount"
+class="card-number">
+
+...
+
+</div>
+
+
+<a
+href="classes.html"
+class="card-link">
+
+Manage Classes →
+
+</a>
+
+
+</div>
+
+
+
+<!-- PAYMENTS -->
+
+<div class="card">
+
+
+<div class="card-icon">
+
+💰
+
+</div>
+
+
+<div class="card-title">
+
+Payment Records
+
+</div>
+
+
+<div
+id="paymentCount"
+class="card-number">
+
+...
+
+</div>
+
+
+<a
+href="payments.html"
+class="card-link">
+
+Manage Payments →
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =================================================
+     PAYMENT INFORMATION
+================================================= -->
+
+<section class="payment-section">
+
+
+<div class="payment-card">
+
+
+<h2>
+
+💰 Total Payments
+
+</h2>
+
+
+<p>
+
+Total amount recorded in the
+payments database.
+
+</p>
+
+
+<div
+id="totalPaymentAmount"
+class="payment-amount">
+
+TZS 0
+
+</div>
+
+
+<a
+href="payments.html"
+class="payment-button">
+
+Open Payments
+
+</a>
+
+
+</div>
+
+
+
+<div class="payment-card">
+
+
+<h2>
+
+📊 Payment Records
+
+</h2>
+
+
+<p>
+
+View all student payment records,
+add new payments, edit records
+or delete incorrect payments.
+
+</p>
+
+
+<div
+id="paidPaymentCount"
+class="payment-amount">
+
+0
+
+</div>
+
+
+<a
+href="payments.html"
+class="payment-button">
+
+View Payment Records
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =================================================
+     QUICK LINKS
+================================================= -->
+
+<section class="quick-section">
+
+
+<h2>
+
+⚡ Quick Access
+
+</h2>
+
+
+<div class="quick-grid">
+
+
+<a
+href="students.html"
+class="quick-button">
+
+👨‍🎓 Students
+
+</a>
+
+
+<a
+href="teachers.html"
+class="quick-button">
+
+👨‍🏫 Teachers
+
+</a>
+
+
+<a
+href="classes.html"
+class="quick-button">
+
+🏫 Classes
+
+</a>
+
+
+<a
+href="subjects.html"
+class="quick-button">
+
+📚 Subjects
+
+</a>
+
+
+<a
+href="attendance.html"
+class="quick-button">
+
+📋 Attendance
+
+</a>
+
+
+<a
+href="results.html"
+class="quick-button">
+
+📝 Results
+
+</a>
+
+
+<a
+href="timetable.html"
+class="quick-button">
+
+🗓️ Timetable
+
+</a>
+
+
+<a
+href="announcements.html"
+class="quick-button">
+
+📢 Announcements
+
+</a>
+
+
+<a
+href="payments.html"
+class="quick-button">
+
+💰 Fees / Payments
+
+</a>
+
+
+</div>
+
+
+</section>
+
 
 </main>
 
 
+</div>
+
+
+
+<!-- =================================================
+     FOOTER
+================================================= -->
+
 <footer>
 
-    © 2026 KITEGA PRIMARY SCHOOL
-    <br>
-    School Management System
+© 2026 KITEGA SCHOOL MANAGEMENT SYSTEM
+
+<br><br>
+
+Made by MsAbBe
 
 </footer>
 
 
+
 <script>
 
-function logout() {
 
-    window.location.href = "index.html";
+/* =================================================
+   SUPABASE
+================================================= */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+
+/* =================================================
+   LOAD COUNT
+================================================= */
+
+async function loadDashboardStats(){
+
+
+    /* ================= STUDENTS ================= */
+
+    const studentsResult =
+    await supabaseClient
+
+    .from("students")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    if(
+        !studentsResult.error
+    ){
+
+        document.getElementById(
+            "studentCount"
+        ).textContent =
+        studentsResult.count || 0;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "studentCount"
+        ).textContent =
+        "0";
+
+    }
+
+
+
+    /* ================= TEACHERS ================= */
+
+    const teachersResult =
+    await supabaseClient
+
+    .from("teachers")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    if(
+        !teachersResult.error
+    ){
+
+        document.getElementById(
+            "teacherCount"
+        ).textContent =
+        teachersResult.count || 0;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "teacherCount"
+        ).textContent =
+        "0";
+
+    }
+
+
+
+    /* ================= CLASSES ================= */
+
+    const classesResult =
+    await supabaseClient
+
+    .from("classes")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    if(
+        !classesResult.error
+    ){
+
+        document.getElementById(
+            "classCount"
+        ).textContent =
+        classesResult.count || 0;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "classCount"
+        ).textContent =
+        "0";
+
+    }
+
+
+
+    /* ================= PAYMENTS ================= */
+
+    const paymentsResult =
+    await supabaseClient
+
+    .from("payments")
+
+    .select(
+        "id,amount,status"
+    );
+
+
+    if(
+        !paymentsResult.error
+    ){
+
+        const payments =
+        paymentsResult.data || [];
+
+
+        /* RECORD COUNT */
+
+        document.getElementById(
+            "paymentCount"
+        ).textContent =
+        payments.length;
+
+
+        /* TOTAL AMOUNT */
+
+        const total =
+        payments.reduce(
+            function(sum,payment){
+
+                return sum +
+                Number(
+                    payment.amount || 0
+                );
+
+            },
+            0
+        );
+
+
+        document.getElementById(
+            "totalPaymentAmount"
+        ).textContent =
+        "TZS " +
+        total.toLocaleString();
+
+
+        /* PAID RECORDS */
+
+        const paid =
+        payments.filter(
+            function(payment){
+
+                return payment.status ===
+                "Paid";
+
+            }
+        ).length;
+
+
+        document.getElementById(
+            "paidPaymentCount"
+        ).textContent =
+        paid;
+
+    }
+
+    else{
+
+        console.error(
+            paymentsResult.error
+        );
+
+
+        document.getElementById(
+            "paymentCount"
+        ).textContent =
+        "0";
+
+
+        document.getElementById(
+            "totalPaymentAmount"
+        ).textContent =
+        "TZS 0";
+
+
+        document.getElementById(
+            "paidPaymentCount"
+        ).textContent =
+        "0";
+
+    }
 
 }
 
+
+
+/* =================================================
+   LOGOUT
+================================================= */
+
+function logout(){
+
+    window.location.href =
+    "index.html";
+
+}
+
+
+
+/* =================================================
+   START
+================================================= */
+
+loadDashboardStats();
+
+
 </script>
 
+
 </body>
+
 </html>
