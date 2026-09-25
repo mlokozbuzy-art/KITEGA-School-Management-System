@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subjects Management - KITEGA</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:#063b52;
+    color:white;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.title{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.subtitle{
+    font-size:13px;
+    margin-top:5px;
+}
+
+.buttons{
+    display:flex;
+    gap:8px;
+}
+
+button{
+    border:0;
+    border-radius:7px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.back{
+    background:#087ea4;
+    color:white;
+}
+
+.logout{
+    background:#d92d20;
+    color:white;
+}
+
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:25px auto;
+}
+
+.section{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    margin-bottom:25px;
+}
+
+h1,h2{
+    color:#063b52;
+    margin-bottom:18px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#344054;
+}
+
+input{
+    padding:12px;
+    border:1px solid #d0d5dd;
+    border-radius:8px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#087ea4;
+}
+
+.submit{
+    grid-column:1/-1;
+    background:#063b52;
+    color:white;
+    font-size:15px;
+}
+
+.cancel{
+    display:none;
+    background:#667085;
+    color:white;
+}
+
+.message{
+    grid-column:1/-1;
+    font-weight:bold;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.search{
+    width:300px;
+    padding:11px;
+    border:1px solid #d0d5dd;
+    border-radius:8px;
+}
+
+.table-box{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:750px;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #eaecf0;
+    text-align:left;
+}
+
+th{
+    background:#eef8fb;
+    color:#063b52;
+}
+
+.edit{
+    background:#087ea4;
+    color:white;
+    margin-right:5px;
+}
+
+.delete{
+    background:#d92d20;
+    color:white;
+}
+
+.empty{
+    text-align:center;
+    padding:25px;
+    color:#667085;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#98a2b3;
+    font-size:13px;
+}
+
+@media(max-width:650px){
+
+    header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .buttons{
+        justify-content:flex-end;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .submit,
+    .cancel,
+    .message{
+        grid-column:auto;
+    }
+
+    .top{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div>
+    <div class="title">📚 SUBJECTS MANAGEMENT</div>
+    <div class="subtitle">KITEGA Primary School</div>
+</div>
+
+<div class="buttons">
+
+<button class="back" onclick="goDashboard()">
+← Dashboard
+</button>
+
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<section class="section">
+
+<h1 id="formTitle">
+➕ Add Subject
+</h1>
+
+<form id="subjectForm" class="form">
+
+
+<div class="group">
+
+<label>Subject Name</label>
+
+<input
+type="text"
+id="subjectName"
+placeholder="Example: Mathematics"
+required>
+
+</div>
+
+
+<div class="group">
+
+<label>Subject Code</label>
+
+<input
+type="text"
+id="subjectCode"
+placeholder="Example: MATH">
+
+</div>
+
+
+<div class="group">
+
+<label>Teacher Name</label>
+
+<input
+type="text"
+id="teacherName"
+placeholder="Example: Mr. John">
+
+</div>
+
+
+<div class="group">
+
+<label>Description</label>
+
+<input
+type="text"
+id="description"
+placeholder="Optional description">
+
+</div>
+
+
+<button
+type="submit"
+id="submitButton"
+class="submit">
+
+REGISTER SUBJECT
+
+</button>
+
+
+<button
+type="button"
+id="cancelButton"
+class="cancel"
+onclick="cancelEdit()">
+
+CANCEL EDIT
+
+</button>
+
+
+<div
+id="message"
+class="message">
+
+</div>
+
+</form>
+
+</section>
+
+
+<section class="section">
+
+<div class="top">
+
+<h2>
+📋 Registered Subjects
+</h2>
+
+<input
+type="text"
+id="search"
+class="search"
+placeholder="🔍 Search subject...">
+
+</div>
+
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+<th>#</th>
+<th>Subject</th>
+<th>Code</th>
+<th>Teacher</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="subjectTable">
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+© 2026 KITEGA PRIMARY SCHOOL
+
+<br>
+
+School Management System
+
+</footer>
+
+
+<script>
+
+/* SUPABASE */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let editingSubjectId = null;
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    value ?? "";
+
+    return div.innerHTML;
+}
+
+
+/* LOAD SUBJECTS */
+
+async function loadSubjects(searchText=""){
+
+    const table =
+    document.getElementById(
+        "subjectTable"
+    );
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="6" class="empty">
+            Loading subjects...
+        </td>
+    </tr>
+    `;
+
+
+    const {data,error} =
+    await supabaseClient
+    .from("subjects")
+    .select("*")
+    .order(
+        "id",
+        {ascending:false}
+    );
+
+
+    if(error){
+
+        console.error(error);
+
+        table.innerHTML = `
+        <tr>
+            <td colspan="6" class="empty">
+
+                Failed to load subjects.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    let subjects =
+    data || [];
+
+
+    const search =
+    searchText
+    .toLowerCase()
+    .trim();
+
+
+    if(search){
+
+        subjects =
+        subjects.filter(
+            function(subject){
+
+                const text =
+                (
+                    subject.subject_name || ""
+                ) +
+                " " +
+                (
+                    subject.subject_code || ""
+                ) +
+                " " +
+                (
+                    subject.teacher_name || ""
+                );
+
+                return text
+                .toLowerCase()
+                .includes(search);
+            }
+        );
+    }
+
+
+    table.innerHTML = "";
+
+
+    if(subjects.length === 0){
+
+        table.innerHTML = `
+        <tr>
+            <td colspan="6" class="empty">
+                No subjects registered yet.
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    subjects.forEach(
+        function(subject,index){
+
+            const row =
+            document.createElement("tr");
+
+
+            row.innerHTML = `
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    subject.subject_name || "-"
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    subject.subject_code || "-"
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    subject.teacher_name || "-"
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    subject.description || "-"
+                )}
+            </td>
+
+            <td>
+
+                <button
+                class="edit"
+                onclick="
+                editSubject(
+                    ${subject.id}
+                )">
+
+                Edit
+
+                </button>
+
+                <button
+                class="delete"
+                onclick="
+                deleteSubject(
+                    ${subject.id}
+                )">
+
+                Delete
+
+                </button>
+
+            </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* SAVE SUBJECT */
+
+document
+.getElementById("subjectForm")
+.addEventListener(
+"submit",
+async function(event){
+
+    event.preventDefault();
+
+
+    const message =
+    document.getElementById(
+        "message"
+    );
+
+
+    const subjectName =
+    document.getElementById(
+        "subjectName"
+    ).value.trim();
+
+
+    const subjectCode =
+    document.getElementById(
+        "subjectCode"
+    ).value.trim();
+
+
+    const teacherName =
+    document.getElementById(
+        "teacherName"
+    ).value.trim();
+
+
+    const description =
+    document.getElementById(
+        "description"
+    ).value.trim();
+
+
+    /* UPDATE */
+
+    if(editingSubjectId !== null){
+
+        const {error} =
+        await supabaseClient
+        .from("subjects")
+        .update({
+
+            subject_name:
+            subjectName,
+
+            subject_code:
+            subjectCode || null,
+
+            teacher_name:
+            teacherName || null,
+
+            description:
+            description || null
+
+        })
+        .eq(
+            "id",
+            editingSubjectId
+        );
+
+
+        if(error){
+
+            message.style.color="red";
+
+            message.textContent =
+            "Failed to update subject: " +
+            error.message;
+
+            return;
+        }
+
+
+        message.style.color="green";
+
+        message.textContent =
+        "Subject updated successfully.";
+
+        cancelEdit();
+
+        loadSubjects();
+
+        return;
+    }
+
+
+    /* INSERT */
+
+    const {error} =
+    await supabaseClient
+    .from("subjects")
+    .insert({
+
+        subject_name:
+        subjectName,
+
+        subject_code:
+        subjectCode || null,
+
+        teacher_name:
+        teacherName || null,
+
+        description:
+        description || null
+
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        message.style.color="red";
+
+        message.textContent =
+        "Failed to register subject: " +
+        error.message;
+
+        return;
+    }
+
+
+    message.style.color="green";
+
+    message.textContent =
+    "Subject registered successfully.";
+
+
+    document
+    .getElementById(
+        "subjectForm"
+    )
+    .reset();
+
+
+    loadSubjects();
+
+});
+
+
+/* EDIT SUBJECT */
+
+async function editSubject(id){
+
+    const {data,error} =
+    await supabaseClient
+    .from("subjects")
+    .select("*")
+    .eq(
+        "id",
+        id
+    )
+    .single();
+
+
+    if(error){
+
+        alert(
+            "Failed to load subject: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "subjectName"
+    ).value =
+    data.subject_name || "";
+
+
+    document.getElementById(
+        "subjectCode"
+    ).value =
+    data.subject_code || "";
+
+
+    document.getElementById(
+        "teacherName"
+    ).value =
+    data.teacher_name || "";
+
+
+    document.getElementById(
+        "description"
+    ).value =
+    data.description || "";
+
+
+    editingSubjectId =
+    id;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+    "✏️ Edit Subject";
+
+
+    document.getElementById(
+        "submitButton"
+    ).textContent =
+    "UPDATE SUBJECT";
+
+
+    document.getElementById(
+        "cancelButton"
+    ).style.display =
+    "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* CANCEL */
+
+function cancelEdit(){
+
+    editingSubjectId =
+    null;
+
+
+    document
+    .getElementById(
+        "subjectForm"
+    )
+    .reset();
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+    "➕ Add Subject";
+
+
+    document.getElementById(
+        "submitButton"
+    ).textContent =
+    "REGISTER SUBJECT";
+
+
+    document.getElementById(
+        "cancelButton"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "message"
+    ).textContent =
+    "";
+
+}
+
+
+/* DELETE */
+
+async function deleteSubject(id){
+
+    const confirmed =
+    confirm(
+        "Are you sure you want to delete this subject?"
+    );
+
+
+    if(!confirmed)
+        return;
+
+
+    const {error} =
+    await supabaseClient
+    .from("subjects")
+    .delete()
+    .eq(
+        "id",
+        id
+    );
+
+
+    if(error){
+
+        alert(
+            "Failed to delete subject: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    loadSubjects();
+
+}
+
+
+/* SEARCH */
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+function(){
+
+    loadSubjects(
+        this.value
+    );
+
+});
+
+
+/* NAVIGATION */
+
+function goDashboard(){
+
+    window.location.href =
+    "dashboard.html";
+}
+
+
+function logout(){
+
+    window.location.href =
+    "index.html";
+}
+
+
+/* START */
+
+loadSubjects();
+
+</script>
+
+</body>
+  </html>
