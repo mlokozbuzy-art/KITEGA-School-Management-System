@@ -1,76 +1,1320 @@
-<!-- TAB MENU -->
+<!DOCTYPE html>
+<html lang="en">
 
-<nav class="tab-menu">
+<head>
 
-    <button class="tab active" onclick="openTab('home', this)">
-        🏠
-        <span>Home</span>
-    </button>
+<meta charset="UTF-8">
 
-    <button class="tab" onclick="openTab('students', this)">
-        👨‍🎓
-        <span>Students</span>
-    </button>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <button class="tab" onclick="openTab('teachers', this)">
-        👨‍🏫
-        <span>Teachers</span>
-    </button>
+<title>KITEGA School Management System</title>
 
-    <button class="tab" onclick="openTab('classes', this)">
-        🏫
-        <span>Classes</span>
-    </button>
-
-    <button class="tab" onclick="openTab('subjects', this)">
-        📚
-        <span>Subjects</span>
-    </button>
-
-    <button class="tab" onclick="openTab('attendance', this)">
-        📋
-        <span>Attendance</span>
-    </button>
-
-    <button class="tab" onclick="openTab('results', this)">
-        📝
-        <span>Results</span>
-    </button>
-
-    <button class="tab" onclick="openTab('timetable', this)">
-        🗓️
-        <span>Timetable</span>
-    </button>
-
-    <button class="tab" onclick="openTab('announcements', this)">
-        📢
-        <span>Announcements</span>
-    </button>
-
-    <button class="tab" onclick="openTab('payments', this)">
-        💰
-        <span>Payments</span>
-    </button>
-
-    <button class="tab" onclick="openTab('reports', this)">
-        📊
-        <span>Reports</span>
-    </button>
-
-</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-<!-- BACK BUTTON -->
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    background:linear-gradient(
+        135deg,
+        #063b52,
+        #07506d
+    );
+
+    color:white;
+
+    padding:18px 25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:
+    0 3px 12px rgba(0,0,0,.12);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+}
+
+
+.brand{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+.logo-icon{
+    width:48px;
+
+    height:48px;
+
+    background:
+    rgba(255,255,255,.15);
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:27px;
+}
+
+
+.school-name{
+    font-size:21px;
+
+    font-weight:bold;
+}
+
+
+.school-subtitle{
+    font-size:12px;
+
+    margin-top:4px;
+
+    opacity:.85;
+}
+
+
+.header-right{
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+
+.datetime{
+    text-align:right;
+}
+
+
+.date{
+    font-size:12px;
+
+    opacity:.85;
+}
+
+
+.time{
+    font-size:17px;
+
+    font-weight:bold;
+
+    margin-top:3px;
+}
+
+
+.logout-button{
+    background:#d92d20;
+
+    color:white;
+
+    border:0;
+
+    padding:11px 17px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+
+.logout-button:hover{
+    background:#b42318;
+
+    transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.layout{
+    display:flex;
+
+    min-height:
+    calc(100vh - 85px);
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+    width:245px;
+
+    background:white;
+
+    border-right:
+    1px solid #e4e7ec;
+
+    padding:20px 12px;
+
+    flex-shrink:0;
+}
+
+
+.menu-title{
+    color:#98a2b3;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    padding:
+    8px 13px;
+
+    margin-bottom:8px;
+
+    letter-spacing:.6px;
+}
+
+
+.menu{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+}
+
+
+.menu-button{
+    width:100%;
+
+    border:0;
+
+    background:transparent;
+
+    color:#344054;
+
+    padding:12px 13px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+
+.menu-button:hover{
+    background:#eef8fb;
+
+    color:#063b52;
+}
+
+
+.menu-button.active{
+    background:#063b52;
+
+    color:white;
+
+    box-shadow:
+    0 3px 8px rgba(6,59,82,.18);
+}
+
+
+.menu-icon{
+    width:25px;
+
+    text-align:center;
+
+    font-size:18px;
+}
+
+
+.menu-text{
+    flex:1;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content{
+    flex:1;
+
+    padding:28px;
+
+    max-width:1500px;
+
+    overflow:hidden;
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back-area{
+    margin-bottom:18px;
+}
+
+
+.back-button{
+    background:white;
+
+    border:
+    1px solid #d0d5dd;
+
+    color:#344054;
+
+    padding:9px 15px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+
+.back-button:hover{
+    background:#eef8fb;
+
+    color:#063b52;
+
+    border-color:#087ea4;
+}
+
+
+/* =====================================================
+   HOME WELCOME
+===================================================== */
+
+.welcome{
+    background:
+    linear-gradient(
+        135deg,
+        #063b52,
+        #087ea4
+    );
+
+    color:white;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 8px 25px rgba(6,59,82,.15);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+.welcome::after{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.07);
+
+    right:-50px;
+
+    top:-60px;
+}
+
+
+.welcome h1{
+    font-size:27px;
+
+    margin-bottom:8px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+
+.welcome p{
+    font-size:14px;
+
+    opacity:.9;
+
+    line-height:1.6;
+
+    position:relative;
+
+    z-index:1;
+}
+
+
+.welcome-small{
+    margin-top:14px;
+
+    font-size:13px;
+
+    opacity:.85;
+}
+
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.section-heading{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+}
+
+
+.section-heading h2{
+    color:#063b52;
+
+    font-size:19px;
+}
+
+
+.section-heading span{
+    color:#98a2b3;
+
+    font-size:12px;
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:16px;
+}
+
+
+.card{
+    background:white;
+
+    padding:21px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+
+    border:
+    1px solid #eef0f3;
+
+    transition:.2s;
+}
+
+
+.card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.08);
+}
+
+
+.card-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+
+.card-icon{
+    width:43px;
+
+    height:43px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    background:#eef8fb;
+}
+
+
+.card-label{
+    color:#667085;
+
+    font-size:13px;
+
+    margin-top:14px;
+}
+
+
+.card-number{
+    color:#063b52;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    margin-top:5px;
+}
+
+
+.card-link{
+    display:inline-block;
+
+    margin-top:13px;
+
+    color:#087ea4;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    text-decoration:none;
+}
+
+
+.card-link:hover{
+    text-decoration:underline;
+}
+
+
+/* =====================================================
+   TWO COLUMN SECTION
+===================================================== */
+
+.two-column{
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:18px;
+
+    margin-top:22px;
+}
+
+
+.panel{
+    background:white;
+
+    padding:23px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+
+    border:
+    1px solid #eef0f3;
+}
+
+
+.panel h2{
+    color:#063b52;
+
+    font-size:18px;
+
+    margin-bottom:8px;
+}
+
+
+.panel-description{
+    color:#667085;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+}
+
+
+/* =====================================================
+   PAYMENT INFO
+===================================================== */
+
+.amount{
+    color:#063b52;
+
+    font-size:29px;
+
+    font-weight:bold;
+
+    margin:8px 0 18px;
+}
+
+
+.panel-button{
+    display:inline-block;
+
+    background:#063b52;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:11px 17px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+
+.panel-button:hover{
+    background:#087ea4;
+}
+
+
+/* =====================================================
+   QUICK ACCESS
+===================================================== */
+
+.quick-section{
+    background:white;
+
+    padding:23px;
+
+    border-radius:15px;
+
+    margin-top:22px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+
+    border:
+    1px solid #eef0f3;
+}
+
+
+.quick-section h2{
+    color:#063b52;
+
+    margin-bottom:16px;
+
+    font-size:18px;
+}
+
+
+.quick-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:11px;
+}
+
+
+.quick-button{
+    border:
+    1px solid #e4e7ec;
+
+    background:white;
+
+    color:#344054;
+
+    text-decoration:none;
+
+    padding:14px 10px;
+
+    border-radius:9px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+
+.quick-button:hover{
+    background:#eef8fb;
+
+    border-color:#087ea4;
+
+    color:#063b52;
+
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   PAGE PLACEHOLDER
+===================================================== */
+
+.page-placeholder{
+    background:white;
+
+    padding:35px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+}
+
+
+.page-placeholder .big-icon{
+    font-size:55px;
+
+    margin-bottom:15px;
+}
+
+
+.page-placeholder h1{
+    color:#063b52;
+
+    margin-bottom:8px;
+}
+
+
+.page-placeholder p{
+    color:#667085;
+
+    margin-bottom:20px;
+}
+
+
+/* =====================================================
+   CUSTOM LOGOUT POPUP
+===================================================== */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.55);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:5000;
+
+    padding:20px;
+}
+
+
+.modal.show{
+    display:flex;
+}
+
+
+.modal-box{
+    width:100%;
+
+    max-width:390px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
+
+    animation:
+    popup .2s ease;
+}
+
+
+@keyframes popup{
+
+    from{
+        transform:scale(.92);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+
+.modal-icon{
+    font-size:45px;
+
+    margin-bottom:12px;
+}
+
+
+.modal-box h2{
+    color:#063b52;
+
+    font-size:20px;
+
+    margin-bottom:9px;
+}
+
+
+.modal-box p{
+    color:#667085;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-bottom:22px;
+}
+
+
+.modal-buttons{
+    display:flex;
+
+    gap:10px;
+}
+
+
+.modal-cancel,
+.modal-confirm{
+    flex:1;
+
+    border:0;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+
+.modal-cancel{
+    background:#eaecf0;
+
+    color:#344054;
+}
+
+
+.modal-confirm{
+    background:#d92d20;
+
+    color:white;
+}
+
+
+.modal-confirm:hover{
+    background:#b42318;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    text-align:center;
+
+    color:#98a2b3;
+
+    font-size:12px;
+
+    padding:30px 10px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .quick-grid{
+        grid-template-columns:
+        repeat(3,1fr);
+    }
+
+}
+
+
+@media(max-width:800px){
+
+    header{
+        padding:15px;
+
+        position:relative;
+    }
+
+    .datetime{
+        display:none;
+    }
+
+    .school-name{
+        font-size:17px;
+    }
+
+    .sidebar{
+        width:100%;
+
+        border-right:0;
+
+        border-bottom:
+        1px solid #e4e7ec;
+
+        padding:10px;
+
+        overflow-x:auto;
+    }
+
+    .layout{
+        display:block;
+    }
+
+    .menu{
+        flex-direction:row;
+
+        width:max-content;
+    }
+
+    .menu-button{
+        width:auto;
+
+        white-space:nowrap;
+
+        padding:10px 12px;
+    }
+
+    .menu-text{
+        display:none;
+    }
+
+    .menu-title{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .quick-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .welcome{
+        padding:22px;
+    }
+
+    .welcome h1{
+        font-size:21px;
+    }
+
+    .logo-icon{
+        width:40px;
+        height:40px;
+        font-size:22px;
+    }
+
+    .logout-button{
+        padding:9px 12px;
+        font-size:12px;
+    }
+
+}
+
+
+@media(max-width:400px){
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo-icon">
+            🏫
+        </div>
+
+        <div>
+
+            <div class="school-name">
+                KITEGA SCHOOL
+            </div>
+
+            <div class="school-subtitle">
+                School Management System
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-right">
+
+        <div class="datetime">
+
+            <div
+            id="date"
+            class="date">
+            </div>
+
+            <div
+            id="time"
+            class="time">
+            </div>
+
+        </div>
+
+
+        <button
+        class="logout-button"
+        onclick="openLogout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     LAYOUT
+===================================================== -->
+
+<div class="layout">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="menu-title">
+        MAIN MENU
+    </div>
+
+
+    <nav class="menu">
+
+
+        <button
+        class="menu-button active"
+        onclick="goPage('dashboard.html',this)">
+
+            <span class="menu-icon">
+                🏠
+            </span>
+
+            <span class="menu-text">
+                Home
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('students.html',this)">
+
+            <span class="menu-icon">
+                👨‍🎓
+            </span>
+
+            <span class="menu-text">
+                Students
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('teachers.html',this)">
+
+            <span class="menu-icon">
+                👨‍🏫
+            </span>
+
+            <span class="menu-text">
+                Teachers
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('classes.html',this)">
+
+            <span class="menu-icon">
+                🏫
+            </span>
+
+            <span class="menu-text">
+                Classes
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('subjects.html',this)">
+
+            <span class="menu-icon">
+                📚
+            </span>
+
+            <span class="menu-text">
+                Subjects
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('attendance.html',this)">
+
+            <span class="menu-icon">
+                📋
+            </span>
+
+            <span class="menu-text">
+                Attendance
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('results.html',this)">
+
+            <span class="menu-icon">
+                📝
+            </span>
+
+            <span class="menu-text">
+                Results
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('timetable.html',this)">
+
+            <span class="menu-icon">
+                🗓️
+            </span>
+
+            <span class="menu-text">
+                Timetable
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('announcements.html',this)">
+
+            <span class="menu-icon">
+                📢
+            </span>
+
+            <span class="menu-text">
+                Announcements
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('payments.html',this)">
+
+            <span class="menu-icon">
+                💰
+            </span>
+
+            <span class="menu-text">
+                Payments
+            </span>
+
+        </button>
+
+
+        <button
+        class="menu-button"
+        onclick="goPage('reports.html',this)">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            <span class="menu-text">
+                Reports
+            </span>
+
+        </button>
+
+
+    </nav>
+
+</aside>
+
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="content">
+
+
+<!-- BACK -->
 
 <div
-    id="backArea"
-    class="back-area"
-    style="display:none;"
->
+id="backArea"
+class="back-area"
+style="display:none;">
 
     <button
-        class="back-button"
-        onclick="goBack()">
+    class="back-button"
+    onclick="goBack()">
 
         ← Back
 
@@ -79,80 +1323,741 @@
 </div>
 
 
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
+<section class="welcome">
+
+    <h1>
+        Welcome to KITEGA School Management System 👋
+    </h1>
+
+    <p>
+        Manage your school information from one
+        professional dashboard.
+    </p>
+
+    <div
+    id="welcomeDate"
+    class="welcome-small">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<div class="section-heading">
+
+    <h2>
+        School Overview
+    </h2>
+
+    <span>
+        Live database statistics
+    </span>
+
+</div>
+
+
+<section class="cards">
+
+
+<!-- STUDENTS -->
+
+<div class="card">
+
+    <div class="card-top">
+
+        <div class="card-icon">
+            👨‍🎓
+        </div>
+
+    </div>
+
+    <div class="card-label">
+        Total Students
+    </div>
+
+    <div
+    id="studentCount"
+    class="card-number">
+        ...
+    </div>
+
+    <a
+    href="students.html"
+    class="card-link">
+        Manage Students →
+    </a>
+
+</div>
+
+
+<!-- TEACHERS -->
+
+<div class="card">
+
+    <div class="card-top">
+
+        <div class="card-icon">
+            👨‍🏫
+        </div>
+
+    </div>
+
+    <div class="card-label">
+        Total Teachers
+    </div>
+
+    <div
+    id="teacherCount"
+    class="card-number">
+        ...
+    </div>
+
+    <a
+    href="teachers.html"
+    class="card-link">
+        Manage Teachers →
+    </a>
+
+</div>
+
+
+<!-- CLASSES -->
+
+<div class="card">
+
+    <div class="card-top">
+
+        <div class="card-icon">
+            🏫
+        </div>
+
+    </div>
+
+    <div class="card-label">
+        Total Classes
+    </div>
+
+    <div
+    id="classCount"
+    class="card-number">
+        ...
+    </div>
+
+    <a
+    href="classes.html"
+    class="card-link">
+        Manage Classes →
+    </a>
+
+</div>
+
+
+<!-- PAYMENTS -->
+
+<div class="card">
+
+    <div class="card-top">
+
+        <div class="card-icon">
+            💰
+        </div>
+
+    </div>
+
+    <div class="card-label">
+        Payment Records
+    </div>
+
+    <div
+    id="paymentCount"
+    class="card-number">
+        ...
+    </div>
+
+    <a
+    href="payments.html"
+    class="card-link">
+        Manage Payments →
+    </a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     PAYMENT + RESULTS
+===================================================== -->
+
+<section class="two-column">
+
+
+<div class="panel">
+
+    <h2>
+        💰 Payment Overview
+    </h2>
+
+    <p class="panel-description">
+        Total amount recorded in the school
+        payment database.
+    </p>
+
+    <div
+    id="totalPaymentAmount"
+    class="amount">
+
+        TZS 0
+
+    </div>
+
+    <a
+    href="payments.html"
+    class="panel-button">
+
+        Open Payments
+
+    </a>
+
+</div>
+
+
+
+<div class="panel">
+
+    <h2>
+        📝 Results Management
+    </h2>
+
+    <p class="panel-description">
+        Enter, view and manage student
+        examination results.
+    </p>
+
+    <div
+    id="resultCount"
+    class="amount">
+
+        0 Results
+
+    </div>
+
+    <a
+    href="results.html"
+    class="panel-button">
+
+        Open Results
+
+    </a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     QUICK ACCESS
+===================================================== -->
+
+<section class="quick-section">
+
+    <h2>
+        ⚡ Quick Access
+    </h2>
+
+
+    <div class="quick-grid">
+
+
+        <a
+        href="students.html"
+        class="quick-button">
+
+            👨‍🎓<br>
+            Students
+
+        </a>
+
+
+        <a
+        href="teachers.html"
+        class="quick-button">
+
+            👨‍🏫<br>
+            Teachers
+
+        </a>
+
+
+        <a
+        href="classes.html"
+        class="quick-button">
+
+            🏫<br>
+            Classes
+
+        </a>
+
+
+        <a
+        href="subjects.html"
+        class="quick-button">
+
+            📚<br>
+            Subjects
+
+        </a>
+
+
+        <a
+        href="attendance.html"
+        class="quick-button">
+
+            📋<br>
+            Attendance
+
+        </a>
+
+
+        <a
+        href="results.html"
+        class="quick-button">
+
+            📝<br>
+            Results
+
+        </a>
+
+
+        <a
+        href="timetable.html"
+        class="quick-button">
+
+            🗓️<br>
+            Timetable
+
+        </a>
+
+
+        <a
+        href="announcements.html"
+        class="quick-button">
+
+            📢<br>
+            Announcements
+
+        </a>
+
+
+        <a
+        href="payments.html"
+        class="quick-button">
+
+            💰<br>
+            Payments
+
+        </a>
+
+
+        <a
+        href="reports.html"
+        class="quick-button">
+
+            📊<br>
+            Reports
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026 KITEGA SCHOOL MANAGEMENT SYSTEM
+
+    <br><br>
+
+    Made by MsAbBe
+
+</footer>
+
+
+
+<!-- =====================================================
+     CUSTOM LOGOUT MODAL
+===================================================== -->
+
+<div
+id="logoutModal"
+class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            🚪
+        </div>
+
+        <h2>
+            Teacher, are you sure?
+        </h2>
+
+        <p>
+            TEACHER, ARE YOU SURE YOU WANT
+            TO LOG OUT? 🤷‍♂️
+        </p>
+
+
+        <div class="modal-buttons">
+
+            <button
+            class="modal-cancel"
+            onclick="closeLogout()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+            class="modal-confirm"
+            onclick="confirmLogout()">
+
+                Log Out
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 <script>
 
-function openTab(page, button){
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-    /*
-    HOME
-    */
-
-    if(page === "home"){
-
-        window.location.href =
-        "dashboard.html";
-
-        return;
-    }
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
 
 
-    /*
-    BACK BUTTON
-    */
-
-    document.getElementById(
-        "backArea"
-    ).style.display = "block";
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
 
 
-    /*
-    OPEN PAGES
-    */
-
-    const pages = {
-
-        students:
-        "students.html",
-
-        teachers:
-        "teachers.html",
-
-        classes:
-        "classes.html",
-
-        subjects:
-        "subjects.html",
-
-        attendance:
-        "attendance.html",
-
-        results:
-        "results.html",
-
-        timetable:
-        "timetable.html",
-
-        announcements:
-        "announcements.html",
-
-        payments:
-        "payments.html",
-
-        reports:
-        "reports.html"
-
-    };
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 
-    if(pages[page]){
+/* =====================================================
+   SESSION CHECK
+===================================================== */
 
-        window.location.href =
-        pages[page];
+if(
+    sessionStorage.getItem(
+        "kitiga_logged_in"
+    ) !== "true"
+){
 
-    }
+    window.location.replace(
+        "index.html"
+    );
 
 }
 
+
+/* =====================================================
+   DATE + TIME
+===================================================== */
+
+function updateDateTime(){
+
+    const now =
+    new Date();
+
+
+    const date =
+    now.toLocaleDateString(
+        "en-TZ",
+        {
+            weekday:"long",
+            year:"numeric",
+            month:"long",
+            day:"numeric"
+        }
+    );
+
+
+    const time =
+    now.toLocaleTimeString(
+        "en-TZ",
+        {
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit"
+        }
+    );
+
+
+    document.getElementById(
+        "date"
+    ).textContent =
+    date;
+
+
+    document.getElementById(
+        "time"
+    ).textContent =
+    time;
+
+
+    document.getElementById(
+        "welcomeDate"
+    ).textContent =
+    "Today is " + date +
+    " • Current time: " + time;
+
+}
+
+
+updateDateTime();
+
+
+setInterval(
+    updateDateTime,
+    1000
+);
+
+
+/* =====================================================
+   DASHBOARD STATISTICS
+===================================================== */
+
+async function loadDashboardStats(){
+
+
+    /* STUDENTS */
+
+    const students =
+    await supabaseClient
+    .from("students")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "studentCount"
+    ).textContent =
+    students.error
+    ? "0"
+    : students.count || 0;
+
+
+
+    /* TEACHERS */
+
+    const teachers =
+    await supabaseClient
+    .from("teachers")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "teacherCount"
+    ).textContent =
+    teachers.error
+    ? "0"
+    : teachers.count || 0;
+
+
+
+    /* CLASSES */
+
+    const classes =
+    await supabaseClient
+    .from("classes")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "classCount"
+    ).textContent =
+    classes.error
+    ? "0"
+    : classes.count || 0;
+
+
+
+    /* PAYMENTS */
+
+    const payments =
+    await supabaseClient
+    .from("payments")
+    .select(
+        "id,amount"
+    );
+
+
+    if(!payments.error){
+
+        const data =
+        payments.data || [];
+
+
+        document.getElementById(
+            "paymentCount"
+        ).textContent =
+        data.length;
+
+
+        const total =
+        data.reduce(
+            function(sum,item){
+
+                return sum +
+                Number(
+                    item.amount || 0
+                );
+
+            },
+            0
+        );
+
+
+        document.getElementById(
+            "totalPaymentAmount"
+        ).textContent =
+        "TZS " +
+        total.toLocaleString();
+
+    }
+
+    else{
+
+        document.getElementById(
+            "paymentCount"
+        ).textContent =
+        "0";
+
+        document.getElementById(
+            "totalPaymentAmount"
+        ).textContent =
+        "TZS 0";
+
+    }
+
+
+
+    /* RESULTS */
+
+    const results =
+    await supabaseClient
+    .from("results")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    const resultNumber =
+    results.error
+    ? 0
+    : results.count || 0;
+
+
+    document.getElementById(
+        "resultCount"
+    ).textContent =
+    resultNumber +
+    (
+        resultNumber === 1
+        ? " Result"
+        : " Results"
+    );
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function goPage(
+    page,
+    button
+){
+
+    /*
+       Save that user is still logged in.
+    */
+
+    sessionStorage.setItem(
+        "kitiga_logged_in",
+        "true"
+    );
+
+
+    window.location.href =
+    page;
+
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
 
 function goBack(){
 
@@ -160,4 +2065,91 @@ function goBack(){
 
 }
 
+
+/* =====================================================
+   LOGOUT POPUP
+===================================================== */
+
+function openLogout(){
+
+    document.getElementById(
+        "logoutModal"
+    ).classList.add("show");
+
+}
+
+
+function closeLogout(){
+
+    document.getElementById(
+        "logoutModal"
+    ).classList.remove("show");
+
+}
+
+
+/* =====================================================
+   CONFIRM LOGOUT
+===================================================== */
+
+function confirmLogout(){
+
+    /*
+       VERY IMPORTANT:
+
+       Remove login session first.
+       Therefore browser BACK button
+       cannot reopen dashboard.
+    */
+
+    sessionStorage.removeItem(
+        "kitiga_logged_in"
+    );
+
+
+    /*
+       Also replace current history
+       with login page.
+    */
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE POPUP WHEN CLICKING OUTSIDE
+===================================================== */
+
+document.getElementById(
+    "logoutModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === this
+        ){
+
+            closeLogout();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadDashboardStats();
+
 </script>
+
+
+</body>
+
+</html>
