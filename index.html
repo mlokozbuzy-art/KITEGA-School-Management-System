@@ -10,6 +10,7 @@ content="width=device-width, initial-scale=1.0">
 
 <title>KITEGA School Management System - Login</title>
 
+
 <style>
 
 *{
@@ -18,6 +19,7 @@ content="width=device-width, initial-scale=1.0">
     padding:0;
     font-family:Arial,Helvetica,sans-serif;
 }
+
 
 body{
 
@@ -41,7 +43,7 @@ body{
 }
 
 
-/* ================= LOGIN CONTAINER ================= */
+/* ================= LOGIN WRAPPER ================= */
 
 .login-wrapper{
 
@@ -52,7 +54,7 @@ body{
 }
 
 
-/* ================= SCHOOL BRAND ================= */
+/* ================= BRAND ================= */
 
 .brand{
 
@@ -64,11 +66,12 @@ body{
 
 }
 
+
 .logo{
 
-    width:75px;
+    width:78px;
 
-    height:75px;
+    height:78px;
 
     margin:0 auto 12px;
 
@@ -90,6 +93,7 @@ body{
 
 }
 
+
 .brand h1{
 
     font-size:25px;
@@ -97,6 +101,7 @@ body{
     margin-bottom:5px;
 
 }
+
 
 .brand p{
 
@@ -123,6 +128,7 @@ body{
 
 }
 
+
 .login-card h2{
 
     color:#063b52;
@@ -132,6 +138,7 @@ body{
     margin-bottom:7px;
 
 }
+
 
 .description{
 
@@ -154,6 +161,7 @@ body{
 
 }
 
+
 label{
 
     display:block;
@@ -168,11 +176,13 @@ label{
 
 }
 
+
 .input-wrapper{
 
     position:relative;
 
 }
+
 
 input{
 
@@ -193,6 +203,7 @@ input{
 
 }
 
+
 input:focus{
 
     border-color:#087ea4;
@@ -204,7 +215,7 @@ input:focus{
 }
 
 
-/* ================= SHOW PASSWORD ================= */
+/* ================= PASSWORD BUTTON ================= */
 
 .toggle-password{
 
@@ -256,11 +267,13 @@ input:focus{
 
 }
 
+
 .login-button:hover{
 
     background:#087ea4;
 
 }
+
 
 .login-button:disabled{
 
@@ -289,6 +302,7 @@ input:focus{
 
 }
 
+
 .message.error{
 
     display:block;
@@ -302,6 +316,7 @@ input:focus{
 
 }
 
+
 .message.success{
 
     display:block;
@@ -312,34 +327,6 @@ input:focus{
 
     border:
     1px solid #abefc6;
-
-}
-
-
-/* ================= DEMO INFO ================= */
-
-.demo{
-
-    margin-top:20px;
-
-    padding:13px;
-
-    background:#f8fafc;
-
-    border:
-    1px solid #eaecf0;
-
-    border-radius:9px;
-
-    font-size:12px;
-
-    color:#667085;
-
-}
-
-.demo strong{
-
-    color:#344054;
 
 }
 
@@ -388,6 +375,7 @@ input:focus{
 
 }
 
+
 @keyframes spin{
 
     to{
@@ -410,11 +398,13 @@ input:focus{
 
     }
 
+
     .login-card{
 
         padding:24px 20px;
 
     }
+
 
     .brand h1{
 
@@ -440,27 +430,38 @@ input:focus{
 <div class="brand">
 
 <div class="logo">
+
 🏫
+
 </div>
 
+
 <h1>
+
 KITEGA SCHOOL
+
 </h1>
 
+
 <p>
+
 School Management System
+
 </p>
 
 </div>
 
 
-<!-- ================= LOGIN ================= -->
+
+<!-- ================= LOGIN CARD ================= -->
 
 <div class="login-card">
 
 
 <h2>
-🔐 Administrator Login
+
+🔐 Teacher Login
+
 </h2>
 
 
@@ -470,6 +471,7 @@ Sign in to access the KITEGA School
 Management System dashboard.
 
 </p>
+
 
 
 <form id="loginForm">
@@ -501,6 +503,7 @@ required>
 </div>
 
 
+
 <!-- PASSWORD -->
 
 <div class="form-group">
@@ -513,6 +516,7 @@ Password
 
 
 <div class="input-wrapper">
+
 
 <input
 
@@ -533,17 +537,17 @@ type="button"
 
 class="toggle-password"
 
-id="togglePassword"
-
-aria-label="Show password">
+id="togglePassword">
 
 👁️
 
 </button>
 
+
 </div>
 
 </div>
+
 
 
 <!-- LOGIN BUTTON -->
@@ -561,6 +565,7 @@ LOGIN TO DASHBOARD
 </button>
 
 
+
 <!-- MESSAGE -->
 
 <div
@@ -575,29 +580,11 @@ class="message">
 </form>
 
 
-<!-- ================= DEMO LOGIN ================= -->
-
-<div class="demo">
-
-<strong>Demo Login</strong>
-
-<br><br>
-
-Username:
-<strong>admin</strong>
-
-<br>
-
-Password:
-<strong>1234</strong>
-
 </div>
 
 
-</div>
 
-
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <div class="footer">
 
@@ -613,22 +600,21 @@ Made by MsAbBe
 </div>
 
 
+
 <script>
 
+
 /* =================================================
-   LOGIN DETAILS
+   LOGIN CREDENTIALS
 ================================================= */
 
-/*
-   Hizi ni credentials za demo.
-   Unaweza kuzibadilisha baadaye.
-*/
-
 const VALID_USERNAME =
-"admin";
+"teacher001";
+
 
 const VALID_PASSWORD =
-"1234";
+"123456";
+
 
 
 /* =================================================
@@ -640,25 +626,30 @@ document.getElementById(
     "loginForm"
 );
 
+
 const usernameInput =
 document.getElementById(
     "username"
 );
+
 
 const passwordInput =
 document.getElementById(
     "password"
 );
 
+
 const loginButton =
 document.getElementById(
     "loginButton"
 );
 
+
 const message =
 document.getElementById(
     "message"
 );
+
 
 const togglePassword =
 document.getElementById(
@@ -666,11 +657,12 @@ document.getElementById(
 );
 
 
+
 /* =================================================
-   IF ALREADY LOGGED IN
+   CHECK LOGIN
 ================================================= */
 
-function checkExistingLogin(){
+function checkLogin(){
 
     const loggedIn =
     sessionStorage.getItem(
@@ -689,6 +681,10 @@ function checkExistingLogin(){
     }
 
 }
+
+
+checkLogin();
+
 
 
 /* =================================================
@@ -710,11 +706,6 @@ togglePassword.addEventListener(
             togglePassword.textContent =
             "🙈";
 
-            togglePassword.setAttribute(
-                "aria-label",
-                "Hide password"
-            );
-
         }
 
         else{
@@ -725,15 +716,11 @@ togglePassword.addEventListener(
             togglePassword.textContent =
             "👁️";
 
-            togglePassword.setAttribute(
-                "aria-label",
-                "Show password"
-            );
-
         }
 
     }
 );
+
 
 
 /* =================================================
@@ -746,13 +733,13 @@ function showMessage(
 ){
 
     message.className =
-    "message " +
-    type;
+    "message " + type;
 
     message.textContent =
     text;
 
 }
+
 
 
 /* =================================================
@@ -774,20 +761,13 @@ loginForm.addEventListener(
         passwordInput.value;
 
 
-        /*
-           Clear previous message
-        */
-
         message.className =
         "message";
+
 
         message.textContent =
         "";
 
-
-        /*
-           Validate
-        */
 
         if(!username){
 
@@ -817,40 +797,38 @@ loginForm.addEventListener(
         }
 
 
-        /*
-           Loading
-        */
-
         loginButton.disabled =
         true;
+
 
         loginButton.innerHTML =
         '<span class="spinner"></span>Signing in...';
 
 
-        /*
-           Small delay for professional
-           login experience
-        */
 
         setTimeout(
             function(){
 
-                /*
-                   CHECK CREDENTIALS
-                */
+
+                /* =========================
+                   CHECK USERNAME & PASSWORD
+                ========================= */
 
                 if(
+
                     username ===
                     VALID_USERNAME
+
                     &&
+
                     password ===
                     VALID_PASSWORD
+
                 ){
 
+
                     /*
-                       IMPORTANT:
-                       Save login status
+                       SAVE LOGIN SESSION
                     */
 
                     sessionStorage.setItem(
@@ -858,10 +836,6 @@ loginForm.addEventListener(
                         "true"
                     );
 
-
-                    /*
-                       Optional user information
-                    */
 
                     sessionStorage.setItem(
                         "kitiga_username",
@@ -876,8 +850,7 @@ loginForm.addEventListener(
 
 
                     /*
-                       Prevent going back to
-                       login after successful login
+                       OPEN DASHBOARD
                     */
 
                     setTimeout(
@@ -891,12 +864,14 @@ loginForm.addEventListener(
                         500
                     );
 
+
                 }
 
                 else{
 
+
                     /*
-                       Wrong credentials
+                       WRONG LOGIN
                     */
 
                     showMessage(
@@ -908,6 +883,7 @@ loginForm.addEventListener(
                     loginButton.disabled =
                     false;
 
+
                     loginButton.textContent =
                     "LOGIN TO DASHBOARD";
 
@@ -915,9 +891,11 @@ loginForm.addEventListener(
                     passwordInput.value =
                     "";
 
+
                     passwordInput.focus();
 
                 }
+
 
             },
             500
@@ -927,8 +905,9 @@ loginForm.addEventListener(
 );
 
 
+
 /* =================================================
-   PREVENT OLD DASHBOARD FROM BEING SHOWN
+   PAGE SHOW
 ================================================= */
 
 window.addEventListener(
@@ -940,11 +919,6 @@ window.addEventListener(
             "kitiga_logged_in"
         );
 
-
-        /*
-           If user is already logged in,
-           don't show login page.
-        */
 
         if(
             loggedIn === "true"
@@ -960,11 +934,31 @@ window.addEventListener(
 );
 
 
+
 /* =================================================
-   START
+   EXTRA SECURITY
 ================================================= */
 
-checkExistingLogin();
+history.pushState(
+    null,
+    "",
+    location.href
+);
+
+
+window.addEventListener(
+    "popstate",
+    function(){
+
+        history.pushState(
+            null,
+            "",
+            location.href
+        );
+
+    }
+);
+
 
 </script>
 
@@ -972,3 +966,10 @@ checkExistingLogin();
 </body>
 
 </html>
+
+Credentials:
+
+- Username: "teacher001"
+- Password: "123456"
+
+Muhimu: ili Back button baada ya Logout ifanye kazi vizuri, "dashboard.html" nayo lazima iwe na check ya "sessionStorage" na logout iwe inafuta "kitiga_logged_in".
