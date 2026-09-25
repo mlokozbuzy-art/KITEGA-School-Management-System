@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Reports - KITEGA School</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:#063b52;
+    color:white;
+    padding:18px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.subtitle{
+    font-size:13px;
+    margin-top:5px;
+}
+
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+
+button,
+.back{
+    border:0;
+    padding:11px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.back{
+    background:#087ea4;
+    color:white;
+}
+
+.print{
+    background:#12b76a;
+    color:white;
+}
+
+.logout{
+    background:#d92d20;
+    color:white;
+}
+
+.container{
+    width:94%;
+    max-width:1300px;
+    margin:25px auto;
+}
+
+.section{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:25px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+}
+
+.section h1,
+.section h2{
+    color:#063b52;
+    margin-bottom:10px;
+}
+
+.description{
+    color:#667085;
+    line-height:1.5;
+}
+
+.report-menu{
+    display:grid;
+    grid-template-columns:
+    repeat(5,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.report-button{
+    background:#eef8fb;
+    border:1px solid #d6eef5;
+    color:#063b52;
+    padding:15px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.report-button:hover,
+.report-button.active{
+    background:#063b52;
+    color:white;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:
+    repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    background:#f8fafc;
+    border:1px solid #eaecf0;
+    border-radius:10px;
+    padding:18px;
+}
+
+.summary-title{
+    color:#667085;
+    font-size:13px;
+}
+
+.summary-number{
+    color:#063b52;
+    font-size:25px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.table-box{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #eaecf0;
+    text-align:left;
+}
+
+th{
+    background:#eef8fb;
+    color:#063b52;
+}
+
+td{
+    color:#475467;
+}
+
+.status{
+    text-align:center;
+    padding:25px;
+    color:#667085;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#98a2b3;
+    font-size:13px;
+}
+
+@media(max-width:1000px){
+
+    .report-menu{
+        grid-template-columns:
+        repeat(3,1fr);
+    }
+
+    .summary{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .header-buttons{
+        flex-wrap:wrap;
+    }
+
+    .report-menu{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media print{
+
+    header,
+    .report-menu,
+    .print,
+    .back,
+    .logout{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .container{
+        width:100%;
+        margin:0;
+    }
+
+    .section{
+        box-shadow:none;
+        border:0;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div>
+
+<div class="logo">
+📊 KITEGA SCHOOL
+</div>
+
+<div class="subtitle">
+Reports Management System
+</div>
+
+</div>
+
+
+<div class="header-buttons">
+
+<button
+class="back"
+onclick="goDashboard()">
+
+← Dashboard
+
+</button>
+
+<button
+class="print"
+onclick="printReport()">
+
+🖨️ Print
+
+</button>
+
+<button
+class="logout"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- INTRO -->
+
+<section class="section">
+
+<h1>
+📊 School Reports
+</h1>
+
+<p class="description">
+
+Generate and view school management reports
+from Students, Teachers, Results, Payments
+and Attendance.
+
+</p>
+
+
+<div class="report-menu">
+
+<button
+class="report-button active"
+onclick="showReport('students',this)">
+
+👨‍🎓 Students
+
+</button>
+
+
+<button
+class="report-button"
+onclick="showReport('teachers',this)">
+
+👨‍🏫 Teachers
+
+</button>
+
+
+<button
+class="report-button"
+onclick="showReport('results',this)">
+
+📝 Results
+
+</button>
+
+
+<button
+class="report-button"
+onclick="showReport('payments',this)">
+
+💰 Payments
+
+</button>
+
+
+<button
+class="report-button"
+onclick="showReport('attendance',this)">
+
+📋 Attendance
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- REPORT AREA -->
+
+<section class="section">
+
+
+<h2 id="reportTitle">
+👨‍🎓 Students Report
+</h2>
+
+
+<div class="summary">
+
+
+<div class="summary-card">
+
+<div class="summary-title">
+Total Records
+</div>
+
+<div
+id="summary1"
+class="summary-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-title">
+Summary
+</div>
+
+<div
+id="summary2"
+class="summary-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-title">
+Summary
+</div>
+
+<div
+id="summary3"
+class="summary-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-title">
+Summary
+</div>
+
+<div
+id="summary4"
+class="summary-number">
+
+0
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="reportContent"
+class="table-box">
+
+<div class="status">
+Loading report...
+</div>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+© 2026 KITEGA SCHOOL MANAGEMENT SYSTEM
+
+<br><br>
+
+Made by MsAbBe
+
+</footer>
+
+
+<script>
+
+/* ==========================================
+   SUPABASE
+========================================== */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    value ?? "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   SHOW REPORT
+========================================== */
+
+async function showReport(type,button){
+
+    document
+    .querySelectorAll(".report-button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    if(button){
+        button.classList.add("active");
+    }
+
+
+    if(type === "students"){
+        await loadStudentsReport();
+    }
+
+    else if(type === "teachers"){
+        await loadTeachersReport();
+    }
+
+    else if(type === "results"){
+        await loadResultsReport();
+    }
+
+    else if(type === "payments"){
+        await loadPaymentsReport();
+    }
+
+    else if(type === "attendance"){
+        await loadAttendanceReport();
+    }
+
+}
+
+
+/* ==========================================
+   STUDENTS
+========================================== */
+
+async function loadStudentsReport(){
+
+    setTitle("👨‍🎓 Students Report");
+
+
+    const {data,error} =
+    await supabaseClient
+    .from("students")
+    .select("*")
+    .order("id",{ascending:false});
+
+
+    if(error){
+
+        showError(error);
+        return;
+
+    }
+
+
+    const students =
+    data || [];
+
+
+    setSummary(
+        "Total Students",
+        students.length,
+        "With Class",
+        students.filter(
+            s => s.class_name
+        ).length,
+        "With Phone",
+        students.filter(
+            s => s.phone
+        ).length,
+        "Registered",
+        students.length
+    );
+
+
+    let html = `
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+    <th>#</th>
+    <th>Registration No</th>
+    <th>Full Name</th>
+    <th>Class</th>
+    <th>Phone</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+    `;
+
+
+    students.forEach(function(student,index){
+
+        html += `
+
+        <tr>
+
+        <td>${index + 1}</td>
+
+        <td>
+        ${escapeHTML(
+            student.registration_no || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            student.full_name || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            student.class_name || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            student.phone || "-"
+        )}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html += `
+    </tbody>
+    </table>
+    `;
+
+
+    document.getElementById(
+        "reportContent"
+    ).innerHTML = html;
+
+}
+
+
+/* ==========================================
+   TEACHERS
+========================================== */
+
+async function loadTeachersReport(){
+
+    setTitle("👨‍🏫 Teachers Report");
+
+
+    const {data,error} =
+    await supabaseClient
+    .from("teachers")
+    .select("*")
+    .order("id",{ascending:false});
+
+
+    if(error){
+
+        showError(error);
+        return;
+
+    }
+
+
+    const teachers =
+    data || [];
+
+
+    setSummary(
+        "Total Teachers",
+        teachers.length,
+        "With Class",
+        teachers.filter(
+            t => t.class_name
+        ).length,
+        "With Phone",
+        teachers.filter(
+            t => t.phone
+        ).length,
+        "Registered",
+        teachers.length
+    );
+
+
+    let html = `
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+    <th>#</th>
+    <th>Full Name</th>
+    <th>Username</th>
+    <th>Class</th>
+    <th>Phone</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+    `;
+
+
+    teachers.forEach(function(teacher,index){
+
+        html += `
+
+        <tr>
+
+        <td>${index + 1}</td>
+
+        <td>
+        ${escapeHTML(
+            teacher.full_name || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            teacher.username || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            teacher.class_name || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            teacher.phone || "-"
+        )}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html += `
+    </tbody>
+    </table>
+    `;
+
+
+    document.getElementById(
+        "reportContent"
+    ).innerHTML = html;
+
+}
+
+
+/* ==========================================
+   RESULTS
+========================================== */
+
+async function loadResultsReport(){
+
+    setTitle("📝 Results Report");
+
+
+    const {data,error} =
+    await supabaseClient
+    .from("results")
+    .select(`
+        *,
+        students(
+            registration_no,
+            full_name
+        )
+    `)
+    .order("id",{ascending:false});
+
+
+    if(error){
+
+        showError(error);
+        return;
+
+    }
+
+
+    const results =
+    data || [];
+
+
+    const averages =
+    results
+    .map(r => Number(r.average))
+    .filter(n => !isNaN(n));
+
+
+    const average =
+    averages.length
+    ? averages.reduce(
+        (a,b) => a+b,0
+      ) / averages.length
+    : 0;
+
+
+    const passed =
+    averages.filter(
+        n => n >= 40
+    ).length;
+
+
+    const failed =
+    averages.filter(
+        n => n < 40
+    ).length;
+
+
+    setSummary(
+        "Total Results",
+        results.length,
+        "Average",
+        average.toFixed(2),
+        "Passed",
+        passed,
+        "Failed",
+        failed
+    );
+
+
+    let html = `
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+    <th>#</th>
+    <th>Student</th>
+    <th>Term</th>
+    <th>Year</th>
+    <th>Total</th>
+    <th>Average</th>
+    <th>Grade</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+    `;
+
+
+    results.forEach(function(result,index){
+
+        const student =
+        result.students || {};
+
+
+        html += `
+
+        <tr>
+
+        <td>${index + 1}</td>
+
+        <td>
+        ${escapeHTML(
+            student.registration_no || "-"
+        )}
+
+        <br>
+
+        <small>
+        ${escapeHTML(
+            student.full_name || "-"
+        )}
+        </small>
+
+        </td>
+
+        <td>
+        ${escapeHTML(
+            result.term || "-"
+        )}
+        </td>
+
+        <td>
+        ${result.academic_year || "-"}
+        </td>
+
+        <td>
+        ${result.total ?? "-"}
+        </td>
+
+        <td>
+        ${result.average ?? "-"}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            result.grade || "-"
+        )}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html += `
+    </tbody>
+    </table>
+    `;
+
+
+    document.getElementById(
+        "reportContent"
+    ).innerHTML = html;
+
+}
+
+
+/* ==========================================
+   PAYMENTS
+========================================== */
+
+async function loadPaymentsReport(){
+
+    setTitle("💰 Payments Report");
+
+
+    const {data,error} =
+    await supabaseClient
+    .from("payments")
+    .select("*")
+    .order("id",{ascending:false});
+
+
+    if(error){
+
+        showError(error);
+        return;
+
+    }
+
+
+    const payments =
+    data || [];
+
+
+    const total =
+    payments.reduce(
+        (sum,payment) => {
+
+            return sum +
+            Number(
+                payment.amount || 0
+            );
+
+        },
+        0
+    );
+
+
+    const paid =
+    payments.filter(
+        p =>
+        String(
+            p.status || ""
+        ).toLowerCase()
+        === "paid"
+    ).length;
+
+
+    const unpaid =
+    payments.length -
+    paid;
+
+
+    setSummary(
+        "Total Records",
+        payments.length,
+        "Total Amount",
+        "TZS " +
+        total.toLocaleString(),
+        "Paid",
+        paid,
+        "Other Status",
+        unpaid
+    );
+
+
+    let html = `
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+    <th>#</th>
+    <th>Student</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Date</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+    `;
+
+
+    payments.forEach(function(payment,index){
+
+        html += `
+
+        <tr>
+
+        <td>${index + 1}</td>
+
+        <td>
+        ${escapeHTML(
+            payment.student_id || "-"
+        )}
+        </td>
+
+        <td>
+        TZS ${
+            Number(
+                payment.amount || 0
+            ).toLocaleString()
+        }
+        </td>
+
+        <td>
+        ${escapeHTML(
+            payment.status || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            payment.payment_date ||
+            payment.created_at ||
+            "-"
+        )}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html += `
+    </tbody>
+    </table>
+    `;
+
+
+    document.getElementById(
+        "reportContent"
+    ).innerHTML = html;
+
+}
+
+
+/* ==========================================
+   ATTENDANCE
+========================================== */
+
+async function loadAttendanceReport(){
+
+    setTitle("📋 Attendance Report");
+
+
+    const {data,error} =
+    await supabaseClient
+    .from("attendance")
+    .select("*")
+    .order("id",{ascending:false});
+
+
+    if(error){
+
+        showError(error);
+        return;
+
+    }
+
+
+    const attendance =
+    data || [];
+
+
+    const present =
+    attendance.filter(
+        a =>
+        String(
+            a.status || ""
+        ).toLowerCase()
+        === "present"
+    ).length;
+
+
+    const absent =
+    attendance.filter(
+        a =>
+        String(
+            a.status || ""
+        ).toLowerCase()
+        === "absent"
+    ).length;
+
+
+    setSummary(
+        "Total Records",
+        attendance.length,
+        "Present",
+        present,
+        "Absent",
+        absent,
+        "Other",
+        attendance.length -
+        present -
+        absent
+    );
+
+
+    let html = `
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+    <th>#</th>
+    <th>Student</th>
+    <th>Date</th>
+    <th>Status</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+    `;
+
+
+    attendance.forEach(function(record,index){
+
+        html += `
+
+        <tr>
+
+        <td>${index + 1}</td>
+
+        <td>
+        ${escapeHTML(
+            record.student_id || "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            record.date ||
+            record.attendance_date ||
+            "-"
+        )}
+        </td>
+
+        <td>
+        ${escapeHTML(
+            record.status || "-"
+        )}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html += `
+    </tbody>
+    </table>
+    `;
+
+
+    document.getElementById(
+        "reportContent"
+    ).innerHTML = html;
+
+}
+
+
+/* ==========================================
+   HELPERS
+========================================== */
+
+function setTitle(title){
+
+    document.getElementById(
+        "reportTitle"
+    ).textContent = title;
+
+}
+
+
+function setSummary(
+    title1,value1,
+    title2,value2,
+    title3,value3,
+    title4,value4
+){
+
+    const cards =
+    document.querySelectorAll(
+        ".summary-card"
+    );
+
+
+    const data = [
+        [title1,value1],
+        [title2,value2],
+        [title3,value3],
+        [title4,value4]
+    ];
+
+
+    cards.forEach(
+        function(card,index){
+
+            card.querySelector(
+                ".summary-title"
+            ).textContent =
+            data[index][0];
+
+
+            card.querySelector(
+                ".summary-number"
+            ).textContent =
+            data[index][1];
+
+        }
+    );
+
+}
+
+
+function showError(error){
+
+    document.getElementById(
+        "reportContent"
+    ).innerHTML = `
+
+        <div class="status">
+
+        ❌ Failed to load report.
+
+        <br><br>
+
+        ${escapeHTML(
+            error.message
+        )}
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================
+   PRINT
+========================================== */
+
+function printReport(){
+
+    window.print();
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function goDashboard(){
+
+    window.location.href =
+    "dashboard.html";
+
+}
+
+
+function logout(){
+
+    window.location.href =
+    "index.html";
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+showReport(
+    "students",
+    document.querySelector(
+        ".report-button"
+    )
+);
+
+</script>
+
+</body>
+
+  </html>
