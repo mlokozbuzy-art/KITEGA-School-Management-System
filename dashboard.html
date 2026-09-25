@@ -12,209 +12,151 @@ content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
-
-/* =================================================
-   RESET
-================================================= */
 
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
 }
-
-
-/* =================================================
-   BODY
-================================================= */
 
 body{
     background:#f4f7fb;
     color:#172033;
 }
 
-
-/* =================================================
-   HEADER
-================================================= */
+/* ================= HEADER ================= */
 
 header{
-
+    height:78px;
     background:#063b52;
-
     color:white;
 
-    padding:16px 22px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
 
-    gap:15px;
+    padding:12px 25px;
 
     position:sticky;
-
     top:0;
-
     z-index:1000;
 
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
-
-.logo{
-
-    font-size:21px;
-
-    font-weight:bold;
-
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
+.logo-icon{
+    width:45px;
+    height:45px;
 
-.subtitle{
+    background:#087ea4;
 
-    font-size:12px;
-
-    margin-top:4px;
-
-    opacity:.85;
-
-}
-
-
-/* =================================================
-   HEADER RIGHT
-================================================= */
-
-.header-right{
+    border-radius:10px;
 
     display:flex;
-
     align-items:center;
+    justify-content:center;
 
-    gap:10px;
-
-    flex-wrap:wrap;
-
+    font-size:24px;
 }
 
+.logo-title{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.logo-subtitle{
+    font-size:12px;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
 
 .datetime{
-
     text-align:right;
-
-    font-size:12px;
-
-    line-height:1.5;
-
-    margin-right:5px;
-
 }
 
+.time{
+    font-size:16px;
+    font-weight:bold;
+}
 
-.header-btn{
+.date{
+    font-size:11px;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.logout{
+    background:#d92d20;
+    color:white;
 
     border:0;
 
-    padding:10px 13px;
+    padding:10px 16px;
 
     border-radius:8px;
-
-    color:white;
 
     cursor:pointer;
 
     font-weight:bold;
-
 }
 
-
-.home-btn{
-
-    background:#087ea4;
-
+.logout:hover{
+    background:#b42318;
 }
 
-
-.back-btn{
-
-    background:#475467;
-
-}
-
-
-.logout-btn{
-
-    background:#d92d20;
-
-}
-
-
-.header-btn:hover{
-
-    opacity:.9;
-
-}
-
-
-/* =================================================
-   LAYOUT
-================================================= */
+/* ================= LAYOUT ================= */
 
 .layout{
-
     display:flex;
-
-    min-height:
-    calc(100vh - 72px);
-
+    min-height:calc(100vh - 78px);
 }
 
-
-/* =================================================
-   SIDEBAR
-================================================= */
+/* ================= SIDEBAR ================= */
 
 .sidebar{
-
     width:250px;
 
     background:white;
 
-    border-right:
-    1px solid #e4e7ec;
+    border-right:1px solid #e4e7ec;
 
-    padding:20px 12px;
+    padding:20px 13px;
 
     flex-shrink:0;
-
 }
 
-
-.sidebar-title{
-
+.menu-title{
     color:#98a2b3;
 
     font-size:11px;
 
     font-weight:bold;
 
-    padding:10px 14px;
+    padding:10px 13px;
 
+    margin-bottom:5px;
 }
 
-
-.sidebar a{
-
+.menu-link{
     display:flex;
 
     align-items:center;
 
-    gap:10px;
+    gap:12px;
 
     text-decoration:none;
 
@@ -229,102 +171,72 @@ header{
     font-size:14px;
 
     transition:.2s;
-
 }
 
-
-.sidebar a:hover{
-
+.menu-link:hover{
     background:#eef8fb;
-
     color:#063b52;
-
 }
 
-
-.sidebar a.active{
-
+.menu-link.active{
     background:#063b52;
+    color:white;
+}
+
+.menu-icon{
+    width:24px;
+    text-align:center;
+    font-size:18px;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    flex:1;
+    padding:28px;
+    min-width:0;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome{
+    background:linear-gradient(
+        135deg,
+        #063b52,
+        #087ea4
+    );
 
     color:white;
 
+    border-radius:17px;
+
+    padding:28px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.10);
 }
-
-
-/* =================================================
-   MAIN CONTENT
-================================================= */
-
-.content{
-
-    flex:1;
-
-    padding:25px;
-
-    min-width:0;
-
-}
-
-
-/* =================================================
-   WELCOME
-================================================= */
-
-.welcome{
-
-    background:white;
-
-    border-radius:16px;
-
-    padding:25px;
-
-    margin-bottom:22px;
-
-    box-shadow:
-    0 4px 18px rgba(0,0,0,.06);
-
-}
-
 
 .welcome h1{
-
-    color:#063b52;
-
     font-size:25px;
-
     margin-bottom:8px;
-
 }
-
 
 .welcome p{
-
-    color:#667085;
-
-    line-height:1.6;
-
-}
-
-
-.date-line{
-
-    margin-top:12px;
-
-    color:#087ea4;
-
-    font-weight:bold;
-
     font-size:14px;
-
+    opacity:.9;
+    line-height:1.6;
 }
 
+/* ================= STATS ================= */
 
-/* =================================================
-   STATISTICS
-================================================= */
+.section-title{
+    color:#063b52;
+    font-size:19px;
+    margin-bottom:15px;
+}
 
 .cards{
-
     display:grid;
 
     grid-template-columns:
@@ -332,252 +244,159 @@ header{
 
     gap:16px;
 
+    margin-bottom:25px;
 }
 
-
 .card{
-
     background:white;
-
-    border-radius:15px;
 
     padding:21px;
 
-    box-shadow:
-    0 4px 18px rgba(0,0,0,.06);
+    border-radius:15px;
 
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+
+    transition:.2s;
 }
 
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.card-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
 
 .card-icon{
+    width:45px;
+    height:45px;
 
-    font-size:29px;
+    border-radius:10px;
 
-    margin-bottom:12px;
+    background:#eef8fb;
 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
 }
-
 
 .card-title{
-
     color:#667085;
-
     font-size:13px;
-
+    margin-top:14px;
 }
-
 
 .card-number{
-
     color:#063b52;
 
-    font-size:26px;
+    font-size:27px;
 
     font-weight:bold;
 
-    margin-top:6px;
-
+    margin-top:5px;
 }
 
+/* ================= QUICK ACCESS ================= */
 
-.card-link{
+.quick-section{
+    background:white;
 
-    display:inline-block;
+    padding:23px;
 
-    margin-top:12px;
+    border-radius:15px;
 
-    color:#087ea4;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
 
+    margin-bottom:25px;
+}
+
+.quick-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:12px;
+}
+
+.quick-button{
     text-decoration:none;
+
+    color:#344054;
+
+    border:1px solid #e4e7ec;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:bold;
 
     font-size:13px;
 
-    font-weight:bold;
-
+    transition:.2s;
 }
 
+.quick-button:hover{
+    background:#eef8fb;
 
-/* =================================================
-   TWO COLUMN SECTION
-================================================= */
+    border-color:#087ea4;
 
-.two-column{
+    color:#063b52;
+}
 
+/* ================= INFORMATION ================= */
+
+.info-grid{
     display:grid;
 
     grid-template-columns:
     1fr 1fr;
 
     gap:18px;
-
-    margin-top:22px;
-
 }
 
-
-.panel{
-
+.info-card{
     background:white;
-
-    border-radius:16px;
 
     padding:23px;
 
-    box-shadow:
-    0 4px 18px rgba(0,0,0,.06);
+    border-radius:15px;
 
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
-
-.panel h2{
-
+.info-card h2{
     color:#063b52;
 
-    font-size:19px;
+    font-size:18px;
 
-    margin-bottom:8px;
-
+    margin-bottom:10px;
 }
 
-
-.panel-description{
-
+.info-card p{
     color:#667085;
 
     font-size:14px;
 
-    line-height:1.5;
-
-    margin-bottom:18px;
-
+    line-height:1.6;
 }
 
-
-.amount{
-
-    color:#063b52;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    margin-bottom:15px;
-
-}
-
-
-/* =================================================
-   BUTTON
-================================================= */
-
-.primary-btn{
-
-    display:inline-block;
-
-    background:#063b52;
-
-    color:white;
-
-    text-decoration:none;
-
-    padding:11px 17px;
-
-    border-radius:8px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-}
-
-
-.primary-btn:hover{
-
-    background:#087ea4;
-
-}
-
-
-/* =================================================
-   QUICK ACCESS
-================================================= */
-
-.quick-section{
-
-    margin-top:22px;
-
-    background:white;
-
-    padding:23px;
-
-    border-radius:16px;
-
-    box-shadow:
-    0 4px 18px rgba(0,0,0,.06);
-
-}
-
-
-.quick-section h2{
-
-    color:#063b52;
-
-    margin-bottom:17px;
-
-}
-
-
-.quick-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:12px;
-
-}
-
-
-.quick-button{
-
-    text-decoration:none;
-
-    color:#344054;
-
-    border:
-    1px solid #e4e7ec;
-
-    padding:15px;
-
-    border-radius:9px;
-
-    font-weight:bold;
-
-    font-size:14px;
-
-    transition:.2s;
-
-}
-
-
-.quick-button:hover{
-
-    background:#eef8fb;
-
-    border-color:#087ea4;
-
-    color:#063b52;
-
-}
-
-
-/* =================================================
-   FOOTER
-================================================= */
+/* ================= FOOTER ================= */
 
 footer{
-
     text-align:center;
 
     padding:25px;
@@ -585,339 +404,209 @@ footer{
     color:#98a2b3;
 
     font-size:12px;
-
 }
 
+/* ================= CUSTOM LOGOUT POPUP ================= */
 
-/* =================================================
-   CUSTOM LOGOUT MODAL
-================================================= */
-
-.logout-modal{
-
+.popup-overlay{
     display:none;
 
     position:fixed;
 
     inset:0;
 
-    background:
-    rgba(0,0,0,.55);
-
-    backdrop-filter:
-    blur(5px);
-
-    justify-content:center;
+    background:rgba(0,0,0,.55);
 
     align-items:center;
 
-    padding:20px;
+    justify-content:center;
 
-    z-index:9999;
-
+    z-index:5000;
 }
 
-
-.logout-modal.show{
-
+.popup-overlay.show{
     display:flex;
-
 }
 
-
-.logout-box{
-
-    width:100%;
-
-    max-width:410px;
-
+.logout-popup{
     background:white;
 
-    border-radius:20px;
+    width:90%;
 
-    padding:30px 25px;
+    max-width:390px;
+
+    border-radius:17px;
+
+    padding:28px;
 
     text-align:center;
 
-    box-shadow:
-    0 20px 60px
-    rgba(0,0,0,.25);
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
 
-    animation:
-    popup .2s ease;
-
+    animation:popup .2s ease;
 }
-
 
 @keyframes popup{
 
     from{
-
-        opacity:0;
-
         transform:scale(.9);
-
+        opacity:0;
     }
 
     to{
-
-        opacity:1;
-
         transform:scale(1);
-
+        opacity:1;
     }
 
 }
 
-
-.logout-icon{
-
-    width:65px;
-
-    height:65px;
-
-    margin:
-    0 auto 15px;
-
-    border-radius:50%;
-
-    background:#eef8fb;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:31px;
-
-}
-
-
-.logout-box h2{
-
-    color:#063b52;
-
+.popup-icon{
+    font-size:42px;
     margin-bottom:12px;
+}
 
+.logout-popup h2{
+    color:#063b52;
     font-size:20px;
-
+    margin-bottom:8px;
 }
 
-
-.logout-box p{
-
+.logout-popup p{
     color:#667085;
-
-    line-height:1.6;
-
     font-size:14px;
-
-    margin-bottom:24px;
-
+    margin-bottom:22px;
 }
 
-
-.logout-actions{
-
+.popup-buttons{
     display:flex;
-
-    gap:12px;
-
+    gap:10px;
 }
 
-
-.logout-actions button{
-
+.popup-cancel,
+.popup-confirm{
     flex:1;
-
-    border:0;
 
     padding:12px;
 
-    border-radius:9px;
+    border:0;
+
+    border-radius:8px;
 
     font-weight:bold;
 
     cursor:pointer;
-
 }
 
-
-.logout-cancel{
-
+.popup-cancel{
     background:#eaecf0;
-
     color:#344054;
-
 }
 
-
-.logout-confirm{
-
+.popup-confirm{
     background:#d92d20;
-
     color:white;
-
 }
 
+/* ================= MOBILE ================= */
 
-.logout-confirm:hover{
-
-    background:#b42318;
-
-}
-
-
-/* =================================================
-   MOBILE
-================================================= */
-
-@media(max-width:1050px){
+@media(max-width:1000px){
 
     .cards{
-
         grid-template-columns:
         repeat(2,1fr);
-
     }
 
-    .two-column{
-
-        grid-template-columns:1fr;
-
+    .quick-grid{
+        grid-template-columns:
+        repeat(2,1fr);
     }
 
 }
-
 
 @media(max-width:750px){
 
     header{
-
-        position:relative;
-
-        flex-direction:column;
-
-        align-items:stretch;
-
+        height:auto;
+        padding:13px 15px;
     }
-
 
     .header-right{
-
-        justify-content:
-        space-between;
-
+        gap:8px;
     }
-
 
     .datetime{
-
-        text-align:left;
-
-        margin-right:0;
-
+        display:none;
     }
 
+    .logo-title{
+        font-size:16px;
+    }
+
+    .logo-subtitle{
+        font-size:10px;
+    }
+
+    .logo-icon{
+        width:40px;
+        height:40px;
+    }
 
     .layout{
-
         display:block;
-
     }
 
-
     .sidebar{
-
         width:100%;
-
-        border-right:0;
-
-        border-bottom:
-        1px solid #e4e7ec;
 
         padding:9px;
 
+        border-right:0;
+
+        border-bottom:1px solid #e4e7ec;
+
+        overflow-x:auto;
+
+        white-space:nowrap;
     }
 
-
-    .sidebar-title{
-
+    .menu-title{
         display:none;
-
     }
 
-
-    .sidebar a{
-
+    .menu-link{
         display:inline-flex;
 
         width:auto;
 
+        margin:2px;
+
         padding:9px 11px;
 
-        margin:3px;
-
         font-size:12px;
-
     }
-
 
     .content{
-
-        padding:17px;
-
+        padding:16px;
     }
 
+    .welcome{
+        padding:22px;
+    }
+
+    .welcome h1{
+        font-size:21px;
+    }
 
     .cards{
-
         grid-template-columns:1fr;
-
     }
-
 
     .quick-grid{
-
-        grid-template-columns:
-        1fr;
-
+        grid-template-columns:1fr;
     }
 
-}
-
-
-@media(max-width:450px){
-
-    .header-right{
-
-        display:grid;
-
-        grid-template-columns:
-        1fr 1fr;
-
-    }
-
-
-    .datetime{
-
-        grid-column:1/-1;
-
-    }
-
-
-    .header-btn{
-
-        width:100%;
-
-    }
-
-
-    .logout-actions{
-
-        flex-direction:column;
-
+    .info-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -926,181 +615,204 @@ footer{
 
 </head>
 
-
 <body>
 
 
-<!-- =================================================
-     HEADER
-================================================= -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
-    <div>
+<div class="logo-area">
 
-        <div class="logo">
+<div class="logo-icon">
+🏫
+</div>
 
-            🏫 KITEGA SCHOOL
+<div>
 
-        </div>
+<div class="logo-title">
+KITEGA SCHOOL
+</div>
 
-        <div class="subtitle">
+<div class="logo-subtitle">
+School Management System
+</div>
 
-            School Management System
+</div>
 
-        </div>
-
-    </div>
-
-
-    <div class="header-right">
-
-
-        <div class="datetime">
-
-            <div id="currentDate">
-
-                Loading date...
-
-            </div>
-
-            <div id="currentTime">
-
-                Loading time...
-
-            </div>
-
-        </div>
+</div>
 
 
-        <button
-        class="header-btn home-btn"
-        onclick="goHome()">
+<div class="header-right">
 
-            🏠 Home
+<div class="datetime">
 
-        </button>
+<div
+id="time"
+class="time">
+00:00:00
+</div>
+
+<div
+id="date"
+class="date">
+Loading date...
+</div>
+
+</div>
 
 
-        <button
-        class="header-btn back-btn"
-        onclick="goBack()">
+<button
+class="logout"
+onclick="openLogoutPopup()">
 
-            ← Back
+Logout
 
-        </button>
+</button>
 
-
-        <button
-        class="header-btn logout-btn"
-        onclick="logout()">
-
-            Logout
-
-        </button>
-
-    </div>
+</div>
 
 </header>
 
 
+<!-- ================= LAYOUT ================= -->
 
 <div class="layout">
 
 
-<!-- =================================================
-     SIDEBAR
-================================================= -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-
-<div class="sidebar-title">
-
+<div class="menu-title">
 MAIN MENU
-
 </div>
 
 
 <a
 href="dashboard.html"
-class="active">
+class="menu-link active">
 
-🏠 Dashboard
+<span class="menu-icon">🏠</span>
 
-</a>
-
-
-<a href="students.html">
-
-👨‍🎓 Students
+<span>Home</span>
 
 </a>
 
 
-<a href="teachers.html">
+<a
+href="students.html"
+class="menu-link">
 
-👨‍🏫 Teachers
+<span class="menu-icon">👨‍🎓</span>
 
-</a>
-
-
-<a href="classes.html">
-
-🏫 Classes
+<span>Students</span>
 
 </a>
 
 
-<a href="subjects.html">
+<a
+href="teachers.html"
+class="menu-link">
 
-📚 Subjects
+<span class="menu-icon">👨‍🏫</span>
 
-</a>
-
-
-<a href="attendance.html">
-
-📋 Attendance
+<span>Teachers</span>
 
 </a>
 
 
-<a href="results.html">
+<a
+href="classes.html"
+class="menu-link">
 
-📝 Results
+<span class="menu-icon">🏫</span>
 
-</a>
-
-
-<a href="timetable.html">
-
-🗓️ Timetable
+<span>Classes</span>
 
 </a>
 
 
-<a href="announcements.html">
+<a
+href="subjects.html"
+class="menu-link">
 
-📢 Announcements
+<span class="menu-icon">📚</span>
+
+<span>Subjects</span>
+
+</a>
+
+
+<a
+href="attendance.html"
+class="menu-link">
+
+<span class="menu-icon">📋</span>
+
+<span>Attendance</span>
 
 </a>
 
 
-<a href="payments.html">
+<a
+href="results.html"
+class="menu-link">
 
-💰 Fees / Payments
+<span class="menu-icon">📝</span>
+
+<span>Results</span>
 
 </a>
 
+
+<a
+href="timetable.html"
+class="menu-link">
+
+<span class="menu-icon">🗓️</span>
+
+<span>Timetable</span>
+
+</a>
+
+
+<a
+href="announcements.html"
+class="menu-link">
+
+<span class="menu-icon">📢</span>
+
+<span>Announcements</span>
+
+</a>
+
+
+<a
+href="payments.html"
+class="menu-link">
+
+<span class="menu-icon">💰</span>
+
+<span>Payments</span>
+
+</a>
+
+
+<a
+href="report.html"
+class="menu-link">
+
+<span class="menu-icon">📄</span>
+
+<span>Reports</span>
+
+</a>
 
 </aside>
 
 
-
-<!-- =================================================
-     CONTENT
-================================================= -->
+<!-- ================= CONTENT ================= -->
 
 <main class="content">
 
@@ -1109,182 +821,117 @@ class="active">
 
 <section class="welcome">
 
-
 <h1>
-
-Welcome, Teacher 👋
-
+Welcome Teacher 👨‍🏫
 </h1>
 
-
 <p>
-
-Welcome to the KITEGA School Management System.
-Manage students, teachers, classes, results,
-attendance and school payments from one place.
-
+Welcome to KITEGA School Management System.
+Manage students, teachers, classes, attendance,
+results, payments and school reports from one place.
 </p>
-
-
-<div
-id="welcomeDate"
-class="date-line">
-
-Today: Loading...
-
-</div>
-
 
 </section>
 
 
+<!-- ================= STATISTICS ================= -->
 
-<!-- =================================================
-     STATISTICS
-================================================= -->
+<h2 class="section-title">
+📊 School Overview
+</h2>
+
 
 <section class="cards">
 
 
-<!-- STUDENTS -->
-
 <div class="card">
 
-<div class="card-icon">
+<div class="card-top">
 
+<div class="card-icon">
 👨‍🎓
+</div>
 
 </div>
 
 <div class="card-title">
-
-Students
-
+Total Students
 </div>
 
 <div
 id="studentCount"
 class="card-number">
-
 ...
+</div>
 
 </div>
 
-<a
-href="students.html"
-class="card-link">
-
-Manage Students →
-
-</a>
-
-</div>
-
-
-
-<!-- TEACHERS -->
 
 <div class="card">
 
-<div class="card-icon">
+<div class="card-top">
 
+<div class="card-icon">
 👨‍🏫
+</div>
 
 </div>
 
 <div class="card-title">
-
-Teachers
-
+Total Teachers
 </div>
 
 <div
 id="teacherCount"
 class="card-number">
-
 ...
+</div>
 
 </div>
 
-<a
-href="teachers.html"
-class="card-link">
-
-Manage Teachers →
-
-</a>
-
-</div>
-
-
-
-<!-- CLASSES -->
 
 <div class="card">
 
-<div class="card-icon">
+<div class="card-top">
 
+<div class="card-icon">
 🏫
+</div>
 
 </div>
 
 <div class="card-title">
-
-Classes
-
+Total Classes
 </div>
 
 <div
 id="classCount"
 class="card-number">
-
 ...
+</div>
 
 </div>
 
-<a
-href="classes.html"
-class="card-link">
-
-Manage Classes →
-
-</a>
-
-</div>
-
-
-
-<!-- PAYMENTS -->
 
 <div class="card">
 
-<div class="card-icon">
+<div class="card-top">
 
+<div class="card-icon">
 💰
+</div>
 
 </div>
 
 <div class="card-title">
-
 Payment Records
-
 </div>
 
 <div
 id="paymentCount"
 class="card-number">
-
 ...
-
 </div>
-
-<a
-href="payments.html"
-class="card-link">
-
-Manage Payments →
-
-</a>
 
 </div>
 
@@ -1292,108 +939,12 @@ Manage Payments →
 </section>
 
 
-
-<!-- =================================================
-     RESULTS + PAYMENT
-================================================= -->
-
-<section class="two-column">
-
-
-<!-- RESULTS -->
-
-<div class="panel">
-
-<h2>
-
-📊 Student Results
-
-</h2>
-
-
-<p class="panel-description">
-
-Open the results management page to
-enter, search and manage student examination results.
-
-</p>
-
-
-<div
-id="resultCount"
-class="amount">
-
-0
-
-</div>
-
-
-<a
-href="results.html"
-class="primary-btn">
-
-Open Results
-
-</a>
-
-</div>
-
-
-
-<!-- PAYMENT -->
-
-<div class="panel">
-
-<h2>
-
-💰 Total Payments
-
-</h2>
-
-
-<p class="panel-description">
-
-Total amount currently recorded in
-the school payment database.
-
-</p>
-
-
-<div
-id="totalPaymentAmount"
-class="amount">
-
-TZS 0
-
-</div>
-
-
-<a
-href="payments.html"
-class="primary-btn">
-
-Open Payments
-
-</a>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =================================================
-     QUICK ACCESS
-================================================= -->
+<!-- ================= QUICK ACCESS ================= -->
 
 <section class="quick-section">
 
-
-<h2>
-
+<h2 class="section-title">
 ⚡ Quick Access
-
 </h2>
 
 
@@ -1404,7 +955,7 @@ Open Payments
 href="students.html"
 class="quick-button">
 
-👨‍🎓 Student Management
+👨‍🎓 Students
 
 </a>
 
@@ -1413,7 +964,7 @@ class="quick-button">
 href="teachers.html"
 class="quick-button">
 
-👨‍🏫 Teacher Management
+👨‍🏫 Teachers
 
 </a>
 
@@ -1455,47 +1006,91 @@ class="quick-button">
 
 
 <a
-href="timetable.html"
-class="quick-button">
-
-🗓️ Timetable
-
-</a>
-
-
-<a
-href="announcements.html"
-class="quick-button">
-
-📢 Announcements
-
-</a>
-
-
-<a
 href="payments.html"
 class="quick-button">
 
-💰 Fees / Payments
+💰 Payments
 
 </a>
 
+
+<a
+href="report.html"
+class="quick-button">
+
+📄 Reports
+
+</a>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= INFORMATION ================= -->
+
+<section class="info-grid">
+
+
+<div class="info-card">
+
+<h2>
+📊 Results
+</h2>
+
+<p>
+Enter and manage student examination
+results, grades and academic performance.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>
+💰 Payments
+</h2>
+
+<p>
+Record student payments, check payment
+status and view financial records.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>
+📋 Attendance
+</h2>
+
+<p>
+Record and monitor daily student
+attendance.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h2>
+📄 Reports
+</h2>
+
+<p>
+View and prepare student and school
+management reports.
+</p>
 
 </div>
 
 
 </section>
 
-
-</main>
-
-</div>
-
-
-
-<!-- =================================================
-     FOOTER
-================================================= -->
 
 <footer>
 
@@ -1508,57 +1103,53 @@ Made by MsAbBe
 </footer>
 
 
+</main>
 
-<!-- =================================================
-     CUSTOM LOGOUT POPUP
-================================================= -->
+</div>
+
+
+<!-- ================= LOGOUT POPUP ================= -->
 
 <div
-id="logoutModal"
-class="logout-modal">
+id="logoutPopup"
+class="popup-overlay">
 
 
-<div class="logout-box">
+<div class="logout-popup">
 
 
-<div class="logout-icon">
-
-🚪
-
+<div class="popup-icon">
+🤷‍♂️
 </div>
 
 
 <h2>
-
-KITEGA SCHOOL
-
+Teacher
 </h2>
 
 
 <p>
-
-TEACHER, ARE YOU SURE YOU WANT TO LOG OUT? 🤷‍♂️
-
+TEACHER, ARE YOU SURE YOU WANT TO LOG OUT?
 </p>
 
 
-<div class="logout-actions">
+<div class="popup-buttons">
 
 
 <button
-class="logout-cancel"
+class="popup-cancel"
 onclick="closeLogoutPopup()">
 
-CANCEL
+Cancel
 
 </button>
 
 
 <button
-class="logout-confirm"
+class="popup-confirm"
 onclick="confirmLogout()">
 
-LOG OUT
+Log Out
 
 </button>
 
@@ -1569,15 +1160,30 @@ LOG OUT
 </div>
 
 </div>
-
 
 
 <script>
 
+/* =========================================
+   SUPABASE
+========================================= */
 
-/* =================================================
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================================
    SESSION PROTECTION
-================================================= */
+========================================= */
 
 if(
     sessionStorage.getItem(
@@ -1592,28 +1198,9 @@ if(
 }
 
 
-/* =================================================
-   SUPABASE
-================================================= */
-
-const SUPABASE_URL =
-"https://fifqskyooaxadfnhxlnq.supabase.co";
-
-
-const SUPABASE_KEY =
-"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
-
-
-const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
-/* =================================================
-   DATE & TIME
-================================================= */
+/* =========================================
+   LIVE DATE & TIME
+========================================= */
 
 function updateDateTime(){
 
@@ -1621,52 +1208,36 @@ function updateDateTime(){
     new Date();
 
 
-    const date =
-    now.toLocaleDateString(
-        "en-TZ",
-        {
-            weekday:"long",
-            year:"numeric",
-            month:"long",
-            day:"numeric"
-        }
-    );
-
-
-    const time =
+    document.getElementById(
+        "time"
+    ).textContent =
     now.toLocaleTimeString(
-        "en-TZ",
+        "en-GB",
         {
             hour:"2-digit",
             minute:"2-digit",
-            second:"2-digit",
-            hour12:true
+            second:"2-digit"
         }
     );
 
 
     document.getElementById(
-        "currentDate"
+        "date"
     ).textContent =
-    date;
-
-
-    document.getElementById(
-        "currentTime"
-    ).textContent =
-    time;
-
-
-    document.getElementById(
-        "welcomeDate"
-    ).textContent =
-    "Today: " + date;
+    now.toLocaleDateString(
+        "en-GB",
+        {
+            weekday:"long",
+            day:"2-digit",
+            month:"long",
+            year:"numeric"
+        }
+    );
 
 }
 
 
 updateDateTime();
-
 
 setInterval(
     updateDateTime,
@@ -1674,20 +1245,17 @@ setInterval(
 );
 
 
-/* =================================================
-   DASHBOARD STATISTICS
-================================================= */
+/* =========================================
+   LOAD DASHBOARD COUNTS
+========================================= */
 
 async function loadDashboardStats(){
 
-
     /* STUDENTS */
 
-    const studentsResult =
+    const students =
     await supabaseClient
-
     .from("students")
-
     .select(
         "id",
         {
@@ -1700,21 +1268,16 @@ async function loadDashboardStats(){
     document.getElementById(
         "studentCount"
     ).textContent =
-    studentsResult.error
+    students.error
     ? "0"
-    : (
-        studentsResult.count || 0
-    );
-
+    : students.count || 0;
 
 
     /* TEACHERS */
 
-    const teachersResult =
+    const teachers =
     await supabaseClient
-
     .from("teachers")
-
     .select(
         "id",
         {
@@ -1727,21 +1290,16 @@ async function loadDashboardStats(){
     document.getElementById(
         "teacherCount"
     ).textContent =
-    teachersResult.error
+    teachers.error
     ? "0"
-    : (
-        teachersResult.count || 0
-    );
-
+    : teachers.count || 0;
 
 
     /* CLASSES */
 
-    const classesResult =
+    const classes =
     await supabaseClient
-
     .from("classes")
-
     .select(
         "id",
         {
@@ -1754,21 +1312,16 @@ async function loadDashboardStats(){
     document.getElementById(
         "classCount"
     ).textContent =
-    classesResult.error
+    classes.error
     ? "0"
-    : (
-        classesResult.count || 0
-    );
+    : classes.count || 0;
 
 
+    /* PAYMENTS */
 
-    /* RESULTS */
-
-    const resultsResult =
+    const payments =
     await supabaseClient
-
-    .from("results")
-
+    .from("payments")
     .select(
         "id",
         {
@@ -1779,78 +1332,11 @@ async function loadDashboardStats(){
 
 
     document.getElementById(
-        "resultCount"
-    ).textContent =
-    resultsResult.error
-    ? "0"
-    : (
-        resultsResult.count || 0
-    );
-
-
-
-    /* PAYMENTS */
-
-    const paymentsResult =
-    await supabaseClient
-
-    .from("payments")
-
-    .select(
-        "id,amount,status"
-    );
-
-
-    if(
-        paymentsResult.error
-    ){
-
-        document.getElementById(
-            "paymentCount"
-        ).textContent =
-        "0";
-
-
-        document.getElementById(
-            "totalPaymentAmount"
-        ).textContent =
-        "TZS 0";
-
-
-        return;
-
-    }
-
-
-    const payments =
-    paymentsResult.data || [];
-
-
-    document.getElementById(
         "paymentCount"
     ).textContent =
-    payments.length;
-
-
-    const total =
-    payments.reduce(
-        function(sum,payment){
-
-            return sum +
-            Number(
-                payment.amount || 0
-            );
-
-        },
-        0
-    );
-
-
-    document.getElementById(
-        "totalPaymentAmount"
-    ).textContent =
-    "TZS " +
-    total.toLocaleString();
+    payments.error
+    ? "0"
+    : payments.count || 0;
 
 }
 
@@ -1858,68 +1344,47 @@ async function loadDashboardStats(){
 loadDashboardStats();
 
 
-/* =================================================
-   HOME
-================================================= */
+/* =========================================
+   CUSTOM LOGOUT POPUP
+========================================= */
 
-function goHome(){
-
-    window.location.href =
-    "dashboard.html";
-
-}
-
-
-/* =================================================
-   BACK
-================================================= */
-
-function goBack(){
-
-    window.history.back();
-
-}
-
-
-/* =================================================
-   OPEN LOGOUT POPUP
-================================================= */
-
-function logout(){
+function openLogoutPopup(){
 
     document
     .getElementById(
-        "logoutModal"
+        "logoutPopup"
     )
-    .classList.add(
-        "show"
-    );
+    .classList
+    .add("show");
 
 }
 
-
-/* =================================================
-   CLOSE LOGOUT POPUP
-================================================= */
 
 function closeLogoutPopup(){
 
     document
     .getElementById(
-        "logoutModal"
+        "logoutPopup"
     )
-    .classList.remove(
-        "show"
-    );
+    .classList
+    .remove("show");
 
 }
 
 
-/* =================================================
+/* =========================================
    CONFIRM LOGOUT
-================================================= */
+========================================= */
 
 function confirmLogout(){
+
+    /*
+       IMPORTANT:
+       Remove login session.
+       This means pressing the phone
+       Back button cannot reopen the
+       dashboard without login.
+    */
 
     sessionStorage.removeItem(
         "kitiga_logged_in"
@@ -1927,9 +1392,8 @@ function confirmLogout(){
 
 
     /*
-       replace() prevents the dashboard
-       from remaining as the previous page
-       when possible.
+       Prevent dashboard from remaining
+       in browser history.
     */
 
     window.location.replace(
@@ -1939,13 +1403,13 @@ function confirmLogout(){
 }
 
 
-/* =================================================
-   CLICK OUTSIDE POPUP
-================================================= */
+/* =========================================
+   CLOSE POPUP WHEN CLICKING OUTSIDE
+========================================= */
 
 document
 .getElementById(
-    "logoutModal"
+    "logoutPopup"
 )
 .addEventListener(
     "click",
@@ -1956,30 +1420,6 @@ document
         ){
 
             closeLogoutPopup();
-
-        }
-
-    }
-);
-
-
-/* =================================================
-   BLOCK DASHBOARD WHEN LOGGED OUT
-================================================= */
-
-window.addEventListener(
-    "pageshow",
-    function(){
-
-        if(
-            sessionStorage.getItem(
-                "kitiga_logged_in"
-            ) !== "true"
-        ){
-
-            window.location.replace(
-                "index.html"
-            );
 
         }
 
