@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Announcements - KITEGA</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:#063b52;
+    color:white;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.title{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.subtitle{
+    font-size:13px;
+    margin-top:5px;
+}
+
+.buttons{
+    display:flex;
+    gap:8px;
+}
+
+button{
+    border:0;
+    border-radius:7px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.back{
+    background:#087ea4;
+    color:white;
+}
+
+.logout{
+    background:#d92d20;
+    color:white;
+}
+
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:25px auto;
+}
+
+.section{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    margin-bottom:25px;
+}
+
+h1,h2{
+    color:#063b52;
+    margin-bottom:18px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#344054;
+}
+
+input,
+textarea,
+select{
+    padding:12px;
+    border:1px solid #d0d5dd;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
+}
+
+textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    outline:none;
+    border-color:#087ea4;
+}
+
+.submit{
+    grid-column:1/-1;
+    background:#063b52;
+    color:white;
+    font-size:15px;
+}
+
+.cancel{
+    display:none;
+    background:#667085;
+    color:white;
+}
+
+.message{
+    grid-column:1/-1;
+    font-weight:bold;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.search{
+    width:300px;
+    padding:11px;
+    border:1px solid #d0d5dd;
+    border-radius:8px;
+}
+
+.table-box{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #eaecf0;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#eef8fb;
+    color:#063b52;
+}
+
+.edit{
+    background:#087ea4;
+    color:white;
+    margin-right:5px;
+}
+
+.delete{
+    background:#d92d20;
+    color:white;
+}
+
+.empty{
+    text-align:center;
+    padding:25px;
+    color:#667085;
+}
+
+.message-cell{
+    max-width:350px;
+    white-space:pre-wrap;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#98a2b3;
+    font-size:13px;
+}
+
+@media(max-width:650px){
+
+    header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .buttons{
+        justify-content:flex-end;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .full,
+    .submit,
+    .cancel,
+    .message{
+        grid-column:auto;
+    }
+
+    .top{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div>
+
+<div class="title">
+📢 ANNOUNCEMENTS MANAGEMENT
+</div>
+
+<div class="subtitle">
+KITEGA Primary School
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="back"
+onclick="goDashboard()">
+
+← Dashboard
+
+</button>
+
+
+<button
+class="logout"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- CREATE ANNOUNCEMENT -->
+
+<section class="section">
+
+<h1 id="formTitle">
+➕ Create Announcement
+</h1>
+
+
+<form
+id="announcementForm"
+class="form">
+
+
+<div class="group">
+
+<label>
+Announcement Title
+</label>
+
+<input
+type="text"
+id="title"
+placeholder="Example: School Meeting"
+required>
+
+</div>
+
+
+<div class="group">
+
+<label>
+Audience
+</label>
+
+<select
+id="audience">
+
+<option value="All">
+All Students & Teachers
+</option>
+
+<option value="Students">
+Students
+</option>
+
+<option value="Teachers">
+Teachers
+</option>
+
+<option value="Parents">
+Parents
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group">
+
+<label>
+Published Date
+</label>
+
+<input
+type="date"
+id="publishedDate"
+required>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+Announcement Message
+</label>
+
+<textarea
+id="announcementMessage"
+placeholder="Write announcement here..."
+required></textarea>
+
+</div>
+
+
+<button
+type="submit"
+id="submitButton"
+class="submit">
+
+PUBLISH ANNOUNCEMENT
+
+</button>
+
+
+<button
+type="button"
+id="cancelButton"
+class="cancel"
+onclick="cancelEdit()">
+
+CANCEL EDIT
+
+</button>
+
+
+<div
+id="message"
+class="message">
+
+</div>
+
+</form>
+
+</section>
+
+
+<!-- ANNOUNCEMENT LIST -->
+
+<section class="section">
+
+
+<div class="top">
+
+<h2>
+📋 Published Announcements
+</h2>
+
+
+<input
+type="text"
+id="search"
+class="search"
+placeholder="🔍 Search announcement...">
+
+</div>
+
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Title</th>
+
+<th>Message</th>
+
+<th>Audience</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="announcementTable">
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+© 2026 KITEGA PRIMARY SCHOOL
+
+<br>
+
+School Management System
+
+</footer>
+
+
+<script>
+
+
+/* ===============================
+   SUPABASE
+================================ */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let editingId = null;
+
+
+/* ===============================
+   ESCAPE HTML
+================================ */
+
+function escapeHTML(value){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    value ?? "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ===============================
+   TODAY
+================================ */
+
+document.getElementById(
+    "publishedDate"
+).value =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+/* ===============================
+   LOAD ANNOUNCEMENTS
+================================ */
+
+async function loadAnnouncements(
+    searchText=""
+){
+
+    const table =
+    document.getElementById(
+        "announcementTable"
+    );
+
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="6"
+            class="empty">
+
+            Loading announcements...
+
+        </td>
+    </tr>
+    `;
+
+
+    const {data,error} =
+    await supabaseClient
+
+    .from("announcements")
+
+    .select("*")
+
+    .order(
+        "id",
+        {
+            ascending:false
+        }
+    );
+
+
+    if(error){
+
+        console.error(error);
+
+
+        table.innerHTML = `
+        <tr>
+
+            <td colspan="6"
+                class="empty">
+
+                Failed to load announcements.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </td>
+
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    let announcements =
+    data || [];
+
+
+    const search =
+    searchText
+    .toLowerCase()
+    .trim();
+
+
+    if(search){
+
+        announcements =
+        announcements.filter(
+            function(item){
+
+                const text =
+                (
+                    item.title || ""
+                ) +
+                " " +
+                (
+                    item.message || ""
+                ) +
+                " " +
+                (
+                    item.audience || ""
+                );
+
+
+                return text
+                .toLowerCase()
+                .includes(search);
+
+            }
+        );
+
+    }
+
+
+    table.innerHTML = "";
+
+
+    if(announcements.length === 0){
+
+        table.innerHTML = `
+        <tr>
+
+            <td colspan="6"
+                class="empty">
+
+                No announcements found.
+
+            </td>
+
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    announcements.forEach(
+        function(item,index){
+
+            const row =
+            document.createElement("tr");
+
+
+            row.innerHTML = `
+
+            <td>
+                ${index + 1}
+            </td>
+
+
+            <td>
+                <strong>
+                    ${escapeHTML(
+                        item.title
+                    )}
+                </strong>
+            </td>
+
+
+            <td class="message-cell">
+                ${escapeHTML(
+                    item.message
+                )}
+            </td>
+
+
+            <td>
+                ${escapeHTML(
+                    item.audience || "All"
+                )}
+            </td>
+
+
+            <td>
+                ${escapeHTML(
+                    item.published_date || "-"
+                )}
+            </td>
+
+
+            <td>
+
+                <button
+                class="edit"
+                onclick="
+                editAnnouncement(
+                    ${item.id}
+                )">
+
+                    Edit
+
+                </button>
+
+
+                <button
+                class="delete"
+                onclick="
+                deleteAnnouncement(
+                    ${item.id}
+                )">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* ===============================
+   SAVE / UPDATE
+================================ */
+
+document
+.getElementById("announcementForm")
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const message =
+        document.getElementById(
+            "message"
+        );
+
+
+        const title =
+        document.getElementById(
+            "title"
+        ).value.trim();
+
+
+        const announcementMessage =
+        document.getElementById(
+            "announcementMessage"
+        ).value.trim();
+
+
+        const audience =
+        document.getElementById(
+            "audience"
+        ).value;
+
+
+        const publishedDate =
+        document.getElementById(
+            "publishedDate"
+        ).value;
+
+
+        const record = {
+
+            title:
+            title,
+
+            message:
+            announcementMessage,
+
+            audience:
+            audience,
+
+            published_date:
+            publishedDate
+
+        };
+
+
+        let error;
+
+
+        /* UPDATE */
+
+        if(editingId !== null){
+
+            const result =
+            await supabaseClient
+
+            .from("announcements")
+
+            .update(record)
+
+            .eq(
+                "id",
+                editingId
+            );
+
+
+            error =
+            result.error;
+
+        }
+
+
+        /* INSERT */
+
+        else{
+
+            const result =
+            await supabaseClient
+
+            .from("announcements")
+
+            .insert(record);
+
+
+            error =
+            result.error;
+
+        }
+
+
+        if(error){
+
+            console.error(error);
+
+
+            message.style.color =
+            "red";
+
+
+            message.textContent =
+            "Failed to save announcement: " +
+            error.message;
+
+
+            return;
+        }
+
+
+        message.style.color =
+        "green";
+
+
+        message.textContent =
+        editingId !== null
+        ? "Announcement updated successfully."
+        : "Announcement published successfully.";
+
+
+        cancelEdit();
+
+
+        loadAnnouncements();
+
+    }
+);
+
+
+/* ===============================
+   EDIT
+================================ */
+
+async function editAnnouncement(id){
+
+    const {data,error} =
+    await supabaseClient
+
+    .from("announcements")
+
+    .select("*")
+
+    .eq(
+        "id",
+        id
+    )
+
+    .single();
+
+
+    if(error){
+
+        alert(
+            "Failed to load announcement: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "title"
+    ).value =
+    data.title || "";
+
+
+    document.getElementById(
+        "announcementMessage"
+    ).value =
+    data.message || "";
+
+
+    document.getElementById(
+        "audience"
+    ).value =
+    data.audience || "All";
+
+
+    document.getElementById(
+        "publishedDate"
+    ).value =
+    data.published_date ||
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+    editingId =
+    id;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+    "✏️ Edit Announcement";
+
+
+    document.getElementById(
+        "submitButton"
+    ).textContent =
+    "UPDATE ANNOUNCEMENT";
+
+
+    document.getElementById(
+        "cancelButton"
+    ).style.display =
+    "block";
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* ===============================
+   CANCEL
+================================ */
+
+function cancelEdit(){
+
+    editingId =
+    null;
+
+
+    document
+    .getElementById(
+        "announcementForm"
+    )
+    .reset();
+
+
+    document.getElementById(
+        "publishedDate"
+    ).value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+    "➕ Create Announcement";
+
+
+    document.getElementById(
+        "submitButton"
+    ).textContent =
+    "PUBLISH ANNOUNCEMENT";
+
+
+    document.getElementById(
+        "cancelButton"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "message"
+    ).textContent =
+    "";
+
+}
+
+
+/* ===============================
+   DELETE
+================================ */
+
+async function deleteAnnouncement(id){
+
+    const confirmed =
+    confirm(
+        "Are you sure you want to delete this announcement?"
+    );
+
+
+    if(!confirmed)
+        return;
+
+
+    const {error} =
+    await supabaseClient
+
+    .from("announcements")
+
+    .delete()
+
+    .eq(
+        "id",
+        id
+    );
+
+
+    if(error){
+
+        alert(
+            "Failed to delete announcement: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    loadAnnouncements();
+
+}
+
+
+/* ===============================
+   SEARCH
+================================ */
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    function(){
+
+        loadAnnouncements(
+            this.value
+        );
+
+    }
+);
+
+
+/* ===============================
+   NAVIGATION
+================================ */
+
+function goDashboard(){
+
+    window.location.href =
+    "dashboard.html";
+
+}
+
+
+function logout(){
+
+    window.location.href =
+    "index.html";
+
+}
+
+
+/* ===============================
+   START
+================================ */
+
+loadAnnouncements();
+
+</script>
+
+</body>
+</html>
