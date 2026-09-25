@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>KITEGA PRIMARY SCHOOL</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0b4f6c,
+        #168aad
+    );
+
+}
+
+.login-box{
+
+    width:100%;
+
+    max-width:420px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 35px
+    rgba(0,0,0,.25);
+
+}
+
+.logo{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#0b4f6c;
+
+    font-size:40px;
+
+}
+
+h1{
+
+    text-align:center;
+
+    color:#0b4f6c;
+
+    font-size:24px;
+
+    margin-top:15px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#667085;
+
+    margin-top:8px;
+
+    margin-bottom:25px;
+
+}
+
+label{
+
+    display:block;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+    margin-bottom:7px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #d0d5dd;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+}
+
+input:focus{
+
+    outline:none;
+
+    border-color:#0b4f6c;
+
+}
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:20px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0b4f6c;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#083b50;
+
+}
+
+#message{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    min-height:20px;
+
+    font-size:14px;
+
+}
+
+.footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#667085;
+
+    font-size:12px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-box">
+
+
+    <div class="logo">
+
+        🏫
+
+    </div>
+
+
+    <h1>
+
+        KITEGA PRIMARY SCHOOL
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        School Management System
+
+    </p>
+
+
+    <form id="loginForm">
+
+
+        <label>
+
+            Teacher Username
+
+        </label>
+
+
+        <input
+
+            type="text"
+
+            id="username"
+
+            placeholder="Enter username"
+
+            required>
+
+
+        <label>
+
+            Password
+
+        </label>
+
+
+        <input
+
+            type="password"
+
+            id="password"
+
+            placeholder="Enter password"
+
+            required>
+
+
+        <button type="submit">
+
+            LOGIN
+
+        </button>
+
+
+        <div id="message">
+
+        </div>
+
+
+    </form>
+
+
+    <div class="footer">
+
+        © 2026 KITEGA PRIMARY SCHOOL
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* SUPABASE */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+
+const db =
+window.supabase.createClient(
+
+    SUPABASE_URL,
+
+    SUPABASE_KEY
+
+);
+
+
+/* LOGIN */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
+
+
+        const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+
+        const password =
+        document
+        .getElementById("password")
+        .value;
+
+
+        const message =
+        document
+        .getElementById("message");
+
+
+        message.style.color =
+        "#667085";
+
+        message.textContent =
+        "Checking login...";
+
+
+        /* SEARCH TEACHER */
+
+        const {data,error} =
+        await db
+
+        .from("teachers")
+
+        .select("*")
+
+        .eq(
+            "username",
+            username
+        )
+
+        .maybeSingle();
+
+
+        /* DATABASE ERROR */
+
+        if(error){
+
+            console.error(error);
+
+            message.style.color =
+            "red";
+
+            message.textContent =
+            "Database error: "
+            + error.message;
+
+            return;
+
+        }
+
+
+        /* USER NOT FOUND */
+
+        if(!data){
+
+            message.style.color =
+            "red";
+
+            message.textContent =
+            "Username not found.";
+
+            return;
+
+        }
+
+
+        /*
+        IMPORTANT:
+        This expects a password
+        column in teachers table.
+        */
+
+        if(
+            data.password !==
+            password
+        ){
+
+            message.style.color =
+            "red";
+
+            message.textContent =
+            "Wrong password.";
+
+            return;
+
+        }
+
+
+        /* SAVE LOGIN */
+
+        localStorage.setItem(
+
+            "teacher",
+
+            JSON.stringify(data)
+
+        );
+
+
+        message.style.color =
+        "green";
+
+        message.textContent =
+        "Login successful!";
+
+
+        /* OPEN DASHBOARD */
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                "dashboard.html";
+
+            },
+            500
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
