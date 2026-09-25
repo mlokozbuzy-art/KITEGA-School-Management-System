@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KITEGA PRIMARY SCHOOL</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#eef5f8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:950px;
+    min-height:560px;
+    background:white;
+    border-radius:24px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    box-shadow:0 15px 45px rgba(0,0,0,.15);
+}
+
+/* LEFT SIDE */
+
+.left{
+    background:linear-gradient(
+        145deg,
+        #063b52,
+        #0b6b8a
+    );
+
+    color:white;
+    padding:50px 40px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.school-icon{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.left h1{
+    font-size:35px;
+    line-height:1.15;
+    margin-bottom:15px;
+}
+
+.left p{
+    font-size:16px;
+    line-height:1.6;
+    opacity:.9;
+}
+
+.features{
+    margin-top:30px;
+}
+
+.feature{
+    margin:14px 0;
+    font-size:15px;
+}
+
+/* RIGHT SIDE */
+
+.right{
+    padding:45px 40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.right h2{
+    color:#063b52;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#667085;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    color:#344054;
+    margin:15px 0 7px;
+}
+
+.input-box{
+    width:100%;
+    padding:14px;
+    border:1px solid #d0d5dd;
+    border-radius:9px;
+    font-size:15px;
+}
+
+.input-box:focus{
+    outline:none;
+    border-color:#0b6b8a;
+}
+
+.login-btn{
+    width:100%;
+    margin-top:24px;
+    padding:14px;
+    border:0;
+    border-radius:9px;
+    background:#0b5f7a;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-btn:hover{
+    background:#063b52;
+}
+
+.message{
+    text-align:center;
+    min-height:20px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#98a2b3;
+    font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .container{
+        grid-template-columns:1fr;
+    }
+
+    .left{
+        padding:30px;
+        text-align:center;
+    }
+
+    .left h1{
+        font-size:28px;
+    }
+
+    .features{
+        display:none;
+    }
+
+    .right{
+        padding:35px 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SCHOOL INTRO -->
+
+    <div class="left">
+
+        <div class="school-icon">
+            🏫
+        </div>
+
+        <h1>
+            KITEGA<br>
+            PRIMARY SCHOOL
+        </h1>
+
+        <p>
+            School Management System
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                ✓ Student Management
+            </div>
+
+            <div class="feature">
+                ✓ Examination Results
+            </div>
+
+            <div class="feature">
+                ✓ Attendance Management
+            </div>
+
+            <div class="feature">
+                ✓ Student Reports
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div class="right">
+
+        <h2>
+            Teacher Login
+        </h2>
+
+        <p class="subtitle">
+            Sign in to access the school dashboard.
+        </p>
+
+
+        <form id="loginForm">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                class="input-box"
+                id="username"
+                type="text"
+                placeholder="Enter teacher username"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                class="input-box"
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+            <button
+                class="login-btn"
+                type="submit">
+
+                LOGIN
+
+            </button>
+
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+        </form>
+
+
+        <div class="footer">
+
+            © 2026 KITEGA PRIMARY SCHOOL
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+   DEMO TEACHER LOGIN
+
+   Username:
+   teacher001
+
+   Password:
+   123456
+*/
+
+const DEMO_USERNAME =
+"teacher001";
+
+const DEMO_PASSWORD =
+"123456";
+
+
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+
+        const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+
+        const password =
+        document
+        .getElementById("password")
+        .value;
+
+
+        const message =
+        document
+        .getElementById("message");
+
+
+        if(
+            username === DEMO_USERNAME &&
+            password === DEMO_PASSWORD
+        ){
+
+            const teacher = {
+
+                full_name:
+                "KITEGA Teacher",
+
+                username:
+                username
+
+            };
+
+
+            localStorage.setItem(
+                "teacher",
+                JSON.stringify(teacher)
+            );
+
+
+            message.style.color =
+            "green";
+
+            message.textContent =
+            "Login successful...";
+
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                    "dashboard.html";
+
+                },
+                500
+            );
+
+
+        }else{
+
+            message.style.color =
+            "red";
+
+            message.textContent =
+            "Wrong username or password.";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
