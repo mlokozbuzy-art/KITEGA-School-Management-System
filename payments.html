@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Subjects Management - KITEGA</title>
+<title>Fees & Payments - KITEGA</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -28,7 +31,7 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:10px;
+    gap:15px;
 }
 
 .title{
@@ -66,7 +69,7 @@ button{
 
 .container{
     width:94%;
-    max-width:1200px;
+    max-width:1250px;
     margin:25px auto;
 }
 
@@ -94,20 +97,35 @@ h1,h2{
     flex-direction:column;
 }
 
+.full{
+    grid-column:1/-1;
+}
+
 label{
     font-weight:bold;
     margin-bottom:7px;
     color:#344054;
 }
 
-input{
+input,
+select,
+textarea{
+    width:100%;
     padding:12px;
     border:1px solid #d0d5dd;
     border-radius:8px;
     font-size:15px;
+    background:white;
 }
 
-input:focus{
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
     outline:none;
     border-color:#087ea4;
 }
@@ -139,10 +157,33 @@ input:focus{
 }
 
 .search{
-    width:300px;
-    padding:11px;
-    border:1px solid #d0d5dd;
-    border-radius:8px;
+    width:320px;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.card-title{
+    color:#667085;
+    font-size:14px;
+}
+
+.card-value{
+    color:#063b52;
+    font-size:25px;
+    font-weight:bold;
+    margin-top:8px;
 }
 
 .table-box{
@@ -152,13 +193,15 @@ input:focus{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:750px;
+    min-width:1100px;
 }
 
-th,td{
+th,
+td{
     padding:12px;
     border-bottom:1px solid #eaecf0;
     text-align:left;
+    vertical-align:top;
 }
 
 th{
@@ -183,6 +226,12 @@ th{
     color:#667085;
 }
 
+.loading{
+    color:#667085;
+    font-size:14px;
+    margin-top:5px;
+}
+
 footer{
     text-align:center;
     padding:30px;
@@ -190,7 +239,7 @@ footer{
     font-size:13px;
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
 
     header{
         flex-direction:column;
@@ -205,10 +254,15 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .full,
     .submit,
     .cancel,
     .message{
         grid-column:auto;
+    }
+
+    .summary{
+        grid-template-columns:1fr;
     }
 
     .top{
@@ -219,27 +273,49 @@ footer{
     .search{
         width:100%;
     }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
 <div>
-    <div class="title">📚 SUBJECTS MANAGEMENT</div>
-    <div class="subtitle">KITEGA Primary School</div>
+
+<div class="title">
+💰 FEES & PAYMENTS MANAGEMENT
 </div>
+
+<div class="subtitle">
+KITEGA School Management System
+</div>
+
+</div>
+
 
 <div class="buttons">
 
-<button class="back" onclick="goDashboard()">
+<button
+class="back"
+onclick="goDashboard()">
+
 ← Dashboard
+
 </button>
 
-<button class="logout" onclick="logout()">
+
+<button
+class="logout"
+onclick="logout()">
+
 Logout
+
 </button>
 
 </div>
@@ -250,60 +326,172 @@ Logout
 <main class="container">
 
 
+<!-- =========================
+     PAYMENT FORM
+========================= -->
+
 <section class="section">
 
 <h1 id="formTitle">
-➕ Add Subject
+➕ Record Student Payment
 </h1>
 
-<form id="subjectForm" class="form">
 
+<form
+id="paymentForm"
+class="form">
+
+
+<!-- STUDENT -->
 
 <div class="group">
 
-<label>Subject Name</label>
+<label>
+Student
+</label>
+
+<select
+id="studentId"
+required>
+
+<option value="">
+Loading students...
+</option>
+
+</select>
+
+<div
+id="studentLoading"
+class="loading">
+</div>
+
+</div>
+
+
+<!-- AMOUNT -->
+
+<div class="group">
+
+<label>
+Amount Paid
+</label>
 
 <input
-type="text"
-id="subjectName"
-placeholder="Example: Mathematics"
+type="number"
+id="amount"
+placeholder="Example: 50000"
+min="0"
+step="0.01"
 required>
 
 </div>
 
 
+<!-- DATE -->
+
 <div class="group">
 
-<label>Subject Code</label>
+<label>
+Payment Date
+</label>
 
 <input
-type="text"
-id="subjectCode"
-placeholder="Example: MATH">
+type="date"
+id="paymentDate"
+required>
 
 </div>
 
 
+<!-- METHOD -->
+
 <div class="group">
 
-<label>Teacher Name</label>
+<label>
+Payment Method
+</label>
 
-<input
-type="text"
-id="teacherName"
-placeholder="Example: Mr. John">
+<select id="paymentMethod">
+
+<option value="">
+Select payment method
+</option>
+
+<option value="Cash">
+Cash
+</option>
+
+<option value="Bank">
+Bank
+</option>
+
+<option value="Mobile Money">
+Mobile Money
+</option>
+
+<option value="Card">
+Card
+</option>
+
+</select>
 
 </div>
 
 
+<!-- REFERENCE -->
+
 <div class="group">
 
-<label>Description</label>
+<label>
+Reference Number
+</label>
 
 <input
 type="text"
-id="description"
-placeholder="Optional description">
+id="reference"
+placeholder="Example: TXN12345">
+
+</div>
+
+
+<!-- STATUS -->
+
+<div class="group">
+
+<label>
+Status
+</label>
+
+<select id="status">
+
+<option value="Paid">
+Paid
+</option>
+
+<option value="Pending">
+Pending
+</option>
+
+<option value="Cancelled">
+Cancelled
+</option>
+
+</select>
+
+</div>
+
+
+<!-- REMARKS -->
+
+<div class="group full">
+
+<label>
+Remarks
+</label>
+
+<textarea
+id="remarks"
+placeholder="Optional remarks..."></textarea>
 
 </div>
 
@@ -313,7 +501,7 @@ type="submit"
 id="submitButton"
 class="submit">
 
-REGISTER SUBJECT
+SAVE PAYMENT
 
 </button>
 
@@ -335,24 +523,86 @@ class="message">
 
 </div>
 
+
 </form>
 
 </section>
 
 
+<!-- =========================
+     SUMMARY
+========================= -->
+
+<section class="summary">
+
+
+<div class="card">
+
+<div class="card-title">
+Total Payment Records
+</div>
+
+<div
+id="totalPayments"
+class="card-value">
+0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+Total Amount Paid
+</div>
+
+<div
+id="totalAmount"
+class="card-value">
+TZS 0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+Paid Records
+</div>
+
+<div
+id="paidRecords"
+class="card-value">
+0
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     PAYMENT TABLE
+========================= -->
+
 <section class="section">
+
 
 <div class="top">
 
 <h2>
-📋 Registered Subjects
+📋 Payment Records
 </h2>
+
 
 <input
 type="text"
 id="search"
 class="search"
-placeholder="🔍 Search subject...">
+placeholder="🔍 Search student or payment...">
 
 </div>
 
@@ -364,17 +614,44 @@ placeholder="🔍 Search subject...">
 <thead>
 
 <tr>
+
 <th>#</th>
-<th>Subject</th>
-<th>Code</th>
-<th>Teacher</th>
-<th>Description</th>
+
+<th>Student</th>
+
+<th>Amount</th>
+
+<th>Date</th>
+
+<th>Method</th>
+
+<th>Reference</th>
+
+<th>Status</th>
+
+<th>Remarks</th>
+
 <th>Action</th>
+
 </tr>
 
 </thead>
 
-<tbody id="subjectTable">
+
+<tbody id="paymentTable">
+
+<tr>
+
+<td
+colspan="9"
+class="empty">
+
+Loading payments...
+
+</td>
+
+</tr>
+
 </tbody>
 
 </table>
@@ -383,12 +660,13 @@ placeholder="🔍 Search subject...">
 
 </section>
 
+
 </main>
 
 
 <footer>
 
-© 2026 KITEGA PRIMARY SCHOOL
+© 2026 KITEGA SCHOOL
 
 <br>
 
@@ -399,13 +677,18 @@ School Management System
 
 <script>
 
-/* SUPABASE */
+
+/* =================================
+   SUPABASE CONFIGURATION
+================================= */
 
 const SUPABASE_URL =
 "https://fifqskyooaxadfnhxlnq.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -414,10 +697,12 @@ window.supabase.createClient(
 );
 
 
-let editingSubjectId = null;
+let editingId = null;
 
 
-/* ESCAPE HTML */
+/* =================================
+   ESCAPE HTML
+================================= */
 
 function escapeHTML(value){
 
@@ -428,34 +713,59 @@ function escapeHTML(value){
     value ?? "";
 
     return div.innerHTML;
+
 }
 
 
-/* LOAD SUBJECTS */
+/* =================================
+   TODAY
+================================= */
 
-async function loadSubjects(searchText=""){
+document.getElementById(
+    "paymentDate"
+).value =
+new Date()
+.toISOString()
+.split("T")[0];
 
-    const table =
+
+/* =================================
+   LOAD STUDENTS
+================================= */
+
+async function loadStudents(){
+
+    const select =
     document.getElementById(
-        "subjectTable"
+        "studentId"
     );
 
-    table.innerHTML = `
-    <tr>
-        <td colspan="6" class="empty">
-            Loading subjects...
-        </td>
-    </tr>
+
+    const loading =
+    document.getElementById(
+        "studentLoading"
+    );
+
+
+    select.innerHTML = `
+        <option value="">
+            Loading students...
+        </option>
     `;
 
 
     const {data,error} =
     await supabaseClient
-    .from("subjects")
+
+    .from("students")
+
     .select("*")
+
     .order(
         "id",
-        {ascending:false}
+        {
+            ascending:true
+        }
     );
 
 
@@ -463,11 +773,193 @@ async function loadSubjects(searchText=""){
 
         console.error(error);
 
-        table.innerHTML = `
-        <tr>
-            <td colspan="6" class="empty">
 
-                Failed to load subjects.
+        select.innerHTML = `
+            <option value="">
+                Failed to load students
+            </option>
+        `;
+
+
+        loading.style.color =
+        "red";
+
+
+        loading.textContent =
+        error.message;
+
+
+        return;
+    }
+
+
+    if(!data || data.length === 0){
+
+        select.innerHTML = `
+            <option value="">
+                No students registered
+            </option>
+        `;
+
+
+        return;
+    }
+
+
+    select.innerHTML = `
+        <option value="">
+            Select student
+        </option>
+    `;
+
+
+    data.forEach(function(student){
+
+        const option =
+        document.createElement("option");
+
+
+        option.value =
+        student.id;
+
+
+        const name =
+        student.full_name ||
+        student.name ||
+        student.student_name ||
+        "Student";
+
+
+        const reg =
+        student.registration_number ||
+        student.reg_no ||
+        student.username ||
+        "";
+
+
+        option.textContent =
+        reg
+        ? name + " — " + reg
+        : name;
+
+
+        select.appendChild(
+            option
+        );
+
+    });
+
+}
+
+
+/* =================================
+   GET STUDENT NAME
+================================= */
+
+function getStudentName(
+    studentId,
+    students
+){
+
+    const student =
+    students.find(
+        function(item){
+
+            return String(item.id) ===
+            String(studentId);
+
+        }
+    );
+
+
+    if(!student){
+
+        return "Student #" +
+        studentId;
+
+    }
+
+
+    return (
+        student.full_name ||
+        student.name ||
+        student.student_name ||
+        "Student #" + studentId
+    );
+
+}
+
+
+/* =================================
+   LOAD PAYMENTS
+================================= */
+
+async function loadPayments(
+    searchText=""
+){
+
+    const table =
+    document.getElementById(
+        "paymentTable"
+    );
+
+
+    table.innerHTML = `
+        <tr>
+            <td colspan="9"
+                class="empty">
+
+                Loading payments...
+
+            </td>
+        </tr>
+    `;
+
+
+    /* GET STUDENTS */
+
+    const studentsResult =
+    await supabaseClient
+
+    .from("students")
+
+    .select("*");
+
+
+    const students =
+    studentsResult.data || [];
+
+
+    /* GET PAYMENTS */
+
+    const {data,error} =
+    await supabaseClient
+
+    .from("payments")
+
+    .select("*")
+
+    .order(
+        "id",
+        {
+            ascending:false
+        }
+    );
+
+
+    if(error){
+
+        console.error(error);
+
+
+        table.innerHTML = `
+            <tr>
+
+                <td
+                colspan="9"
+                class="empty">
+
+                Failed to load payments.
 
                 <br><br>
 
@@ -475,16 +967,26 @@ async function loadSubjects(searchText=""){
                     error.message
                 )}
 
-            </td>
-        </tr>
+                </td>
+
+            </tr>
         `;
 
         return;
     }
 
 
-    let subjects =
+    const allPayments =
     data || [];
+
+
+    updateSummary(
+        allPayments
+    );
+
+
+    let payments =
+    allPayments;
 
 
     const search =
@@ -495,115 +997,176 @@ async function loadSubjects(searchText=""){
 
     if(search){
 
-        subjects =
-        subjects.filter(
-            function(subject){
+        payments =
+        payments.filter(
+            function(payment){
+
+                const studentName =
+                getStudentName(
+                    payment.student_id,
+                    students
+                );
+
 
                 const text =
+                studentName +
+                " " +
+                payment.student_id +
+                " " +
+                payment.amount +
+                " " +
                 (
-                    subject.subject_name || ""
+                    payment.payment_method ||
+                    ""
                 ) +
                 " " +
                 (
-                    subject.subject_code || ""
+                    payment.reference ||
+                    ""
                 ) +
                 " " +
                 (
-                    subject.teacher_name || ""
+                    payment.status ||
+                    ""
                 );
+
 
                 return text
                 .toLowerCase()
                 .includes(search);
+
             }
         );
+
     }
 
 
     table.innerHTML = "";
 
 
-    if(subjects.length === 0){
+    if(payments.length === 0){
 
         table.innerHTML = `
-        <tr>
-            <td colspan="6" class="empty">
-                No subjects registered yet.
-            </td>
-        </tr>
+            <tr>
+
+                <td
+                colspan="9"
+                class="empty">
+
+                No payment records found.
+
+                </td>
+
+            </tr>
         `;
 
         return;
     }
 
 
-    subjects.forEach(
-        function(subject,index){
+    payments.forEach(
+        function(payment,index){
 
             const row =
             document.createElement("tr");
 
 
+            const studentName =
+            getStudentName(
+                payment.student_id,
+                students
+            );
+
+
             row.innerHTML = `
 
-            <td>
-                ${index + 1}
-            </td>
+                <td>
+                    ${index + 1}
+                </td>
 
-            <td>
-                ${escapeHTML(
-                    subject.subject_name || "-"
-                )}
-            </td>
+                <td>
+                    <strong>
+                        ${escapeHTML(
+                            studentName
+                        )}
+                    </strong>
+                </td>
 
-            <td>
-                ${escapeHTML(
-                    subject.subject_code || "-"
-                )}
-            </td>
+                <td>
+                    TZS
+                    ${Number(
+                        payment.amount || 0
+                    ).toLocaleString()}
+                </td>
 
-            <td>
-                ${escapeHTML(
-                    subject.teacher_name || "-"
-                )}
-            </td>
+                <td>
+                    ${escapeHTML(
+                        payment.payment_date ||
+                        "-"
+                    )}
+                </td>
 
-            <td>
-                ${escapeHTML(
-                    subject.description || "-"
-                )}
-            </td>
+                <td>
+                    ${escapeHTML(
+                        payment.payment_method ||
+                        "-"
+                    )}
+                </td>
 
-            <td>
+                <td>
+                    ${escapeHTML(
+                        payment.reference ||
+                        "-"
+                    )}
+                </td>
 
-                <button
-                class="edit"
-                onclick="
-                editSubject(
-                    ${subject.id}
-                )">
+                <td>
+                    ${escapeHTML(
+                        payment.status ||
+                        "-"
+                    )}
+                </td>
 
-                Edit
+                <td>
+                    ${escapeHTML(
+                        payment.remarks ||
+                        "-"
+                    )}
+                </td>
 
-                </button>
+                <td>
 
-                <button
-                class="delete"
-                onclick="
-                deleteSubject(
-                    ${subject.id}
-                )">
+                    <button
+                    class="edit"
+                    onclick="
+                    editPayment(
+                        ${payment.id}
+                    )">
 
-                Delete
+                    Edit
 
-                </button>
+                    </button>
 
-            </td>
+
+                    <button
+                    class="delete"
+                    onclick="
+                    deletePayment(
+                        ${payment.id}
+                    )">
+
+                    Delete
+
+                    </button>
+
+                </td>
 
             `;
 
 
-            table.appendChild(row);
+            table.appendChild(
+                row
+            );
 
         }
     );
@@ -611,173 +1174,293 @@ async function loadSubjects(searchText=""){
 }
 
 
-/* SAVE SUBJECT */
+/* =================================
+   SUMMARY
+================================= */
 
-document
-.getElementById("subjectForm")
-.addEventListener(
-"submit",
-async function(event){
+function updateSummary(
+    payments
+){
 
-    event.preventDefault();
+    const totalRecords =
+    payments.length;
 
 
-    const message =
-    document.getElementById(
-        "message"
+    const totalAmount =
+    payments.reduce(
+        function(sum,item){
+
+            return sum +
+            Number(
+                item.amount || 0
+            );
+
+        },
+        0
     );
 
 
-    const subjectName =
+    const paidRecords =
+    payments.filter(
+        function(item){
+
+            return item.status ===
+            "Paid";
+
+        }
+    ).length;
+
+
     document.getElementById(
-        "subjectName"
-    ).value.trim();
+        "totalPayments"
+    ).textContent =
+    totalRecords;
 
 
-    const subjectCode =
     document.getElementById(
-        "subjectCode"
-    ).value.trim();
+        "totalAmount"
+    ).textContent =
+    "TZS " +
+    totalAmount.toLocaleString();
 
 
-    const teacherName =
     document.getElementById(
-        "teacherName"
-    ).value.trim();
+        "paidRecords"
+    ).textContent =
+    paidRecords;
+
+}
 
 
-    const description =
-    document.getElementById(
-        "description"
-    ).value.trim();
+/* =================================
+   SAVE PAYMENT
+================================= */
+
+document
+.getElementById(
+    "paymentForm"
+)
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
 
 
-    /* UPDATE */
-
-    if(editingSubjectId !== null){
-
-        const {error} =
-        await supabaseClient
-        .from("subjects")
-        .update({
-
-            subject_name:
-            subjectName,
-
-            subject_code:
-            subjectCode || null,
-
-            teacher_name:
-            teacherName || null,
-
-            description:
-            description || null
-
-        })
-        .eq(
-            "id",
-            editingSubjectId
+        const message =
+        document.getElementById(
+            "message"
         );
 
 
-        if(error){
+        const studentId =
+        document.getElementById(
+            "studentId"
+        ).value;
 
-            message.style.color="red";
+
+        const amount =
+        Number(
+            document.getElementById(
+                "amount"
+            ).value
+        );
+
+
+        const paymentDate =
+        document.getElementById(
+            "paymentDate"
+        ).value;
+
+
+        const paymentMethod =
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+
+        const reference =
+        document.getElementById(
+            "reference"
+        ).value.trim();
+
+
+        const status =
+        document.getElementById(
+            "status"
+        ).value;
+
+
+        const remarks =
+        document.getElementById(
+            "remarks"
+        ).value.trim();
+
+
+        if(!studentId){
+
+            message.style.color =
+            "red";
+
 
             message.textContent =
-            "Failed to update subject: " +
-            error.message;
+            "Please select a student.";
+
 
             return;
         }
 
 
-        message.style.color="green";
+        if(amount <= 0){
+
+            message.style.color =
+            "red";
+
+
+            message.textContent =
+            "Please enter a valid amount.";
+
+
+            return;
+        }
+
+
+        const record = {
+
+            student_id:
+            Number(studentId),
+
+            amount:
+            amount,
+
+            payment_date:
+            paymentDate,
+
+            payment_method:
+            paymentMethod || null,
+
+            reference:
+            reference || null,
+
+            status:
+            status,
+
+            remarks:
+            remarks || null
+
+        };
+
+
+        let error;
+
+
+        /* UPDATE */
+
+        if(editingId !== null){
+
+            const result =
+            await supabaseClient
+
+            .from("payments")
+
+            .update(record)
+
+            .eq(
+                "id",
+                editingId
+            );
+
+
+            error =
+            result.error;
+
+        }
+
+
+        /* INSERT */
+
+        else{
+
+            const result =
+            await supabaseClient
+
+            .from("payments")
+
+            .insert(
+                record
+            );
+
+
+            error =
+            result.error;
+
+        }
+
+
+        if(error){
+
+            console.error(error);
+
+
+            message.style.color =
+            "red";
+
+
+            message.textContent =
+            "Failed to save payment: " +
+            error.message;
+
+
+            return;
+        }
+
+
+        message.style.color =
+        "green";
+
 
         message.textContent =
-        "Subject updated successfully.";
+        editingId !== null
+        ? "Payment updated successfully."
+        : "Payment saved successfully.";
+
 
         cancelEdit();
 
-        loadSubjects();
 
-        return;
+        await loadPayments();
+
     }
+);
 
 
-    /* INSERT */
+/* =================================
+   EDIT PAYMENT
+================================= */
 
-    const {error} =
-    await supabaseClient
-    .from("subjects")
-    .insert({
-
-        subject_name:
-        subjectName,
-
-        subject_code:
-        subjectCode || null,
-
-        teacher_name:
-        teacherName || null,
-
-        description:
-        description || null
-
-    });
-
-
-    if(error){
-
-        console.error(error);
-
-        message.style.color="red";
-
-        message.textContent =
-        "Failed to register subject: " +
-        error.message;
-
-        return;
-    }
-
-
-    message.style.color="green";
-
-    message.textContent =
-    "Subject registered successfully.";
-
-
-    document
-    .getElementById(
-        "subjectForm"
-    )
-    .reset();
-
-
-    loadSubjects();
-
-});
-
-
-/* EDIT SUBJECT */
-
-async function editSubject(id){
+async function editPayment(
+    id
+){
 
     const {data,error} =
     await supabaseClient
-    .from("subjects")
+
+    .from("payments")
+
     .select("*")
+
     .eq(
         "id",
         id
     )
+
     .single();
 
 
     if(error){
 
         alert(
-            "Failed to load subject: " +
+            "Failed to load payment: " +
             error.message
         );
 
@@ -786,43 +1469,61 @@ async function editSubject(id){
 
 
     document.getElementById(
-        "subjectName"
+        "studentId"
     ).value =
-    data.subject_name || "";
+    data.student_id || "";
 
 
     document.getElementById(
-        "subjectCode"
+        "amount"
     ).value =
-    data.subject_code || "";
+    data.amount || "";
 
 
     document.getElementById(
-        "teacherName"
+        "paymentDate"
     ).value =
-    data.teacher_name || "";
+    data.payment_date || "";
 
 
     document.getElementById(
-        "description"
+        "paymentMethod"
     ).value =
-    data.description || "";
+    data.payment_method || "";
 
 
-    editingSubjectId =
+    document.getElementById(
+        "reference"
+    ).value =
+    data.reference || "";
+
+
+    document.getElementById(
+        "status"
+    ).value =
+    data.status || "Paid";
+
+
+    document.getElementById(
+        "remarks"
+    ).value =
+    data.remarks || "";
+
+
+    editingId =
     id;
 
 
     document.getElementById(
         "formTitle"
     ).textContent =
-    "✏️ Edit Subject";
+    "✏️ Edit Payment";
 
 
     document.getElementById(
         "submitButton"
     ).textContent =
-    "UPDATE SUBJECT";
+    "UPDATE PAYMENT";
 
 
     document.getElementById(
@@ -832,38 +1533,51 @@ async function editSubject(id){
 
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
 
 
-/* CANCEL */
+/* =================================
+   CANCEL EDIT
+================================= */
 
 function cancelEdit(){
 
-    editingSubjectId =
+    editingId =
     null;
 
 
     document
     .getElementById(
-        "subjectForm"
+        "paymentForm"
     )
     .reset();
 
 
     document.getElementById(
+        "paymentDate"
+    ).value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+    document.getElementById(
         "formTitle"
     ).textContent =
-    "➕ Add Subject";
+    "➕ Record Student Payment";
 
 
     document.getElementById(
         "submitButton"
     ).textContent =
-    "REGISTER SUBJECT";
+    "SAVE PAYMENT";
 
 
     document.getElementById(
@@ -880,13 +1594,17 @@ function cancelEdit(){
 }
 
 
-/* DELETE */
+/* =================================
+   DELETE PAYMENT
+================================= */
 
-async function deleteSubject(id){
+async function deletePayment(
+    id
+){
 
     const confirmed =
     confirm(
-        "Are you sure you want to delete this subject?"
+        "Are you sure you want to delete this payment?"
     );
 
 
@@ -896,8 +1614,11 @@ async function deleteSubject(id){
 
     const {error} =
     await supabaseClient
-    .from("subjects")
+
+    .from("payments")
+
     .delete()
+
     .eq(
         "id",
         id
@@ -907,7 +1628,7 @@ async function deleteSubject(id){
     if(error){
 
         alert(
-            "Failed to delete subject: " +
+            "Failed to delete payment: " +
             error.message
         );
 
@@ -915,32 +1636,40 @@ async function deleteSubject(id){
     }
 
 
-    loadSubjects();
+    loadPayments();
 
 }
 
 
-/* SEARCH */
+/* =================================
+   SEARCH
+================================= */
 
 document
-.getElementById("search")
+.getElementById(
+    "search"
+)
 .addEventListener(
-"input",
-function(){
+    "input",
+    function(){
 
-    loadSubjects(
-        this.value
-    );
+        loadPayments(
+            this.value
+        );
 
-});
+    }
+);
 
 
-/* NAVIGATION */
+/* =================================
+   NAVIGATION
+================================= */
 
 function goDashboard(){
 
     window.location.href =
     "dashboard.html";
+
 }
 
 
@@ -948,14 +1677,27 @@ function logout(){
 
     window.location.href =
     "index.html";
+
 }
 
 
-/* START */
+/* =================================
+   START
+================================= */
 
-loadSubjects();
+async function start(){
+
+    await loadStudents();
+
+    await loadPayments();
+
+}
+
+
+start();
 
 </script>
 
 </body>
-</html>
+
+    </html>
