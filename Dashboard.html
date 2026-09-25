@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KITEGA PRIMARY SCHOOL - Dashboard</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* HEADER */
+.header{
+    background:#0b4f6c;
+    color:white;
+    padding:16px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.school-name{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.teacher-name{
+    font-size:13px;
+    margin-top:5px;
+    opacity:.9;
+}
+
+.logout{
+    background:#d92d20;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* CONTAINER */
+.container{
+    width:94%;
+    max-width:1150px;
+    margin:25px auto;
+}
+
+/* WELCOME */
+.welcome{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    margin-bottom:20px;
+}
+
+.welcome h1{
+    color:#0b4f6c;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#667085;
+}
+
+/* SUMMARY CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(170px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:25px 15px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.icon{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#0b4f6c;
+    margin-bottom:6px;
+}
+
+.card p{
+    color:#667085;
+    font-size:14px;
+}
+
+/* MENU */
+.menu{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-top:25px;
+}
+
+.menu-button{
+    border:none;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:left;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.menu-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 7px 20px rgba(0,0,0,.1);
+}
+
+.menu-icon{
+    font-size:28px;
+}
+
+.menu-title{
+    display:block;
+    color:#0b4f6c;
+    font-weight:bold;
+    margin-top:8px;
+    font-size:17px;
+}
+
+.menu-text{
+    display:block;
+    color:#667085;
+    font-size:13px;
+    margin-top:5px;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    color:#667085;
+    font-size:12px;
+    padding:30px 0;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    .school-name{
+        font-size:15px;
+    }
+
+    .teacher-name{
+        font-size:11px;
+    }
+
+    .logout{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .welcome h1{
+        font-size:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div>
+
+        <div class="school-name">
+            🏫 KITEGA PRIMARY SCHOOL
+        </div>
+
+        <div
+            class="teacher-name"
+            id="teacherName">
+
+            Teacher Dashboard
+
+        </div>
+
+    </div>
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        LOGOUT
+
+    </button>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <h1>
+            Welcome to KITEGA Primary School 👨‍🏫
+        </h1>
+
+        <p>
+            School Management System Dashboard
+        </p>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="cards">
+
+
+        <div class="card">
+
+            <div class="icon">
+                👨‍🎓
+            </div>
+
+            <h3>
+                Students
+            </h3>
+
+            <p>
+                Student management
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                👨‍🏫
+            </div>
+
+            <h3>
+                Teachers
+            </h3>
+
+            <p>
+                Teacher management
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Results
+            </h3>
+
+            <p>
+                Examination results
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📅
+            </div>
+
+            <h3>
+                Attendance
+            </h3>
+
+            <p>
+                Student attendance
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📄
+            </div>
+
+            <h3>
+                Reports
+            </h3>
+
+            <p>
+                Student reports
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MANAGEMENT MENU -->
+
+    <section class="menu">
+
+
+        <button
+            class="menu-button"
+            onclick="openStudents()">
+
+            <span class="menu-icon">
+                👨‍🎓
+            </span>
+
+            <span class="menu-title">
+                Student Management
+            </span>
+
+            <span class="menu-text">
+                Register and manage students
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="openTeachers()">
+
+            <span class="menu-icon">
+                👨‍🏫
+            </span>
+
+            <span class="menu-title">
+                Teachers
+            </span>
+
+            <span class="menu-text">
+                Manage school teachers
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="openResults()">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            <span class="menu-title">
+                Results
+            </span>
+
+            <span class="menu-text">
+                Enter and view student results
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="openAttendance()">
+
+            <span class="menu-icon">
+                📅
+            </span>
+
+            <span class="menu-title">
+                Attendance
+            </span>
+
+            <span class="menu-text">
+                Record daily attendance
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="openReports()">
+
+            <span class="menu-icon">
+                📄
+            </span>
+
+            <span class="menu-title">
+                Student Reports
+            </span>
+
+            <span class="menu-text">
+                View student reports
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-button"
+            onclick="openAnnouncements()">
+
+            <span class="menu-icon">
+                📢
+            </span>
+
+            <span class="menu-title">
+                Announcements
+            </span>
+
+            <span class="menu-text">
+                School announcements
+            </span>
+
+        </button>
+
+    </section>
+
+
+    <div class="footer">
+        © 2026 KITEGA PRIMARY SCHOOL
+    </div>
+
+
+</main>
+
+
+<script>
+
+/* CHECK LOGIN */
+
+const teacher =
+JSON.parse(
+    localStorage.getItem("teacher") || "null"
+);
+
+
+/*
+If no teacher is logged in,
+return to index.html.
+*/
+
+if(!teacher){
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
+
+/* DISPLAY TEACHER */
+
+if(teacher){
+
+    document.getElementById(
+        "teacherName"
+    ).textContent =
+    "Teacher: " +
+    teacher.full_name;
+
+}
+
+
+/* STUDENTS */
+
+function openStudents(){
+
+    window.location.href =
+        "students.html";
+
+}
+
+
+/* TEACHERS */
+
+function openTeachers(){
+
+    alert(
+        "Teachers module will be connected next."
+    );
+
+}
+
+
+/* RESULTS */
+
+function openResults(){
+
+    alert(
+        "Results module will be connected next."
+    );
+
+}
+
+
+/* ATTENDANCE */
+
+function openAttendance(){
+
+    alert(
+        "Attendance module will be connected next."
+    );
+
+}
+
+
+/* REPORTS */
+
+function openReports(){
+
+    alert(
+        "Reports module will be connected next."
+    );
+
+}
+
+
+/* ANNOUNCEMENTS */
+
+function openAnnouncements(){
+
+    alert(
+        "Announcements module will be connected next."
+    );
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem(
+        "teacher"
+    );
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
