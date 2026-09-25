@@ -463,3 +463,1374 @@ header{
 
 .payment-box{
     background:
+    linear-gradient(
+        135deg,
+        #063b52,
+        #087ea4
+    );
+
+    color:white;
+
+    border-radius:15px;
+
+    padding:24px;
+}
+
+.payment-box h2{
+    font-size:19px;
+    margin-bottom:7px;
+}
+
+.payment-box p{
+    opacity:.85;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.payment-amount{
+    font-size:29px;
+
+    font-weight:bold;
+
+    margin:20px 0;
+}
+
+.payment-info{
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:10px;
+}
+
+.payment-stat{
+    background:rgba(255,255,255,.12);
+
+    padding:13px;
+
+    border-radius:9px;
+}
+
+.payment-stat span{
+    display:block;
+
+    font-size:11px;
+
+    opacity:.75;
+
+    margin-bottom:4px;
+}
+
+.payment-stat strong{
+    font-size:18px;
+}
+
+.payment-button{
+    display:inline-block;
+
+    margin-top:18px;
+
+    background:white;
+
+    color:#063b52;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    font-size:13px;
+}
+
+/* ================= QUICK ACCESS ================= */
+
+.quick-panel{
+    background:white;
+
+    border-radius:15px;
+
+    padding:22px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.06);
+
+    border:1px solid #eef0f3;
+
+    margin-bottom:25px;
+}
+
+.quick-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:12px;
+}
+
+.quick-button{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:14px;
+
+    border:1px solid #e4e7ec;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:#344054;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+.quick-button:hover{
+    background:#eef8fb;
+
+    border-color:#087ea4;
+
+    color:#063b52;
+
+    transform:translateY(-1px);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+
+    padding:25px;
+
+    color:#98a2b3;
+
+    font-size:12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .quick-grid{
+        grid-template-columns:
+        repeat(3,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:750px){
+
+    header{
+        padding:13px 15px;
+    }
+
+    .header-actions .back-btn{
+        display:none;
+    }
+
+    .layout{
+        display:block;
+    }
+
+    .sidebar{
+        position:static;
+
+        width:100%;
+
+        height:auto;
+
+        padding:8px;
+
+        border-right:0;
+
+        border-bottom:
+        1px solid #e4e7ec;
+
+        white-space:nowrap;
+
+        overflow-x:auto;
+    }
+
+    .sidebar-title{
+        display:none;
+    }
+
+    .sidebar a{
+        display:inline-flex;
+
+        width:auto;
+
+        margin:3px;
+
+        padding:9px 11px;
+
+        font-size:12px;
+    }
+
+    .content{
+        padding:17px;
+    }
+
+    .page-top{
+        align-items:flex-start;
+    }
+
+    .mobile-back{
+        display:block;
+    }
+
+    .page-top h1{
+        font-size:22px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .quick-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:450px){
+
+    .logo{
+        font-size:17px;
+    }
+
+    .logo-box{
+        width:39px;
+        height:39px;
+        font-size:20px;
+    }
+
+    .welcome{
+        padding:20px;
+    }
+
+    .welcome h2{
+        font-size:20px;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+
+    .payment-info{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================================
+     HEADER
+================================================= -->
+
+<header>
+
+<div class="brand">
+
+<div class="logo-box">
+🏫
+</div>
+
+<div>
+
+<div class="logo">
+KITEGA SCHOOL
+</div>
+
+<div class="subtitle">
+School Management System
+</div>
+
+</div>
+
+</div>
+
+
+<div class="header-actions">
+
+<button
+class="header-btn back-btn"
+onclick="goBack()">
+
+← Back
+
+</button>
+
+
+<button
+class="header-btn logout-btn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+
+<div class="layout">
+
+
+<!-- =================================================
+     SIDEBAR
+================================================= -->
+
+<aside class="sidebar">
+
+<div class="sidebar-title">
+MAIN MENU
+</div>
+
+
+<a
+href="dashboard.html"
+class="active">
+
+🏠 Dashboard
+
+</a>
+
+
+<a href="students.html">
+👨‍🎓 Students
+</a>
+
+
+<a href="teachers.html">
+👨‍🏫 Teachers
+</a>
+
+
+<a href="classes.html">
+🏫 Classes
+</a>
+
+
+<a href="subjects.html">
+📚 Subjects
+</a>
+
+
+<a href="attendance.html">
+📋 Attendance
+</a>
+
+
+<a href="results.html">
+📝 Results
+</a>
+
+
+<a href="timetable.html">
+🗓️ Timetable
+</a>
+
+
+<a href="announcements.html">
+📢 Announcements
+</a>
+
+
+<a href="payments.html">
+💰 Payments
+</a>
+
+
+</aside>
+
+
+<!-- =================================================
+     MAIN
+================================================= -->
+
+<main class="content">
+
+
+<!-- PAGE TITLE -->
+
+<div class="page-top">
+
+<div>
+
+<h1>
+Dashboard
+</h1>
+
+<p>
+KITEGA School Management System
+</p>
+
+</div>
+
+
+<button
+class="mobile-back"
+onclick="goBack()">
+
+← Back
+
+</button>
+
+</div>
+
+
+<!-- =================================================
+     WELCOME
+================================================= -->
+
+<section class="welcome">
+
+<h2>
+Welcome to KITEGA School Management System 👋
+</h2>
+
+<p>
+Manage students, teachers, classes, subjects,
+attendance, results, timetable, announcements
+and school payments from one place.
+</p>
+
+</section>
+
+
+<!-- =================================================
+     STATISTICS
+================================================= -->
+
+<h2 class="section-title">
+📊 School Overview
+</h2>
+
+
+<section class="cards">
+
+
+<!-- STUDENTS -->
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="card-icon">
+👨‍🎓
+</div>
+
+</div>
+
+<div class="card-title">
+Total Students
+</div>
+
+<div
+id="studentCount"
+class="card-number">
+
+...
+
+</div>
+
+<a
+href="students.html"
+class="card-link">
+
+Manage Students →
+
+</a>
+
+</div>
+
+
+<!-- TEACHERS -->
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="card-icon">
+👨‍🏫
+</div>
+
+</div>
+
+<div class="card-title">
+Total Teachers
+</div>
+
+<div
+id="teacherCount"
+class="card-number">
+
+...
+
+</div>
+
+<a
+href="teachers.html"
+class="card-link">
+
+Manage Teachers →
+
+</a>
+
+</div>
+
+
+<!-- CLASSES -->
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="card-icon">
+🏫
+</div>
+
+</div>
+
+<div class="card-title">
+Total Classes
+</div>
+
+<div
+id="classCount"
+class="card-number">
+
+...
+
+</div>
+
+<a
+href="classes.html"
+class="card-link">
+
+Manage Classes →
+
+</a>
+
+</div>
+
+
+<!-- PAYMENTS -->
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="card-icon">
+💰
+</div>
+
+</div>
+
+<div class="card-title">
+Payment Records
+</div>
+
+<div
+id="paymentCount"
+class="card-number">
+
+...
+
+</div>
+
+<a
+href="payments.html"
+class="card-link">
+
+View Payments →
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =================================================
+     REPORT + PAYMENT
+================================================= -->
+
+<section class="dashboard-grid">
+
+
+<!-- REPORT -->
+
+<div class="panel">
+
+<div class="panel-header">
+
+<h2>
+📑 School Reports
+</h2>
+
+</div>
+
+
+<div class="report-list">
+
+
+<div class="report-item">
+
+<div class="report-left">
+
+<div class="report-icon">
+👨‍🎓
+</div>
+
+<div>
+
+<div class="report-name">
+Students Report
+</div>
+
+<div class="report-desc">
+Registered students
+</div>
+
+</div>
+
+</div>
+
+<strong
+id="reportStudents"
+class="report-number">
+
+0
+
+</strong>
+
+</div>
+
+
+<div class="report-item">
+
+<div class="report-left">
+
+<div class="report-icon">
+📋
+</div>
+
+<div>
+
+<div class="report-name">
+Attendance
+</div>
+
+<div class="report-desc">
+Attendance records
+</div>
+
+</div>
+
+</div>
+
+<strong
+id="reportAttendance"
+class="report-number">
+
+0
+
+</strong>
+
+</div>
+
+
+<div class="report-item">
+
+<div class="report-left">
+
+<div class="report-icon">
+📝
+</div>
+
+<div>
+
+<div class="report-name">
+Results
+</div>
+
+<div class="report-desc">
+Student results
+</div>
+
+</div>
+
+</div>
+
+<strong
+id="reportResults"
+class="report-number">
+
+0
+
+</strong>
+
+</div>
+
+
+<div class="report-item">
+
+<div class="report-left">
+
+<div class="report-icon">
+📢
+</div>
+
+<div>
+
+<div class="report-name">
+Announcements
+</div>
+
+<div class="report-desc">
+School announcements
+</div>
+
+</div>
+
+</div>
+
+<strong
+id="reportAnnouncements"
+class="report-number">
+
+0
+
+</strong>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- PAYMENT -->
+
+<div class="payment-box">
+
+<h2>
+💰 Payment Report
+</h2>
+
+<p>
+Summary of payment records stored
+in the school database.
+</p>
+
+
+<div
+id="totalPaymentAmount"
+class="payment-amount">
+
+TZS 0
+
+</div>
+
+
+<div class="payment-info">
+
+
+<div class="payment-stat">
+
+<span>
+TOTAL RECORDS
+</span>
+
+<strong
+id="paymentRecords">
+
+0
+
+</strong>
+
+</div>
+
+
+<div class="payment-stat">
+
+<span>
+PAID RECORDS
+</span>
+
+<strong
+id="paidRecords">
+
+0
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+<a
+href="payments.html"
+class="payment-button">
+
+Open Payment Report →
+
+</a>
+
+</div>
+
+
+</section>
+
+
+<!-- =================================================
+     QUICK ACCESS
+================================================= -->
+
+<section class="quick-panel">
+
+
+<div class="panel-header">
+
+<h2>
+⚡ Quick Access
+</h2>
+
+</div>
+
+
+<div class="quick-grid">
+
+
+<a
+href="students.html"
+class="quick-button">
+
+👨‍🎓 Students
+
+</a>
+
+
+<a
+href="teachers.html"
+class="quick-button">
+
+👨‍🏫 Teachers
+
+</a>
+
+
+<a
+href="classes.html"
+class="quick-button">
+
+🏫 Classes
+
+</a>
+
+
+<a
+href="subjects.html"
+class="quick-button">
+
+📚 Subjects
+
+</a>
+
+
+<a
+href="attendance.html"
+class="quick-button">
+
+📋 Attendance
+
+</a>
+
+
+<a
+href="results.html"
+class="quick-button">
+
+📝 Results
+
+</a>
+
+
+<a
+href="timetable.html"
+class="quick-button">
+
+🗓️ Timetable
+
+</a>
+
+
+<a
+href="announcements.html"
+class="quick-button">
+
+📢 Announcements
+
+</a>
+
+
+<a
+href="payments.html"
+class="quick-button">
+
+💰 Payments
+
+</a>
+
+
+<a
+href="report.html"
+class="quick-button">
+
+📑 Full Report
+
+</a>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- =================================================
+     FOOTER
+================================================= -->
+
+<footer>
+
+© 2026 KITEGA SCHOOL MANAGEMENT SYSTEM
+
+<br><br>
+
+Made by MsAbBe
+
+</footer>
+
+
+<script>
+
+/* =================================================
+   SUPABASE
+================================================= */
+
+const SUPABASE_URL =
+"https://fifqskyooaxadfnhxlnq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =================================================
+   LOGIN SECURITY
+================================================= */
+
+function checkLogin(){
+
+    const loggedIn =
+    sessionStorage.getItem(
+        "kitiga_logged_in"
+    );
+
+    if(loggedIn !== "true"){
+
+        window.location.replace(
+            "index.html"
+        );
+
+    }
+
+}
+
+
+/*
+   Check immediately
+*/
+
+checkLogin();
+
+
+/*
+   Check when page becomes visible again.
+   This prevents returning to dashboard
+   after logout using browser back.
+*/
+
+window.addEventListener(
+    "pageshow",
+    function(){
+
+        checkLogin();
+
+    }
+);
+
+
+/* =================================================
+   BACK BUTTON
+================================================= */
+
+function goBack(){
+
+    /*
+       If there is a previous page,
+       go back normally.
+    */
+
+    if(
+        document.referrer &&
+        document.referrer !== window.location.href
+    ){
+
+        window.history.back();
+
+    }
+
+    else{
+
+        window.location.href =
+        "index.html";
+
+    }
+
+}
+
+
+/* =================================================
+   LOGOUT
+================================================= */
+
+function logout(){
+
+    /*
+       Remove login status
+    */
+
+    sessionStorage.removeItem(
+        "kitiga_logged_in"
+    );
+
+
+    /*
+       Clear all temporary login data
+    */
+
+    sessionStorage.clear();
+
+
+    /*
+       Replace current page instead of
+       normal navigation.
+    */
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
+
+/* =================================================
+   LOAD COUNT
+================================================= */
+
+async function getCount(
+    table
+){
+
+    const result =
+    await supabaseClient
+
+    .from(table)
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    if(result.error){
+
+        console.error(
+            table,
+            result.error
+        );
+
+        return 0;
+
+    }
+
+
+    return result.count || 0;
+
+}
+
+
+/* =================================================
+   LOAD DASHBOARD
+================================================= */
+
+async function loadDashboardStats(){
+
+    /*
+       STUDENTS
+    */
+
+    const students =
+    await getCount(
+        "students"
+    );
+
+
+    document.getElementById(
+        "studentCount"
+    ).textContent =
+    students;
+
+
+    document.getElementById(
+        "reportStudents"
+    ).textContent =
+    students;
+
+
+    /*
+       TEACHERS
+    */
+
+    const teachers =
+    await getCount(
+        "teachers"
+    );
+
+
+    document.getElementById(
+        "teacherCount"
+    ).textContent =
+    teachers;
+
+
+    /*
+       CLASSES
+    */
+
+    const classes =
+    await getCount(
+        "classes"
+    );
+
+
+    document.getElementById(
+        "classCount"
+    ).textContent =
+    classes;
+
+
+    /*
+       PAYMENTS
+    */
+
+    const paymentsResult =
+    await supabaseClient
+
+    .from("payments")
+
+    .select(
+        "id,amount,status"
+    );
+
+
+    if(!paymentsResult.error){
+
+        const payments =
+        paymentsResult.data || [];
+
+
+        /*
+           Payment records
+        */
+
+        document.getElementById(
+            "paymentCount"
+        ).textContent =
+        payments.length;
+
+
+        document.getElementById(
+            "paymentRecords"
+        ).textContent =
+        payments.length;
+
+
+        /*
+           Total amount
+        */
+
+        const total =
+        payments.reduce(
+            function(sum,item){
+
+                return sum +
+                Number(
+                    item.amount || 0
+                );
+
+            },
+            0
+        );
+
+
+        document.getElementById(
+            "totalPaymentAmount"
+        ).textContent =
+        "TZS " +
+        total.toLocaleString();
+
+
+        /*
+           Paid records
+        */
+
+        const paid =
+        payments.filter(
+            function(item){
+
+                return String(
+                    item.status || ""
+                ).toLowerCase() ===
+                "paid";
+
+            }
+        ).length;
+
+
+        document.getElementById(
+            "paidRecords"
+        ).textContent =
+        paid;
+
+    }
+
+    else{
+
+        console.error(
+            paymentsResult.error
+        );
+
+    }
+
+
+    /*
+       ATTENDANCE
+    */
+
+    const attendance =
+    await getCount(
+        "attendance"
+    );
+
+
+    document.getElementById(
+        "reportAttendance"
+    ).textContent =
+    attendance;
+
+
+    /*
+       RESULTS
+    */
+
+    const results =
+    await getCount(
+        "results"
+    );
+
+
+    document.getElementById(
+        "reportResults"
+    ).textContent =
+    results;
+
+
+    /*
+       ANNOUNCEMENTS
+    */
+
+    const announcements =
+    await getCount(
+        "announcements"
+    );
+
+
+    document.getElementById(
+        "reportAnnouncements"
+    ).textContent =
+    announcements;
+
+}
+
+
+/* =================================================
+   START
+================================================= */
+
+loadDashboardStats();
+
+</script>
+
+
+</body>
+
+</html>
