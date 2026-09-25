@@ -8,8 +8,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>KITEGA School Management System - Login</title>
-
+<title>KITEGA School Management System</title>
 
 <style>
 
@@ -20,9 +19,7 @@ content="width=device-width, initial-scale=1.0">
     font-family:Arial,Helvetica,sans-serif;
 }
 
-
 body{
-
     min-height:100vh;
 
     background:
@@ -33,44 +30,25 @@ body{
     );
 
     display:flex;
-
+    justify-content:center;
     align-items:center;
 
-    justify-content:center;
-
     padding:20px;
-
 }
-
-
-/* ================= LOGIN WRAPPER ================= */
 
 .login-wrapper{
-
     width:100%;
-
-    max-width:430px;
-
+    max-width:420px;
 }
-
-
-/* ================= BRAND ================= */
 
 .brand{
-
     text-align:center;
-
     color:white;
-
-    margin-bottom:20px;
-
+    margin-bottom:22px;
 }
 
-
 .logo{
-
     width:78px;
-
     height:78px;
 
     margin:0 auto 12px;
@@ -80,42 +58,26 @@ body{
     border-radius:20px;
 
     display:flex;
-
-    align-items:center;
-
     justify-content:center;
+    align-items:center;
 
     font-size:40px;
 
     box-shadow:
-    0 8px 25px
-    rgba(0,0,0,.18);
-
+    0 8px 25px rgba(0,0,0,.2);
 }
-
 
 .brand h1{
-
     font-size:25px;
-
     margin-bottom:5px;
-
 }
-
 
 .brand p{
-
     font-size:13px;
-
     opacity:.9;
-
 }
 
-
-/* ================= LOGIN CARD ================= */
-
 .login-card{
-
     background:white;
 
     border-radius:18px;
@@ -124,71 +86,42 @@ body{
 
     box-shadow:
     0 15px 40px
-    rgba(0,0,0,.20);
-
+    rgba(0,0,0,.2);
 }
-
 
 .login-card h2{
-
     color:#063b52;
-
     font-size:22px;
-
-    margin-bottom:7px;
-
+    margin-bottom:8px;
 }
-
 
 .description{
-
     color:#667085;
-
     font-size:13px;
-
     line-height:1.5;
-
-    margin-bottom:24px;
-
+    margin-bottom:25px;
 }
-
-
-/* ================= FORM ================= */
 
 .form-group{
-
     margin-bottom:18px;
-
 }
 
-
 label{
-
     display:block;
 
     color:#344054;
 
-    font-weight:bold;
-
     font-size:14px;
 
+    font-weight:bold;
+
     margin-bottom:7px;
-
 }
-
-
-.input-wrapper{
-
-    position:relative;
-
-}
-
 
 input{
-
     width:100%;
 
-    padding:13px 45px 13px 13px;
+    padding:13px;
 
     border:
     1px solid #d0d5dd;
@@ -198,27 +131,25 @@ input{
     font-size:15px;
 
     outline:none;
-
-    transition:.2s;
-
 }
 
-
 input:focus{
-
     border-color:#087ea4;
 
     box-shadow:
     0 0 0 3px
-    rgba(8,126,164,.10);
-
+    rgba(8,126,164,.1);
 }
 
+.password-box{
+    position:relative;
+}
 
-/* ================= PASSWORD BUTTON ================= */
+.password-box input{
+    padding-right:48px;
+}
 
-.toggle-password{
-
+.show-password{
     position:absolute;
 
     right:10px;
@@ -235,58 +166,41 @@ input:focus{
     cursor:pointer;
 
     font-size:18px;
-
-    padding:5px;
-
 }
 
-
-/* ================= LOGIN BUTTON ================= */
-
 .login-button{
-
     width:100%;
 
+    padding:14px;
+
     border:0;
+
+    border-radius:9px;
 
     background:#063b52;
 
     color:white;
 
-    padding:14px;
-
-    border-radius:9px;
-
-    cursor:pointer;
-
     font-size:15px;
 
     font-weight:bold;
 
+    cursor:pointer;
+
     transition:.2s;
-
 }
-
 
 .login-button:hover{
-
     background:#087ea4;
-
 }
-
 
 .login-button:disabled{
-
     opacity:.7;
-
     cursor:not-allowed;
-
 }
 
-
-/* ================= MESSAGE ================= */
-
 .message{
+    display:none;
 
     margin-top:15px;
 
@@ -297,14 +211,9 @@ input:focus{
     font-size:13px;
 
     font-weight:bold;
-
-    display:none;
-
 }
 
-
 .message.error{
-
     display:block;
 
     color:#b42318;
@@ -313,12 +222,9 @@ input:focus{
 
     border:
     1px solid #fecdca;
-
 }
 
-
 .message.success{
-
     display:block;
 
     color:#027a48;
@@ -327,14 +233,9 @@ input:focus{
 
     border:
     1px solid #abefc6;
-
 }
 
-
-/* ================= FOOTER ================= */
-
 .footer{
-
     text-align:center;
 
     color:white;
@@ -344,18 +245,12 @@ input:focus{
     margin-top:20px;
 
     opacity:.85;
-
 }
 
-
-/* ================= LOADING ================= */
-
 .spinner{
-
     display:inline-block;
 
     width:15px;
-
     height:15px;
 
     border:
@@ -366,50 +261,29 @@ input:focus{
 
     border-radius:50%;
 
-    animation:
-    spin .7s linear infinite;
+    animation:spin .7s linear infinite;
 
     vertical-align:middle;
 
     margin-right:7px;
-
 }
-
 
 @keyframes spin{
 
     to{
-
-        transform:
-        rotate(360deg);
-
+        transform:rotate(360deg);
     }
 
 }
 
-
-/* ================= MOBILE ================= */
-
 @media(max-width:480px){
 
-    body{
-
-        padding:15px;
-
-    }
-
-
     .login-card{
-
         padding:24px 20px;
-
     }
-
 
     .brand h1{
-
         font-size:22px;
-
     }
 
 }
@@ -425,273 +299,188 @@ input:focus{
 <div class="login-wrapper">
 
 
-<!-- ================= BRAND ================= -->
+<!-- BRAND -->
 
 <div class="brand">
 
-<div class="logo">
+    <div class="logo">
+        🏫
+    </div>
 
-🏫
+    <h1>
+        KITEGA SCHOOL
+    </h1>
 
-</div>
-
-
-<h1>
-
-KITEGA SCHOOL
-
-</h1>
-
-
-<p>
-
-School Management System
-
-</p>
+    <p>
+        School Management System
+    </p>
 
 </div>
 
 
-
-<!-- ================= LOGIN CARD ================= -->
+<!-- LOGIN -->
 
 <div class="login-card">
 
+    <h2>
+        🔐 Teacher Login
+    </h2>
 
-<h2>
-
-🔐 Teacher Login
-
-</h2>
-
-
-<p class="description">
-
-Sign in to access the KITEGA School
-Management System dashboard.
-
-</p>
+    <p class="description">
+        Sign in to access the KITEGA School
+        Management System dashboard.
+    </p>
 
 
-
-<form id="loginForm">
-
-
-<!-- USERNAME -->
-
-<div class="form-group">
-
-<label for="username">
-
-Username
-
-</label>
+    <form id="loginForm">
 
 
-<input
+        <!-- USERNAME -->
 
-type="text"
+        <div class="form-group">
 
-id="username"
+            <label for="username">
+                Username
+            </label>
 
-placeholder="Enter username"
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                autocomplete="username"
+                required>
 
-autocomplete="username"
-
-required>
-
-</div>
-
-
-
-<!-- PASSWORD -->
-
-<div class="form-group">
-
-<label for="password">
-
-Password
-
-</label>
+        </div>
 
 
-<div class="input-wrapper">
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required>
+
+                <button
+                    type="button"
+                    class="show-password"
+                    id="showPassword">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+        </div>
 
 
-<input
+        <!-- LOGIN BUTTON -->
 
-type="password"
+        <button
+            type="submit"
+            class="login-button"
+            id="loginButton">
 
-id="password"
+            LOGIN TO DASHBOARD
 
-placeholder="Enter password"
-
-autocomplete="current-password"
-
-required>
+        </button>
 
 
-<button
+        <!-- MESSAGE -->
 
-type="button"
+        <div
+            id="message"
+            class="message">
+        </div>
 
-class="toggle-password"
 
-id="togglePassword">
-
-👁️
-
-</button>
-
+    </form>
 
 </div>
-
-</div>
-
-
-
-<!-- LOGIN BUTTON -->
-
-<button
-
-type="submit"
-
-class="login-button"
-
-id="loginButton">
-
-LOGIN TO DASHBOARD
-
-</button>
-
-
-
-<!-- MESSAGE -->
-
-<div
-
-id="message"
-
-class="message">
-
-</div>
-
-
-</form>
-
-
-</div>
-
 
 
 <!-- FOOTER -->
 
 <div class="footer">
 
-© 2026 KITEGA SCHOOL MANAGEMENT SYSTEM
+    © 2026 KITEGA SCHOOL MANAGEMENT SYSTEM
 
-<br><br>
+    <br><br>
 
-Made by MsAbBe
-
-</div>
-
+    Made by MsAbBe
 
 </div>
 
+
+</div>
 
 
 <script>
 
+/* ==========================================
+   LOGIN DETAILS
+========================================== */
 
-/* =================================================
-   LOGIN CREDENTIALS
-================================================= */
+const VALID_USERNAME = "teacher001";
 
-const VALID_USERNAME =
-"teacher001";
-
-
-const VALID_PASSWORD =
-"123456";
+const VALID_PASSWORD = "123456";
 
 
-
-/* =================================================
+/* ==========================================
    ELEMENTS
-================================================= */
+========================================== */
 
 const loginForm =
-document.getElementById(
-    "loginForm"
-);
-
+document.getElementById("loginForm");
 
 const usernameInput =
-document.getElementById(
-    "username"
-);
-
+document.getElementById("username");
 
 const passwordInput =
-document.getElementById(
-    "password"
-);
-
+document.getElementById("password");
 
 const loginButton =
-document.getElementById(
-    "loginButton"
-);
-
+document.getElementById("loginButton");
 
 const message =
-document.getElementById(
-    "message"
-);
+document.getElementById("message");
+
+const showPassword =
+document.getElementById("showPassword");
 
 
-const togglePassword =
-document.getElementById(
-    "togglePassword"
-);
+/* ==========================================
+   CHECK EXISTING LOGIN
+========================================== */
 
-
-
-/* =================================================
-   CHECK LOGIN
-================================================= */
-
-function checkLogin(){
-
-    const loggedIn =
+if(
     sessionStorage.getItem(
         "kitiga_logged_in"
+    ) === "true"
+){
+
+    window.location.replace(
+        "dashboard.html"
     );
-
-
-    if(
-        loggedIn === "true"
-    ){
-
-        window.location.replace(
-            "dashboard.html"
-        );
-
-    }
 
 }
 
 
-checkLogin();
-
-
-
-/* =================================================
+/* ==========================================
    SHOW / HIDE PASSWORD
-================================================= */
+========================================== */
 
-togglePassword.addEventListener(
+showPassword.addEventListener(
     "click",
     function(){
 
@@ -703,17 +492,15 @@ togglePassword.addEventListener(
             passwordInput.type =
             "text";
 
-            togglePassword.textContent =
+            showPassword.textContent =
             "🙈";
 
-        }
-
-        else{
+        }else{
 
             passwordInput.type =
             "password";
 
-            togglePassword.textContent =
+            showPassword.textContent =
             "👁️";
 
         }
@@ -722,29 +509,9 @@ togglePassword.addEventListener(
 );
 
 
-
-/* =================================================
-   SHOW MESSAGE
-================================================= */
-
-function showMessage(
-    text,
-    type
-){
-
-    message.className =
-    "message " + type;
-
-    message.textContent =
-    text;
-
-}
-
-
-
-/* =================================================
+/* ==========================================
    LOGIN
-================================================= */
+========================================== */
 
 loginForm.addEventListener(
     "submit",
@@ -756,7 +523,6 @@ loginForm.addEventListener(
         const username =
         usernameInput.value.trim();
 
-
         const password =
         passwordInput.value;
 
@@ -764,164 +530,92 @@ loginForm.addEventListener(
         message.className =
         "message";
 
-
         message.textContent =
         "";
 
 
-        if(!username){
+        if(
+            username ===
+            VALID_USERNAME
+            &&
+            password ===
+            VALID_PASSWORD
+        ){
 
-            showMessage(
-                "Please enter your username.",
-                "error"
+            loginButton.disabled =
+            true;
+
+            loginButton.innerHTML =
+            '<span class="spinner"></span>Signing in...';
+
+
+            /*
+             SAVE LOGIN SESSION
+            */
+
+            sessionStorage.setItem(
+                "kitiga_logged_in",
+                "true"
             );
 
-            usernameInput.focus();
 
-            return;
-
-        }
-
-
-        if(!password){
-
-            showMessage(
-                "Please enter your password.",
-                "error"
+            sessionStorage.setItem(
+                "kitiga_username",
+                username
             );
+
+
+            message.className =
+            "message success";
+
+            message.textContent =
+            "Login successful. Opening dashboard...";
+
+
+            setTimeout(
+                function(){
+
+                    window.location.replace(
+                        "dashboard.html"
+                    );
+
+                },
+                500
+            );
+
+
+        }else{
+
+            message.className =
+            "message error";
+
+            message.textContent =
+            "Incorrect username or password.";
+
+
+            passwordInput.value =
+            "";
 
             passwordInput.focus();
 
-            return;
-
         }
-
-
-        loginButton.disabled =
-        true;
-
-
-        loginButton.innerHTML =
-        '<span class="spinner"></span>Signing in...';
-
-
-
-        setTimeout(
-            function(){
-
-
-                /* =========================
-                   CHECK USERNAME & PASSWORD
-                ========================= */
-
-                if(
-
-                    username ===
-                    VALID_USERNAME
-
-                    &&
-
-                    password ===
-                    VALID_PASSWORD
-
-                ){
-
-
-                    /*
-                       SAVE LOGIN SESSION
-                    */
-
-                    sessionStorage.setItem(
-                        "kitiga_logged_in",
-                        "true"
-                    );
-
-
-                    sessionStorage.setItem(
-                        "kitiga_username",
-                        username
-                    );
-
-
-                    showMessage(
-                        "Login successful. Opening dashboard...",
-                        "success"
-                    );
-
-
-                    /*
-                       OPEN DASHBOARD
-                    */
-
-                    setTimeout(
-                        function(){
-
-                            window.location.replace(
-                                "dashboard.html"
-                            );
-
-                        },
-                        500
-                    );
-
-
-                }
-
-                else{
-
-
-                    /*
-                       WRONG LOGIN
-                    */
-
-                    showMessage(
-                        "Incorrect username or password.",
-                        "error"
-                    );
-
-
-                    loginButton.disabled =
-                    false;
-
-
-                    loginButton.textContent =
-                    "LOGIN TO DASHBOARD";
-
-
-                    passwordInput.value =
-                    "";
-
-
-                    passwordInput.focus();
-
-                }
-
-
-            },
-            500
-        );
 
     }
 );
 
 
-
-/* =================================================
-   PAGE SHOW
-================================================= */
+/* ==========================================
+   BACK / PAGE CACHE PROTECTION
+========================================== */
 
 window.addEventListener(
     "pageshow",
     function(){
 
-        const loggedIn =
-        sessionStorage.getItem(
-            "kitiga_logged_in"
-        );
-
-
         if(
-            loggedIn === "true"
+            sessionStorage.getItem(
+                "kitiga_logged_in"
+            ) === "true"
         ){
 
             window.location.replace(
@@ -933,43 +627,9 @@ window.addEventListener(
     }
 );
 
-
-
-/* =================================================
-   EXTRA SECURITY
-================================================= */
-
-history.pushState(
-    null,
-    "",
-    location.href
-);
-
-
-window.addEventListener(
-    "popstate",
-    function(){
-
-        history.pushState(
-            null,
-            "",
-            location.href
-        );
-
-    }
-);
-
-
 </script>
 
 
 </body>
 
 </html>
-
-Credentials:
-
-- Username: "teacher001"
-- Password: "123456"
-
-Muhimu: ili Back button baada ya Logout ifanye kazi vizuri, "dashboard.html" nayo lazima iwe na check ya "sessionStorage" na logout iwe inafuta "kitiga_logged_in".
