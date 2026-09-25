@@ -14,6 +14,10 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
+/* =================================================
+   GLOBAL
+================================================= */
+
 *{
     margin:0;
     padding:0;
@@ -26,18 +30,22 @@ body{
     color:#172033;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+button{
+    font-family:inherit;
+}
+
+/* =================================================
+   APP
+================================================= */
 
 .app{
     display:flex;
     min-height:100vh;
 }
 
-/* =========================
+/* =================================================
    SIDEBAR
-========================= */
+================================================= */
 
 .sidebar{
     width:250px;
@@ -49,6 +57,7 @@ body{
     top:0;
     bottom:0;
     overflow-y:auto;
+    z-index:100;
 }
 
 .brand{
@@ -105,30 +114,39 @@ body{
     padding-top:15px;
 }
 
-/* =========================
+/* =================================================
    MAIN
-========================= */
+================================================= */
 
 .main{
     margin-left:250px;
     width:calc(100% - 250px);
 }
 
-/* =========================
+/* =================================================
    TOPBAR
-========================= */
+================================================= */
 
 .topbar{
-    height:72px;
+    min-height:72px;
     background:white;
     border-bottom:1px solid #e7eaf0;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 30px;
+
+    padding:12px 30px;
+
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:50;
+}
+
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
 .page-title{
@@ -136,6 +154,55 @@ body{
     font-weight:bold;
     color:#063b52;
 }
+
+/* BACK BUTTON */
+
+.back-btn{
+    background:#eef8fb;
+    color:#063b52;
+
+    border:1px solid #d5eaf0;
+
+    padding:9px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:#063b52;
+    color:white;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+    display:none;
+
+    border:0;
+
+    background:#063b52;
+
+    color:white;
+
+    font-size:20px;
+
+    width:40px;
+    height:40px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+/* TOP RIGHT */
 
 .top-right{
     display:flex;
@@ -152,239 +219,364 @@ body{
     display:flex;
     align-items:center;
     gap:9px;
+
+    font-size:13px;
+    color:#344054;
 }
 
 .avatar{
     width:38px;
     height:38px;
+
     border-radius:50%;
+
     background:#e8f5f8;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-weight:bold;
+
     color:#063b52;
 }
 
 .logout{
     border:0;
+
     background:#d92d20;
+
     color:white;
+
     padding:9px 13px;
+
     border-radius:7px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
-/* =========================
+.logout:hover{
+    background:#b42318;
+}
+
+/* =================================================
    CONTENT
-========================= */
+================================================= */
 
 .content{
     padding:28px;
+
     max-width:1500px;
+
     margin:auto;
 }
 
-/* =========================
+/* =================================================
    WELCOME
-========================= */
+================================================= */
 
 .welcome{
-    background:linear-gradient(135deg,#063b52,#087ea4);
+    background:
+    linear-gradient(
+        135deg,
+        #063b52,
+        #087ea4
+    );
+
     color:white;
+
     border-radius:18px;
+
     padding:28px;
+
     margin-bottom:24px;
+
     position:relative;
+
     overflow:hidden;
 }
 
 .welcome:after{
     content:"";
+
     position:absolute;
+
     width:180px;
     height:180px;
+
     border-radius:50%;
-    background:rgba(255,255,255,.08);
+
+    background:
+    rgba(255,255,255,.08);
+
     right:-40px;
     top:-60px;
 }
 
 .welcome h1{
     font-size:25px;
+
     margin-bottom:8px;
+
+    position:relative;
+
+    z-index:2;
 }
 
 .welcome p{
     color:#d9eef3;
+
     font-size:14px;
+
+    position:relative;
+
+    z-index:2;
 }
 
-/* =========================
+/* =================================================
    STATISTICS
-========================= */
+================================================= */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+    repeat(4,1fr);
+
     gap:18px;
+
     margin-bottom:24px;
 }
 
 .stat{
     background:white;
+
     border-radius:15px;
+
     padding:20px;
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
-    border:1px solid #eef0f4;
+
+    box-shadow:
+    0 3px 12px
+    rgba(0,0,0,.05);
+
+    border:
+    1px solid #eef0f4;
 }
 
 .stat-top{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+}
+
+.stat-label{
+    color:#667085;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.stat-number{
+    margin-top:7px;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    color:#063b52;
 }
 
 .icon{
     width:45px;
     height:45px;
+
     border-radius:11px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     font-size:22px;
+
     background:#eef8fb;
-}
-
-.stat-label{
-    margin-top:16px;
-    color:#667085;
-    font-size:13px;
-}
-
-.stat-number{
-    margin-top:5px;
-    font-size:27px;
-    font-weight:bold;
-    color:#063b52;
 }
 
 .stat-link{
     display:block;
-    margin-top:12px;
+
+    margin-top:13px;
+
     text-decoration:none;
+
     color:#087ea4;
+
     font-size:12px;
+
     font-weight:bold;
 }
 
-/* =========================
+.stat-link:hover{
+    text-decoration:underline;
+}
+
+/* =================================================
    GRID
-========================= */
+================================================= */
 
 .grid{
     display:grid;
-    grid-template-columns:1.5fr 1fr;
+
+    grid-template-columns:
+    1.5fr 1fr;
+
     gap:20px;
+
     margin-bottom:22px;
 }
 
 .panel{
     background:white;
+
     border-radius:15px;
+
     padding:22px;
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
-    border:1px solid #eef0f4;
+
+    box-shadow:
+    0 3px 12px
+    rgba(0,0,0,.05);
+
+    border:
+    1px solid #eef0f4;
 }
 
 .panel-header{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:18px;
 }
 
 .panel-header h2{
     color:#063b52;
+
     font-size:17px;
 }
 
 .view{
     color:#087ea4;
+
     text-decoration:none;
+
     font-size:12px;
+
     font-weight:bold;
 }
 
-/* =========================
-   PAYMENT
-========================= */
+/* =================================================
+   PAYMENT OVERVIEW
+================================================= */
 
 .payment-main{
     font-size:30px;
+
     font-weight:bold;
+
     color:#063b52;
+
     margin:8px 0 18px;
 }
 
 .payment-row{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+    1fr 1fr;
+
     gap:12px;
 }
 
 .payment-box{
     padding:15px;
+
     background:#f8fafc;
+
     border-radius:10px;
 }
 
 .payment-box span{
     color:#667085;
+
     font-size:12px;
 }
 
 .payment-box strong{
     display:block;
+
     margin-top:6px;
+
     font-size:18px;
+
     color:#063b52;
 }
 
-/* =========================
+/* =================================================
    QUICK ACTIONS
-========================= */
+================================================= */
 
 .actions{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+    1fr 1fr;
+
     gap:12px;
 }
 
 .action{
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
     padding:14px;
-    border:1px solid #e4e7ec;
+
+    border:
+    1px solid #e4e7ec;
+
     border-radius:10px;
+
     text-decoration:none;
+
     color:#344054;
+
     font-size:13px;
+
     font-weight:bold;
+
     transition:.2s;
 }
 
 .action:hover{
     border-color:#087ea4;
+
     background:#f2fbfd;
+
     color:#063b52;
 }
 
-/* =========================
+/* =================================================
    TABLE
-========================= */
+================================================= */
 
 .table-wrap{
     overflow-x:auto;
@@ -392,20 +584,27 @@ body{
 
 table{
     width:100%;
+
     border-collapse:collapse;
 }
 
 th,
 td{
     padding:12px 8px;
-    border-bottom:1px solid #eaecf0;
+
+    border-bottom:
+    1px solid #eaecf0;
+
     text-align:left;
+
     font-size:13px;
 }
 
 th{
     color:#667085;
+
     font-size:11px;
+
     text-transform:uppercase;
 }
 
@@ -415,27 +614,37 @@ td{
 
 .badge{
     display:inline-block;
+
     padding:5px 9px;
+
     border-radius:20px;
+
     font-size:11px;
+
     font-weight:bold;
+
     background:#eef8fb;
+
     color:#087ea4;
 }
 
 .empty{
     text-align:center;
+
     color:#98a2b3;
+
     padding:25px;
 }
 
-/* =========================
+/* =================================================
    ANNOUNCEMENTS
-========================= */
+================================================= */
 
 .announcement{
     padding:13px 0;
-    border-bottom:1px solid #eaecf0;
+
+    border-bottom:
+    1px solid #eaecf0;
 }
 
 .announcement:last-child{
@@ -444,48 +653,43 @@ td{
 
 .announcement-title{
     font-weight:bold;
+
     font-size:13px;
+
     color:#344054;
 }
 
 .announcement-date{
     font-size:11px;
+
     color:#98a2b3;
+
     margin-top:5px;
 }
 
-/* =========================
+/* =================================================
    FOOTER
-========================= */
+================================================= */
 
 footer{
     text-align:center;
+
     color:#98a2b3;
+
     font-size:12px;
+
     padding:25px;
 }
 
-/* =========================
-   MOBILE BUTTON
-========================= */
-
-.mobile-menu{
-    display:none;
-    border:0;
-    background:#063b52;
-    color:white;
-    font-size:22px;
-    cursor:pointer;
-}
-
-/* =========================
+/* =================================================
    RESPONSIVE
-========================= */
+================================================= */
 
 @media(max-width:1100px){
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+        repeat(2,1fr);
     }
 
     .grid{
@@ -497,17 +701,20 @@ footer{
 @media(max-width:750px){
 
     .sidebar{
-        transform:translateX(-100%);
+        transform:
+        translateX(-100%);
+
         transition:.25s;
-        z-index:100;
     }
 
     .sidebar.open{
-        transform:translateX(0);
+        transform:
+        translateX(0);
     }
 
     .main{
         margin-left:0;
+
         width:100%;
     }
 
@@ -516,7 +723,7 @@ footer{
     }
 
     .topbar{
-        padding:0 16px;
+        padding:10px 15px;
     }
 
     .date{
@@ -539,86 +746,199 @@ footer{
         font-size:21px;
     }
 
+    .page-title{
+        font-size:16px;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .back-btn{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .logout{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .avatar{
+        width:34px;
+        height:34px;
+    }
+
+    .payment-row{
+        grid-template-columns:1fr;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="app">
 
-<!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar" id="sidebar">
+<!-- =================================================
+     SIDEBAR
+================================================= -->
+
+<aside
+class="sidebar"
+id="sidebar">
+
 
 <div class="brand">
 
-<h2>🏫 KITEGA SCHOOL</h2>
+<h2>
+🏫 KITEGA SCHOOL
+</h2>
 
-<p>School Management System</p>
+<p>
+School Management System
+</p>
 
 </div>
+
 
 <div class="menu-title">
 MAIN MENU
 </div>
 
-<a href="dashboard.html" class="active">
+
+<a
+href="dashboard.html"
+class="active">
+
 🏠
-<span>Dashboard</span>
+
+<span>
+Dashboard
+</span>
+
 </a>
+
 
 <a href="students.html">
+
 👨‍🎓
-<span>Students</span>
+
+<span>
+Students
+</span>
+
 </a>
+
 
 <a href="teachers.html">
+
 👨‍🏫
-<span>Teachers</span>
+
+<span>
+Teachers
+</span>
+
 </a>
+
 
 <a href="classes.html">
+
 🏫
-<span>Classes</span>
+
+<span>
+Classes
+</span>
+
 </a>
+
 
 <a href="subjects.html">
+
 📚
-<span>Subjects</span>
+
+<span>
+Subjects
+</span>
+
 </a>
+
 
 <a href="attendance.html">
+
 📋
-<span>Attendance</span>
+
+<span>
+Attendance
+</span>
+
 </a>
+
 
 <a href="results.html">
+
 📝
-<span>Results</span>
+
+<span>
+Results
+</span>
+
 </a>
+
 
 <a href="timetable.html">
+
 🗓️
-<span>Timetable</span>
+
+<span>
+Timetable
+</span>
+
 </a>
+
 
 <a href="announcements.html">
+
 📢
-<span>Announcements</span>
+
+<span>
+Announcements
+</span>
+
 </a>
+
 
 <a href="payments.html">
+
 💰
-<span>Fees & Payments</span>
+
+<span>
+Fees & Payments
+</span>
+
 </a>
 
+
 <a href="report.html">
+
 📊
-<span>Reports</span>
+
+<span>
+Reports
+</span>
+
 </a>
+
 
 <div class="sidebar-bottom">
 
@@ -626,25 +946,40 @@ MAIN MENU
 SYSTEM
 </div>
 
-<a href="index.html">
+
+<a
+href="index.html">
+
 🚪
-<span>Logout</span>
+
+<span>
+Logout
+</span>
+
 </a>
 
 </div>
 
+
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+<!-- =================================================
+     MAIN
+================================================= -->
 
 <div class="main">
 
-<!-- ================= TOPBAR ================= -->
+
+<!-- =================================================
+     TOPBAR
+================================================= -->
 
 <header class="topbar">
 
-<div style="display:flex;align-items:center;gap:14px;">
+
+<div class="top-left">
+
 
 <button
 class="mobile-menu"
@@ -654,30 +989,50 @@ onclick="toggleMenu()">
 
 </button>
 
+
+<button
+class="back-btn"
+onclick="goBack()">
+
+← Back
+
+</button>
+
+
 <div class="page-title">
+
 Dashboard
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="top-right">
+
 
 <div
 class="date"
 id="currentDate">
 </div>
 
+
 <div class="admin">
+
 
 <div class="avatar">
 A
 </div>
 
+
 <span>
 Administrator
 </span>
 
+
 </div>
+
 
 <button
 class="logout"
@@ -687,58 +1042,81 @@ Logout
 
 </button>
 
+
 </div>
+
 
 </header>
 
 
-<!-- ================= CONTENT ================= -->
+<!-- =================================================
+     CONTENT
+================================================= -->
 
 <main class="content">
 
 
-<!-- WELCOME -->
+<!-- =================================================
+     WELCOME
+================================================= -->
 
 <section class="welcome">
+
 
 <h1>
 Good afternoon 👋
 </h1>
+
 
 <p>
 Welcome back to KITEGA School Management System.
 Manage your school information from one place.
 </p>
 
+
 </section>
 
 
-<!-- ================= STATS ================= -->
+<!-- =================================================
+     STATISTICS
+================================================= -->
 
 <section class="stats">
 
 
+<!-- STUDENTS -->
+
 <div class="stat">
+
 
 <div class="stat-top">
 
+
 <div>
+
 <div class="stat-label">
 TOTAL STUDENTS
 </div>
 
+
 <div
 class="stat-number"
 id="studentCount">
+
 ...
+
 </div>
+
 </div>
+
 
 <div class="icon">
 👨‍🎓
 </div>
 
+
 </div>
+
 
 <a
 href="students.html"
@@ -748,12 +1126,17 @@ View Students →
 
 </a>
 
+
 </div>
 
 
+<!-- TEACHERS -->
+
 <div class="stat">
 
+
 <div class="stat-top">
+
 
 <div>
 
@@ -761,19 +1144,25 @@ View Students →
 TOTAL TEACHERS
 </div>
 
+
 <div
 class="stat-number"
 id="teacherCount">
+
 ...
+
 </div>
 
 </div>
+
 
 <div class="icon">
 👨‍🏫
 </div>
 
+
 </div>
+
 
 <a
 href="teachers.html"
@@ -783,12 +1172,17 @@ View Teachers →
 
 </a>
 
+
 </div>
 
 
+<!-- CLASSES -->
+
 <div class="stat">
 
+
 <div class="stat-top">
+
 
 <div>
 
@@ -796,19 +1190,25 @@ View Teachers →
 TOTAL CLASSES
 </div>
 
+
 <div
 class="stat-number"
 id="classCount">
+
 ...
+
 </div>
 
 </div>
+
 
 <div class="icon">
 🏫
 </div>
 
+
 </div>
+
 
 <a
 href="classes.html"
@@ -818,12 +1218,17 @@ View Classes →
 
 </a>
 
+
 </div>
 
 
+<!-- PAYMENTS -->
+
 <div class="stat">
 
+
 <div class="stat-top">
+
 
 <div>
 
@@ -831,19 +1236,25 @@ View Classes →
 PAYMENT RECORDS
 </div>
 
+
 <div
 class="stat-number"
 id="paymentCount">
+
 ...
+
 </div>
 
 </div>
+
 
 <div class="icon">
 💰
 </div>
 
+
 </div>
+
 
 <a
 href="payments.html"
@@ -853,12 +1264,16 @@ View Payments →
 
 </a>
 
+
 </div>
+
 
 </section>
 
 
-<!-- ================= ROW 1 ================= -->
+<!-- =================================================
+     PAYMENT + QUICK ACTIONS
+================================================= -->
 
 <section class="grid">
 
@@ -867,11 +1282,14 @@ View Payments →
 
 <div class="panel">
 
+
 <div class="panel-header">
+
 
 <h2>
 💰 Payment Overview
 </h2>
+
 
 <a
 href="payments.html"
@@ -881,16 +1299,21 @@ View all →
 
 </a>
 
+
 </div>
 
-<div class="payment-main"
+
+<div
+class="payment-main"
 id="totalAmount">
 
 TZS 0
 
 </div>
 
+
 <div class="payment-row">
+
 
 <div class="payment-box">
 
@@ -898,11 +1321,16 @@ TZS 0
 PAID RECORDS
 </span>
 
-<strong id="paidRecords">
+
+<strong
+id="paidRecords">
+
 0
+
 </strong>
 
 </div>
+
 
 <div class="payment-box">
 
@@ -910,13 +1338,19 @@ PAID RECORDS
 PENDING RECORDS
 </span>
 
-<strong id="pendingRecords">
+
+<strong
+id="pendingRecords">
+
 0
+
 </strong>
 
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -924,6 +1358,7 @@ PENDING RECORDS
 <!-- QUICK ACTIONS -->
 
 <div class="panel">
+
 
 <div class="panel-header">
 
@@ -933,7 +1368,9 @@ PENDING RECORDS
 
 </div>
 
+
 <div class="actions">
+
 
 <a
 href="students.html"
@@ -943,6 +1380,7 @@ class="action">
 
 </a>
 
+
 <a
 href="payments.html"
 class="action">
@@ -950,6 +1388,7 @@ class="action">
 💰 Record Payment
 
 </a>
+
 
 <a
 href="results.html"
@@ -959,6 +1398,7 @@ class="action">
 
 </a>
 
+
 <a
 href="attendance.html"
 class="action">
@@ -967,14 +1407,19 @@ class="action">
 
 </a>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
-<!-- ================= ROW 2 ================= -->
+<!-- =================================================
+     RECENT PAYMENTS + RESULTS
+================================================= -->
 
 <section class="grid">
 
@@ -983,11 +1428,14 @@ class="action">
 
 <div class="panel">
 
+
 <div class="panel-header">
+
 
 <h2>
 💳 Recent Payments
 </h2>
+
 
 <a
 href="payments.html"
@@ -997,11 +1445,15 @@ View all →
 
 </a>
 
+
 </div>
+
 
 <div class="table-wrap">
 
+
 <table>
+
 
 <thead>
 
@@ -1027,8 +1479,10 @@ Status
 
 </thead>
 
+
 <tbody
 id="recentPayments">
+
 
 <tr>
 
@@ -1042,11 +1496,15 @@ Loading...
 
 </tr>
 
+
 </tbody>
+
 
 </table>
 
+
 </div>
+
 
 </div>
 
@@ -1055,11 +1513,14 @@ Loading...
 
 <div class="panel">
 
+
 <div class="panel-header">
+
 
 <h2>
 📝 Recent Results
 </h2>
+
 
 <a
 href="results.html"
@@ -1069,11 +1530,15 @@ View all →
 
 </a>
 
+
 </div>
+
 
 <div class="table-wrap">
 
+
 <table>
+
 
 <thead>
 
@@ -1095,8 +1560,10 @@ Grade
 
 </thead>
 
+
 <tbody
 id="recentResults">
+
 
 <tr>
 
@@ -1110,26 +1577,36 @@ Loading...
 
 </tr>
 
+
 </tbody>
+
 
 </table>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
-<!-- ================= ANNOUNCEMENTS ================= -->
+<!-- =================================================
+     ANNOUNCEMENTS
+================================================= -->
 
 <section class="panel">
 
+
 <div class="panel-header">
+
 
 <h2>
 📢 Latest Announcements
 </h2>
+
 
 <a
 href="announcements.html"
@@ -1139,38 +1616,63 @@ View all →
 
 </a>
 
+
 </div>
 
-<div id="announcementsList">
+
+<div
+id="announcementsList">
+
 
 <div class="announcement">
 
+
 <div class="announcement-title">
+
 Welcome to KITEGA School Management System
+
 </div>
+
 
 <div class="announcement-date">
+
 School Administration
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="announcement">
 
+
 <div class="announcement-title">
+
 Keep student records and payments updated.
+
 </div>
+
 
 <div class="announcement-date">
+
 System Notice
-</div>
 
 </div>
 
+
 </div>
+
+
+</div>
+
 
 </section>
 
+
+<!-- =================================================
+     FOOTER
+================================================= -->
 
 <footer>
 
@@ -1182,24 +1684,29 @@ Made by MsAbBe
 
 </footer>
 
+
 </main>
 
+
 </div>
+
 
 </div>
 
 
 <script>
 
-/* ==========================================
+/* =================================================
    SUPABASE
-========================================== */
+================================================= */
 
 const SUPABASE_URL =
 "https://fifqskyooaxadfnhxlnq.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1208,13 +1715,15 @@ window.supabase.createClient(
 );
 
 
-/* ==========================================
+/* =================================================
    DATE
-========================================== */
+================================================= */
 
 function showDate(){
 
-    const now = new Date();
+    const now =
+    new Date();
+
 
     document.getElementById(
         "currentDate"
@@ -1232,9 +1741,35 @@ function showDate(){
 }
 
 
-/* ==========================================
+/* =================================================
+   BACK BUTTON
+================================================= */
+
+function goBack(){
+
+    if(
+        document.referrer &&
+        document.referrer !==
+        window.location.href
+    ){
+
+        history.back();
+
+    }
+
+    else{
+
+        window.location.href =
+        "index.html";
+
+    }
+
+}
+
+
+/* =================================================
    STUDENT COUNT
-========================================== */
+================================================= */
 
 async function loadStudentCount(){
 
@@ -1251,17 +1786,20 @@ async function loadStudentCount(){
         }
     );
 
+
     document.getElementById(
         "studentCount"
     ).textContent =
-    error ? "0" : (count || 0);
+    error
+    ? "0"
+    : (count || 0);
 
 }
 
 
-/* ==========================================
+/* =================================================
    TEACHER COUNT
-========================================== */
+================================================= */
 
 async function loadTeacherCount(){
 
@@ -1278,17 +1816,20 @@ async function loadTeacherCount(){
         }
     );
 
+
     document.getElementById(
         "teacherCount"
     ).textContent =
-    error ? "0" : (count || 0);
+    error
+    ? "0"
+    : (count || 0);
 
 }
 
 
-/* ==========================================
+/* =================================================
    CLASS COUNT
-========================================== */
+================================================= */
 
 async function loadClassCount(){
 
@@ -1305,17 +1846,20 @@ async function loadClassCount(){
         }
     );
 
+
     document.getElementById(
         "classCount"
     ).textContent =
-    error ? "0" : (count || 0);
+    error
+    ? "0"
+    : (count || 0);
 
 }
 
 
-/* ==========================================
+/* =================================================
    PAYMENTS
-========================================== */
+================================================= */
 
 async function loadPayments(){
 
@@ -1336,7 +1880,15 @@ async function loadPayments(){
 
     if(error){
 
-        console.error(error);
+        console.error(
+            "Payment error:",
+            error
+        );
+
+        document.getElementById(
+            "paymentCount"
+        ).textContent =
+        "0";
 
         return;
 
@@ -1347,15 +1899,19 @@ async function loadPayments(){
     data || [];
 
 
+    /* RECORD COUNT */
+
     document.getElementById(
         "paymentCount"
     ).textContent =
     payments.length;
 
 
+    /* TOTAL */
+
     const total =
     payments.reduce(
-        (sum,payment)=>{
+        function(sum,payment){
 
             return sum +
             Number(
@@ -1374,15 +1930,29 @@ async function loadPayments(){
     total.toLocaleString();
 
 
+    /* PAID */
+
     const paid =
     payments.filter(
-        p => p.status === "Paid"
+        function(payment){
+
+            return payment.status ===
+            "Paid";
+
+        }
     ).length;
 
 
+    /* PENDING */
+
     const pending =
     payments.filter(
-        p => p.status === "Pending"
+        function(payment){
+
+            return payment.status ===
+            "Pending";
+
+        }
     ).length;
 
 
@@ -1398,16 +1968,16 @@ async function loadPayments(){
     pending;
 
 
-    loadRecentPayments(
+    await loadRecentPayments(
         payments.slice(0,5)
     );
 
 }
 
 
-/* ==========================================
+/* =================================================
    RECENT PAYMENTS
-========================================== */
+================================================= */
 
 async function loadRecentPayments(
     payments
@@ -1419,13 +1989,19 @@ async function loadRecentPayments(
     );
 
 
-    if(!payments.length){
+    if(
+        !payments ||
+        payments.length === 0
+    ){
 
         table.innerHTML = `
             <tr>
-                <td colspan="4"
+                <td
+                    colspan="4"
                     class="empty">
+
                     No payment records yet.
+
                 </td>
             </tr>
         `;
@@ -1435,54 +2011,87 @@ async function loadRecentPayments(
     }
 
 
-    const studentIds =
-    payments.map(
-        p => p.student_id
-    );
+    const ids =
+    payments
+    .map(
+        function(payment){
 
+            return payment.student_id;
 
-    const {data:students} =
-    await supabaseClient
-
-    .from("students")
-
-    .select(
-        "id,full_name"
+        }
     )
+    .filter(Boolean);
 
-    .in(
-        "id",
-        studentIds
-    );
+
+    let students = [];
+
+
+    if(ids.length){
+
+        const result =
+        await supabaseClient
+
+        .from("students")
+
+        .select(
+            "id,full_name"
+        )
+
+        .in(
+            "id",
+            ids
+        );
+
+
+        students =
+        result.data || [];
+
+    }
 
 
     table.innerHTML = "";
 
 
     payments.forEach(
-        payment => {
+        function(payment){
 
             const student =
-            (students || []).find(
-                s =>
-                String(s.id) ===
-                String(payment.student_id)
+            students.find(
+                function(item){
+
+                    return String(
+                        item.id
+                    ) ===
+                    String(
+                        payment.student_id
+                    );
+
+                }
             );
 
 
+            const studentName =
+            student
+            ? student.full_name
+            : "Student #" +
+              (
+                  payment.student_id ||
+                  "-"
+              );
+
+
             const row =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
 
 
             row.innerHTML = `
 
                 <td>
-                    ${
-                        student
-                        ? escapeHTML(student.full_name)
-                        : "Student #" +
-                          payment.student_id
-                    }
+                    ${escapeHTML(
+                        studentName
+                    )}
                 </td>
 
                 <td>
@@ -1493,28 +2102,31 @@ async function loadRecentPayments(
                 </td>
 
                 <td>
-                    ${
+                    ${escapeHTML(
                         payment.payment_date ||
                         "-"
-                    }
+                    )}
                 </td>
 
                 <td>
 
                     <span class="badge">
 
-                    ${
-                        payment.status ||
-                        "-"
-                    }
+                        ${escapeHTML(
+                            payment.status ||
+                            "-"
+                        )}
 
                     </span>
 
                 </td>
+
             `;
 
 
-            table.appendChild(row);
+            table.appendChild(
+                row
+            );
 
         }
     );
@@ -1522,9 +2134,9 @@ async function loadRecentPayments(
 }
 
 
-/* ==========================================
+/* =================================================
    RECENT RESULTS
-========================================== */
+================================================= */
 
 async function loadRecentResults(){
 
@@ -1560,14 +2172,23 @@ async function loadRecentResults(){
 
     if(error){
 
-        console.error(error);
+        console.error(
+            "Results error:",
+            error
+        );
+
 
         table.innerHTML = `
             <tr>
-                <td colspan="3"
+
+                <td
+                    colspan="3"
                     class="empty">
+
                     Unable to load results.
+
                 </td>
+
             </tr>
         `;
 
@@ -1576,14 +2197,22 @@ async function loadRecentResults(){
     }
 
 
-    if(!data || !data.length){
+    if(
+        !data ||
+        data.length === 0
+    ){
 
         table.innerHTML = `
             <tr>
-                <td colspan="3"
+
+                <td
+                    colspan="3"
                     class="empty">
+
                     No results recorded yet.
+
                 </td>
+
             </tr>
         `;
 
@@ -1596,39 +2225,40 @@ async function loadRecentResults(){
 
 
     data.forEach(
-        result => {
+        function(result){
 
             const row =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
+
+
+            const studentName =
+            result.students
+            ? result.students.full_name
+            : "-";
 
 
             row.innerHTML = `
 
                 <td>
-                    ${
-                        result.students
-                        ? escapeHTML(
-                            result.students.full_name
-                          )
-                        : "-"
-                    }
+                    ${escapeHTML(
+                        studentName
+                    )}
                 </td>
 
                 <td>
-                    ${
-                        result.average ??
-                        "-"
-                    }
+                    ${result.average ?? "-"}
                 </td>
 
                 <td>
 
                     <span class="badge">
 
-                    ${
-                        result.grade ||
-                        "-"
-                    }
+                        ${escapeHTML(
+                            result.grade ||
+                            "-"
+                        )}
 
                     </span>
 
@@ -1637,7 +2267,9 @@ async function loadRecentResults(){
             `;
 
 
-            table.appendChild(row);
+            table.appendChild(
+                row
+            );
 
         }
     );
@@ -1645,40 +2277,48 @@ async function loadRecentResults(){
 }
 
 
-/* ==========================================
+/* =================================================
    ESCAPE HTML
-========================================== */
+================================================= */
 
 function escapeHTML(value){
 
     const div =
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
+
 
     div.textContent =
     value ?? "";
+
 
     return div.innerHTML;
 
 }
 
 
-/* ==========================================
+/* =================================================
    MOBILE MENU
-========================================== */
+================================================= */
 
 function toggleMenu(){
 
     document
-    .getElementById("sidebar")
+    .getElementById(
+        "sidebar"
+    )
     .classList
-    .toggle("open");
+    .toggle(
+        "open"
+    );
 
 }
 
 
-/* ==========================================
+/* =================================================
    LOGOUT
-========================================== */
+================================================= */
 
 function logout(){
 
@@ -1688,13 +2328,14 @@ function logout(){
 }
 
 
-/* ==========================================
-   START
-========================================== */
+/* =================================================
+   START DASHBOARD
+================================================= */
 
 async function startDashboard(){
 
     showDate();
+
 
     await Promise.all([
 
@@ -1716,6 +2357,7 @@ async function startDashboard(){
 startDashboard();
 
 </script>
+
 
 </body>
 
