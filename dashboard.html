@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>KITEGA PRIMARY SCHOOL</title>
+<title>KITEGA School Management System</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -66,7 +61,6 @@ header{
     padding:25px;
     border-radius:15px;
     box-shadow:0 4px 15px rgba(0,0,0,.07);
-    margin-bottom:20px;
 }
 
 .welcome h1{
@@ -80,9 +74,9 @@ header{
 
 .cards{
     display:grid;
-    grid-template-columns:
-        repeat(auto-fit,minmax(170px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
     gap:15px;
+    margin-top:20px;
 }
 
 .card{
@@ -123,8 +117,7 @@ header{
 
 .form{
     display:grid;
-    grid-template-columns:
-        repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:15px;
 }
 
@@ -159,10 +152,6 @@ header{
     cursor:pointer;
 }
 
-.submit:hover{
-    opacity:.9;
-}
-
 .message{
     grid-column:1/-1;
     font-weight:bold;
@@ -195,8 +184,7 @@ table{
     min-width:800px;
 }
 
-th,
-td{
+th,td{
     padding:12px;
     border-bottom:1px solid #eaecf0;
     text-align:left;
@@ -235,6 +223,26 @@ td{
     color:white;
 }
 
+.present{
+    color:#067647;
+    font-weight:bold;
+}
+
+.absent{
+    color:#b42318;
+    font-weight:bold;
+}
+
+.late{
+    color:#b54708;
+    font-weight:bold;
+}
+
+.status{
+    margin-top:7px;
+    font-size:13px;
+}
+
 footer{
     text-align:center;
     padding:30px;
@@ -242,13 +250,7 @@ footer{
     font-size:12px;
 }
 
-.status{
-    margin-top:10px;
-    font-size:13px;
-}
-
 @media(max-width:650px){
-
     .form{
         grid-template-columns:1fr;
     }
@@ -266,357 +268,196 @@ footer{
     .search{
         width:100%;
     }
-
-    header{
-        gap:10px;
-    }
-
-    .school-name{
-        font-size:17px;
-    }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
+    <div>
+        <div class="school-name">
+            🏫 KITEGA PRIMARY SCHOOL
+        </div>
 
-<div>
+        <div class="subtitle">
+            School Management System
+        </div>
+    </div>
 
-<div class="school-name">
-🏫 KITEGA PRIMARY SCHOOL
-</div>
-
-<div class="subtitle">
-School Management System
-</div>
-
-</div>
-
-
-<button
-class="logout"
-onclick="logout()">
-
-LOGOUT
-
-</button>
-
+    <button class="logout" onclick="logout()">
+        LOGOUT
+    </button>
 </header>
-
 
 <main class="container">
 
-
-<!-- =========================
-     WELCOME
-========================= -->
+<!-- WELCOME -->
 
 <section class="welcome">
+    <h1>Welcome Teacher 👨‍🏫</h1>
 
-<h1>
-Welcome Teacher 👨‍🏫
-</h1>
-
-<p>
-Welcome to KITEGA Primary School Management System.
-</p>
-
+    <p>
+        Welcome to KITEGA Primary School Management System.
+    </p>
 </section>
 
 
-<!-- =========================
-     SUMMARY
-========================= -->
+<!-- SUMMARY -->
 
 <section class="cards">
 
+    <div class="card">
+        <div class="card-icon">👨‍🎓</div>
+        <h3>Students</h3>
+        <p id="studentCount">Loading...</p>
+    </div>
 
-<div class="card">
+    <div class="card">
+        <div class="card-icon">👨‍🏫</div>
+        <h3>Teachers</h3>
+        <p id="teacherCount">Loading...</p>
+    </div>
 
-<div class="card-icon">
-👨‍🎓
-</div>
+    <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Results</h3>
+        <p id="resultCount">Loading...</p>
+    </div>
 
-<h3>
-Students
-</h3>
-
-<p id="studentCount">
-Loading...
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-👨‍🏫
-</div>
-
-<h3>
-Teachers
-</h3>
-
-<p id="teacherCount">
-Loading...
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-📊
-</div>
-
-<h3>
-Results
-</h3>
-
-<p>
-Examination results
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-📅
-</div>
-
-<h3>
-Attendance
-</h3>
-
-<p>
-Student attendance
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-📄
-</div>
-
-<h3>
-Reports
-</h3>
-
-<p>
-Student reports
-</p>
-
-</div>
-
+    <div class="card">
+        <div class="card-icon">📅</div>
+        <h3>Attendance</h3>
+        <p id="attendanceCount">Loading...</p>
+    </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==============================
      STUDENT MANAGEMENT
-========================= -->
+================================ -->
 
 <section class="section">
 
-<h2>
-👨‍🎓 Student Management
-</h2>
+<h2>👨‍🎓 Student Management</h2>
 
+<form id="studentForm" class="form">
 
-<form
-id="studentForm"
-class="form">
+    <div class="group">
+        <label>Registration Number</label>
 
+        <input
+            id="registrationNo"
+            type="text"
+            placeholder="Example: KPS001"
+            required
+        >
+    </div>
 
-<div class="group">
+    <div class="group">
+        <label>Full Name</label>
 
-<label>
-Registration Number
-</label>
+        <input
+            id="fullName"
+            type="text"
+            placeholder="Student full name"
+            required
+        >
+    </div>
 
-<input
-id="registrationNo"
-type="text"
-placeholder="Example: KPS001"
-required>
+    <div class="group">
+        <label>Gender</label>
 
-</div>
+        <select id="gender" required>
 
+            <option value="">
+                Select gender
+            </option>
 
-<div class="group">
+            <option value="Male">
+                Male
+            </option>
 
-<label>
-Full Name
-</label>
+            <option value="Female">
+                Female
+            </option>
 
-<input
-id="fullName"
-type="text"
-placeholder="Student full name"
-required>
+        </select>
+    </div>
 
-</div>
+    <div class="group">
+        <label>Class</label>
 
+        <select id="className" required>
 
-<div class="group">
+            <option value="">
+                Select class
+            </option>
 
-<label>
-Gender
-</label>
+            <option value="Standard 1">Standard 1</option>
+            <option value="Standard 2">Standard 2</option>
+            <option value="Standard 3">Standard 3</option>
+            <option value="Standard 4">Standard 4</option>
+            <option value="Standard 5">Standard 5</option>
+            <option value="Standard 6">Standard 6</option>
+            <option value="Standard 7">Standard 7</option>
 
-<select
-id="gender"
-required>
+        </select>
+    </div>
 
-<option value="">
-Select gender
-</option>
+    <div class="group">
+        <label>Parent / Guardian</label>
 
-<option value="Male">
-Male
-</option>
+        <input
+            id="parentName"
+            type="text"
+            placeholder="Parent name"
+        >
+    </div>
 
-<option value="Female">
-Female
-</option>
+    <div class="group">
+        <label>Parent Phone</label>
 
-</select>
+        <input
+            id="parentPhone"
+            type="tel"
+            placeholder="0712345678"
+        >
+    </div>
 
-</div>
+    <div class="group">
+        <label>Date of Birth</label>
 
+        <input
+            id="dateOfBirth"
+            type="date"
+        >
+    </div>
 
-<div class="group">
+    <button
+        class="submit"
+        type="submit"
+        id="studentSubmit"
+    >
+        ➕ REGISTER STUDENT
+    </button>
 
-<label>
-Class
-</label>
-
-<select
-id="className"
-required>
-
-<option value="">
-Select class
-</option>
-
-<option value="Standard 1">
-Standard 1
-</option>
-
-<option value="Standard 2">
-Standard 2
-</option>
-
-<option value="Standard 3">
-Standard 3
-</option>
-
-<option value="Standard 4">
-Standard 4
-</option>
-
-<option value="Standard 5">
-Standard 5
-</option>
-
-<option value="Standard 6">
-Standard 6
-</option>
-
-<option value="Standard 7">
-Standard 7
-</option>
-
-</select>
-
-</div>
-
-
-<div class="group">
-
-<label>
-Parent / Guardian
-</label>
-
-<input
-id="parentName"
-type="text"
-placeholder="Parent name">
-
-</div>
-
-
-<div class="group">
-
-<label>
-Parent Phone
-</label>
-
-<input
-id="parentPhone"
-type="tel"
-placeholder="0712345678">
-
-</div>
-
-
-<div class="group">
-
-<label>
-Date of Birth
-</label>
-
-<input
-id="dateOfBirth"
-type="date">
-
-</div>
-
-
-<button
-class="submit"
-type="submit"
-id="studentSubmit">
-
-➕ REGISTER STUDENT
-
-</button>
-
-
-<div
-id="studentMessage"
-class="message">
-</div>
-
+    <div id="studentMessage" class="message"></div>
 
 </form>
 
 
 <div class="list-header">
 
-<h3>
-Registered Students
-</h3>
+    <h3>Registered Students</h3>
 
-<input
-id="studentSearch"
-class="search"
-type="text"
-placeholder="🔍 Search student">
+    <input
+        id="studentSearch"
+        class="search"
+        type="text"
+        placeholder="🔍 Search student"
+    >
 
 </div>
 
@@ -628,23 +469,19 @@ placeholder="🔍 Search student">
 <thead>
 
 <tr>
-
-<th>#</th>
-<th>Registration No.</th>
-<th>Full Name</th>
-<th>Gender</th>
-<th>Class</th>
-<th>Parent</th>
-<th>Phone</th>
-<th>Action</th>
-
+    <th>#</th>
+    <th>Registration No.</th>
+    <th>Full Name</th>
+    <th>Gender</th>
+    <th>Class</th>
+    <th>Parent</th>
+    <th>Phone</th>
+    <th>Action</th>
 </tr>
 
 </thead>
 
-<tbody
-id="studentTable">
-</tbody>
+<tbody id="studentTable"></tbody>
 
 </table>
 
@@ -653,142 +490,91 @@ id="studentTable">
 </section>
 
 
-<!-- =========================
+<!-- ==============================
      TEACHER MANAGEMENT
-========================= -->
+================================ -->
 
 <section class="section">
 
-<h2>
-👨‍🏫 Teacher Management
-</h2>
+<h2>👨‍🏫 Teacher Management</h2>
 
+<form id="teacherForm" class="form">
 
-<form
-id="teacherForm"
-class="form">
+    <div class="group">
+        <label>Full Name</label>
 
+        <input
+            id="teacherName"
+            type="text"
+            placeholder="Teacher full name"
+            required
+        >
+    </div>
 
-<div class="group">
+    <div class="group">
+        <label>Username</label>
 
-<label>
-Full Name
-</label>
+        <input
+            id="teacherUsername"
+            type="text"
+            placeholder="teacher001"
+            required
+        >
+    </div>
 
-<input
-id="teacherName"
-type="text"
-placeholder="Teacher full name"
-required>
+    <div class="group">
+        <label>Class</label>
 
-</div>
+        <select id="teacherClass">
 
+            <option value="">
+                Select class
+            </option>
 
-<div class="group">
+            <option value="Standard 1">Standard 1</option>
+            <option value="Standard 2">Standard 2</option>
+            <option value="Standard 3">Standard 3</option>
+            <option value="Standard 4">Standard 4</option>
+            <option value="Standard 5">Standard 5</option>
+            <option value="Standard 6">Standard 6</option>
+            <option value="Standard 7">Standard 7</option>
 
-<label>
-Username
-</label>
+        </select>
+    </div>
 
-<input
-id="teacherUsername"
-type="text"
-placeholder="Example: teacher001"
-required>
+    <div class="group">
+        <label>Phone</label>
 
-</div>
+        <input
+            id="teacherPhone"
+            type="tel"
+            placeholder="0712345678"
+        >
+    </div>
 
+    <button
+        class="submit"
+        type="submit"
+        id="teacherSubmit"
+    >
+        ➕ REGISTER TEACHER
+    </button>
 
-<div class="group">
-
-<label>
-Class
-</label>
-
-<select
-id="teacherClass">
-
-<option value="">
-Select class
-</option>
-
-<option value="Standard 1">
-Standard 1
-</option>
-
-<option value="Standard 2">
-Standard 2
-</option>
-
-<option value="Standard 3">
-Standard 3
-</option>
-
-<option value="Standard 4">
-Standard 4
-</option>
-
-<option value="Standard 5">
-Standard 5
-</option>
-
-<option value="Standard 6">
-Standard 6
-</option>
-
-<option value="Standard 7">
-Standard 7
-</option>
-
-</select>
-
-</div>
-
-
-<div class="group">
-
-<label>
-Phone
-</label>
-
-<input
-id="teacherPhone"
-type="tel"
-placeholder="0712345678">
-
-</div>
-
-
-<button
-class="submit"
-type="submit"
-id="teacherSubmit">
-
-➕ REGISTER TEACHER
-
-</button>
-
-
-<div
-id="teacherMessage"
-class="message">
-</div>
-
+    <div id="teacherMessage" class="message"></div>
 
 </form>
 
 
 <div class="list-header">
 
-<h3>
-Registered Teachers
-</h3>
+    <h3>Registered Teachers</h3>
 
-<input
-id="teacherSearch"
-class="search"
-type="text"
-placeholder="🔍 Search teacher">
+    <input
+        id="teacherSearch"
+        class="search"
+        type="text"
+        placeholder="🔍 Search teacher"
+    >
 
 </div>
 
@@ -800,21 +586,17 @@ placeholder="🔍 Search teacher">
 <thead>
 
 <tr>
-
-<th>#</th>
-<th>Full Name</th>
-<th>Username</th>
-<th>Class</th>
-<th>Phone</th>
-<th>Action</th>
-
+    <th>#</th>
+    <th>Full Name</th>
+    <th>Username</th>
+    <th>Class</th>
+    <th>Phone</th>
+    <th>Action</th>
 </tr>
 
 </thead>
 
-<tbody
-id="teacherTable">
-</tbody>
+<tbody id="teacherTable"></tbody>
 
 </table>
 
@@ -823,206 +605,178 @@ id="teacherTable">
 </section>
 
 
-<!-- =========================
+<!-- ==============================
      RESULTS MANAGEMENT
-========================= -->
+================================ -->
 
 <section class="section">
 
-<h2>
-📊 Results Management
-</h2>
+<h2>📊 Results Management</h2>
+
+<form id="resultForm" class="form">
+
+    <div class="group">
+
+        <label>Student</label>
+
+        <select id="resultStudent" required>
+
+            <option value="">
+                Loading students...
+            </option>
+
+        </select>
+
+        <div
+            id="studentLoadStatus"
+            class="status"
+        ></div>
+
+    </div>
 
 
-<form
-id="resultForm"
-class="form">
+    <div class="group">
+
+        <label>Term</label>
+
+        <select id="resultTerm" required>
+
+            <option value="">
+                Select term
+            </option>
+
+            <option value="Term 1">
+                Term 1
+            </option>
+
+            <option value="Term 2">
+                Term 2
+            </option>
+
+            <option value="Term 3">
+                Term 3
+            </option>
+
+        </select>
+
+    </div>
 
 
-<div class="group">
+    <div class="group">
 
-<label>
-Student
-</label>
+        <label>Academic Year</label>
 
-<select
-id="resultStudent"
-required>
+        <input
+            id="resultYear"
+            type="number"
+            value="2026"
+            required
+        >
 
-<option value="">
-Loading students...
-</option>
-
-</select>
-
-<div
-id="studentLoadStatus"
-class="status">
-</div>
-
-</div>
+    </div>
 
 
-<div class="group">
+    <div class="group">
 
-<label>
-Term
-</label>
+        <label>Mathematics</label>
 
-<select
-id="resultTerm"
-required>
+        <input
+            id="math"
+            type="number"
+            min="0"
+            max="100"
+            required
+        >
 
-<option value="">
-Select term
-</option>
-
-<option value="Term 1">
-Term 1
-</option>
-
-<option value="Term 2">
-Term 2
-</option>
-
-<option value="Term 3">
-Term 3
-</option>
-
-</select>
-
-</div>
+    </div>
 
 
-<div class="group">
+    <div class="group">
 
-<label>
-Academic Year
-</label>
+        <label>English</label>
 
-<input
-id="resultYear"
-type="number"
-value="2026"
-required>
+        <input
+            id="english"
+            type="number"
+            min="0"
+            max="100"
+            required
+        >
 
-</div>
-
-
-<div class="group">
-
-<label>
-Mathematics
-</label>
-
-<input
-id="math"
-type="number"
-min="0"
-max="100"
-step="0.01"
-required>
-
-</div>
+    </div>
 
 
-<div class="group">
+    <div class="group">
 
-<label>
-English
-</label>
+        <label>Kiswahili</label>
 
-<input
-id="english"
-type="number"
-min="0"
-max="100"
-step="0.01"
-required>
+        <input
+            id="kiswahili"
+            type="number"
+            min="0"
+            max="100"
+            required
+        >
 
-</div>
+    </div>
 
 
-<div class="group">
+    <div class="group">
 
-<label>
-Kiswahili
-</label>
+        <label>Science</label>
 
-<input
-id="kiswahili"
-type="number"
-min="0"
-max="100"
-step="0.01"
-required>
+        <input
+            id="science"
+            type="number"
+            min="0"
+            max="100"
+            required
+        >
 
-</div>
+    </div>
 
 
-<div class="group">
+    <div class="group">
 
-<label>
-Science
-</label>
+        <label>Social Studies</label>
 
-<input
-id="science"
-type="number"
-min="0"
-max="100"
-step="0.01"
-required>
+        <input
+            id="socialStudies"
+            type="number"
+            min="0"
+            max="100"
+            required
+        >
 
-</div>
+    </div>
 
 
-<div class="group">
-
-<label>
-Social Studies
-</label>
-
-<input
-id="socialStudies"
-type="number"
-min="0"
-max="100"
-step="0.01"
-required>
-
-</div>
+    <button
+        class="submit"
+        type="submit"
+    >
+        💾 SAVE RESULT
+    </button>
 
 
-<button
-class="submit"
-type="submit">
-
-💾 SAVE RESULT
-
-</button>
-
-
-<div
-id="resultMessage"
-class="message">
-</div>
-
+    <div
+        id="resultMessage"
+        class="message"
+    ></div>
 
 </form>
 
 
 <div class="list-header">
 
-<h3>
-Student Results
-</h3>
+    <h3>Student Results</h3>
 
-<input
-id="resultSearch"
-class="search"
-type="text"
-placeholder="🔍 Search result">
+    <input
+        id="resultSearch"
+        class="search"
+        type="text"
+        placeholder="🔍 Search result"
+    >
 
 </div>
 
@@ -1034,23 +788,19 @@ placeholder="🔍 Search result">
 <thead>
 
 <tr>
-
-<th>#</th>
-<th>Student</th>
-<th>Term</th>
-<th>Year</th>
-<th>Total</th>
-<th>Average</th>
-<th>Grade</th>
-<th>Action</th>
-
+    <th>#</th>
+    <th>Student</th>
+    <th>Term</th>
+    <th>Year</th>
+    <th>Total</th>
+    <th>Average</th>
+    <th>Grade</th>
+    <th>Action</th>
 </tr>
 
 </thead>
 
-<tbody
-id="resultTable">
-</tbody>
+<tbody id="resultTable"></tbody>
 
 </table>
 
@@ -1058,19 +808,161 @@ id="resultTable">
 
 </section>
 
+
+<!-- ==============================
+     ATTENDANCE MANAGEMENT
+================================ -->
+
+<section class="section">
+
+<h2>📅 Attendance Management</h2>
+
+<form id="attendanceForm" class="form">
+
+
+    <div class="group">
+
+        <label>Student</label>
+
+        <select
+            id="attendanceStudent"
+            required
+        >
+
+            <option value="">
+                Loading students...
+            </option>
+
+        </select>
+
+        <div
+            id="attendanceStudentStatus"
+            class="status"
+        ></div>
+
+    </div>
+
+
+    <div class="group">
+
+        <label>Date</label>
+
+        <input
+            id="attendanceDate"
+            type="date"
+            required
+        >
+
+    </div>
+
+
+    <div class="group">
+
+        <label>Attendance Status</label>
+
+        <select
+            id="attendanceStatus"
+            required
+        >
+
+            <option value="">
+                Select status
+            </option>
+
+            <option value="Present">
+                Present
+            </option>
+
+            <option value="Absent">
+                Absent
+            </option>
+
+            <option value="Late">
+                Late
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="group">
+
+        <label>Remarks</label>
+
+        <input
+            id="attendanceRemarks"
+            type="text"
+            placeholder="Optional remarks"
+        >
+
+    </div>
+
+
+    <button
+        class="submit"
+        type="submit"
+    >
+        💾 SAVE ATTENDANCE
+    </button>
+
+
+    <div
+        id="attendanceMessage"
+        class="message"
+    ></div>
+
+</form>
+
+
+<div class="list-header">
+
+    <h3>Attendance Records</h3>
+
+    <input
+        id="attendanceSearch"
+        class="search"
+        type="text"
+        placeholder="🔍 Search attendance"
+    >
+
+</div>
+
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>#</th>
+    <th>Student</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Remarks</th>
+    <th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="attendanceTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
 
 </main>
 
 
 <footer>
-
-© 2026 KITEGA PRIMARY SCHOOL
-
+    © 2026 KITEGA PRIMARY SCHOOL
 </footer>
 
 
 <script>
-
 
 /* ==========================================
    SUPABASE CONNECTION
@@ -1079,10 +971,8 @@ id="resultTable">
 const SUPABASE_URL =
 "https://fifqskyooaxadfnhxlnq.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_SCL2gLywydIm2NmiQGBWxA_VRnW9DnX";
-
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1096,12 +986,11 @@ window.supabase.createClient(
 ========================================== */
 
 let editingStudentId = null;
-
 let editingTeacherId = null;
 
 
 /* ==========================================
-   SAFE HTML
+   ESCAPE HTML
 ========================================== */
 
 function escapeHTML(value){
@@ -1118,7 +1007,7 @@ function escapeHTML(value){
 
 
 /* ==========================================
-   STUDENTS
+   LOAD STUDENTS
 ========================================== */
 
 async function loadStudents(
@@ -1129,7 +1018,6 @@ async function loadStudents(
     document.getElementById(
         "studentTable"
     );
-
 
     const result =
     await supabaseClient
@@ -1145,21 +1033,17 @@ async function loadStudents(
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
+        console.error(result.error);
 
         table.innerHTML = `
         <tr>
-        <td colspan="8"
-            class="empty">
+        <td colspan="8" class="empty">
         Failed to load students.
         </td>
         </tr>
         `;
 
         return;
-
     }
 
 
@@ -1187,19 +1071,16 @@ async function loadStudents(
         function(student){
 
             const text =
-
             String(
-                student.registration_no
+                student.registration_no || ""
             ) +
             " " +
-
             String(
-                student.full_name
+                student.full_name || ""
             ) +
             " " +
-
             String(
-                student.class_name
+                student.class_name || ""
             );
 
             return text
@@ -1215,21 +1096,17 @@ async function loadStudents(
     table.innerHTML = "";
 
 
-    if(
-        students.length === 0
-    ){
+    if(students.length === 0){
 
         table.innerHTML = `
         <tr>
-        <td colspan="8"
-            class="empty">
+        <td colspan="8" class="empty">
         No students found.
         </td>
         </tr>
         `;
 
         return;
-
     }
 
 
@@ -1237,16 +1114,12 @@ async function loadStudents(
         function(student,index){
 
             const row =
-            document.createElement(
-                "tr"
-            );
+            document.createElement("tr");
 
 
             row.innerHTML = `
 
-            <td>
-            ${index + 1}
-            </td>
+            <td>${index + 1}</td>
 
             <td>
             ${escapeHTML(
@@ -1288,32 +1161,21 @@ async function loadStudents(
 
             <button
             class="btn edit"
-            onclick="
-            editStudent(${student.id})
-            ">
-
+            onclick="editStudent(${student.id})">
             Edit
-
             </button>
 
             <button
             class="btn delete"
-            onclick="
-            deleteStudent(${student.id})
-            ">
-
+            onclick="deleteStudent(${student.id})">
             Delete
-
             </button>
 
             </td>
 
             `;
 
-
-            table.appendChild(
-                row
-            );
+            table.appendChild(row);
 
         }
     );
@@ -1326,9 +1188,7 @@ async function loadStudents(
 ========================================== */
 
 document
-.getElementById(
-    "studentForm"
-)
+.getElementById("studentForm")
 .addEventListener(
     "submit",
     async function(event){
@@ -1345,57 +1205,39 @@ document
         const student = {
 
             registration_no:
-            document
-            .getElementById(
+            document.getElementById(
                 "registrationNo"
-            )
-            .value
-            .trim(),
+            ).value.trim(),
 
             full_name:
-            document
-            .getElementById(
+            document.getElementById(
                 "fullName"
-            )
-            .value
-            .trim(),
+            ).value.trim(),
 
             gender:
-            document
-            .getElementById(
+            document.getElementById(
                 "gender"
-            )
-            .value,
+            ).value,
 
             class_name:
-            document
-            .getElementById(
+            document.getElementById(
                 "className"
-            )
-            .value,
+            ).value,
 
             parent_name:
-            document
-            .getElementById(
+            document.getElementById(
                 "parentName"
-            )
-            .value
-            .trim() || null,
+            ).value.trim() || null,
 
             parent_phone:
-            document
-            .getElementById(
+            document.getElementById(
                 "parentPhone"
-            )
-            .value
-            .trim() || null,
+            ).value.trim() || null,
 
             date_of_birth:
-            document
-            .getElementById(
+            document.getElementById(
                 "dateOfBirth"
-            )
-            .value || null
+            ).value || null
 
         };
 
@@ -1414,8 +1256,7 @@ document
                 editingStudentId
             );
 
-        }
-        else{
+        }else{
 
             result =
             await supabaseClient
@@ -1427,25 +1268,20 @@ document
 
         if(result.error){
 
-            message.style.color =
-            "red";
+            message.style.color = "red";
 
             message.textContent =
             result.error.message;
 
             return;
-
         }
 
 
-        message.style.color =
-        "green";
+        message.style.color = "green";
 
         message.textContent =
         editingStudentId
-
         ? "Student updated successfully."
-
         : "Student registered successfully.";
 
 
@@ -1458,16 +1294,16 @@ document
         "➕ REGISTER STUDENT";
 
 
-        document
-        .getElementById(
+        document.getElementById(
             "studentForm"
-        )
-        .reset();
+        ).reset();
 
 
         await loadStudents();
 
         await loadResultStudents();
+
+        await loadAttendanceStudents();
 
     }
 );
@@ -1489,12 +1325,9 @@ async function editStudent(id){
 
     if(result.error){
 
-        alert(
-            result.error.message
-        );
+        alert(result.error.message);
 
         return;
-
     }
 
 
@@ -1505,25 +1338,25 @@ async function editStudent(id){
     document.getElementById(
         "registrationNo"
     ).value =
-    student.registration_no;
+    student.registration_no || "";
 
 
     document.getElementById(
         "fullName"
     ).value =
-    student.full_name;
+    student.full_name || "";
 
 
     document.getElementById(
         "gender"
     ).value =
-    student.gender;
+    student.gender || "";
 
 
     document.getElementById(
         "className"
     ).value =
-    student.class_name;
+    student.class_name || "";
 
 
     document.getElementById(
@@ -1574,7 +1407,6 @@ async function deleteStudent(id){
     ){
 
         return;
-
     }
 
 
@@ -1592,13 +1424,14 @@ async function deleteStudent(id){
         );
 
         return;
-
     }
 
 
     await loadStudents();
 
     await loadResultStudents();
+
+    await loadAttendanceStudents();
 
 }
 
@@ -1608,9 +1441,7 @@ async function deleteStudent(id){
 ========================================== */
 
 document
-.getElementById(
-    "studentSearch"
-)
+.getElementById("studentSearch")
 .addEventListener(
     "input",
     function(){
@@ -1624,7 +1455,7 @@ document
 
 
 /* ==========================================
-   TEACHERS
+   LOAD TEACHERS
 ========================================== */
 
 async function loadTeachers(
@@ -1651,17 +1482,17 @@ async function loadTeachers(
 
     if(result.error){
 
+        console.error(result.error);
+
         table.innerHTML = `
         <tr>
-        <td colspan="6"
-            class="empty">
+        <td colspan="6" class="empty">
         Failed to load teachers.
         </td>
         </tr>
         `;
 
         return;
-
     }
 
 
@@ -1689,21 +1520,17 @@ async function loadTeachers(
         function(teacher){
 
             const text =
-
             String(
-                teacher.full_name
+                teacher.full_name || ""
             ) +
             " " +
-
             String(
-                teacher.username
+                teacher.username || ""
             ) +
             " " +
-
             String(
                 teacher.class_name || ""
             );
-
 
             return text
             .toLowerCase()
@@ -1718,21 +1545,17 @@ async function loadTeachers(
     table.innerHTML = "";
 
 
-    if(
-        teachers.length === 0
-    ){
+    if(teachers.length === 0){
 
         table.innerHTML = `
         <tr>
-        <td colspan="6"
-            class="empty">
+        <td colspan="6" class="empty">
         No teachers registered yet.
         </td>
         </tr>
         `;
 
         return;
-
     }
 
 
@@ -1740,16 +1563,12 @@ async function loadTeachers(
         function(teacher,index){
 
             const row =
-            document.createElement(
-                "tr"
-            );
+            document.createElement("tr");
 
 
             row.innerHTML = `
 
-            <td>
-            ${index + 1}
-            </td>
+            <td>${index + 1}</td>
 
             <td>
             ${escapeHTML(
@@ -1779,32 +1598,21 @@ async function loadTeachers(
 
             <button
             class="btn edit"
-            onclick="
-            editTeacher(${teacher.id})
-            ">
-
+            onclick="editTeacher(${teacher.id})">
             Edit
-
             </button>
 
             <button
             class="btn delete"
-            onclick="
-            deleteTeacher(${teacher.id})
-            ">
-
+            onclick="deleteTeacher(${teacher.id})">
             Delete
-
             </button>
 
             </td>
 
             `;
 
-
-            table.appendChild(
-                row
-            );
+            table.appendChild(row);
 
         }
     );
@@ -1817,9 +1625,7 @@ async function loadTeachers(
 ========================================== */
 
 document
-.getElementById(
-    "teacherForm"
-)
+.getElementById("teacherForm")
 .addEventListener(
     "submit",
     async function(event){
@@ -1836,35 +1642,24 @@ document
         const teacher = {
 
             full_name:
-            document
-            .getElementById(
+            document.getElementById(
                 "teacherName"
-            )
-            .value
-            .trim(),
+            ).value.trim(),
 
             username:
-            document
-            .getElementById(
+            document.getElementById(
                 "teacherUsername"
-            )
-            .value
-            .trim(),
+            ).value.trim(),
 
             class_name:
-            document
-            .getElementById(
+            document.getElementById(
                 "teacherClass"
-            )
-            .value || null,
+            ).value || null,
 
             phone:
-            document
-            .getElementById(
+            document.getElementById(
                 "teacherPhone"
-            )
-            .value
-            .trim() || null
+            ).value.trim() || null
 
         };
 
@@ -1883,8 +1678,7 @@ document
                 editingTeacherId
             );
 
-        }
-        else{
+        }else{
 
             result =
             await supabaseClient
@@ -1896,30 +1690,22 @@ document
 
         if(result.error){
 
-            message.style.color =
-            "red";
+            message.style.color = "red";
 
             message.textContent =
-            result.error.code ===
-            "23505"
-
+            result.error.code === "23505"
             ? "Username already exists."
-
             : result.error.message;
 
             return;
-
         }
 
 
-        message.style.color =
-        "green";
+        message.style.color = "green";
 
         message.textContent =
         editingTeacherId
-
         ? "Teacher updated successfully."
-
         : "Teacher registered successfully.";
 
 
@@ -1932,11 +1718,9 @@ document
         "➕ REGISTER TEACHER";
 
 
-        document
-        .getElementById(
+        document.getElementById(
             "teacherForm"
-        )
-        .reset();
+        ).reset();
 
 
         loadTeachers();
@@ -1961,12 +1745,9 @@ async function editTeacher(id){
 
     if(result.error){
 
-        alert(
-            result.error.message
-        );
+        alert(result.error.message);
 
         return;
-
     }
 
 
@@ -1977,13 +1758,13 @@ async function editTeacher(id){
     document.getElementById(
         "teacherName"
     ).value =
-    teacher.full_name;
+    teacher.full_name || "";
 
 
     document.getElementById(
         "teacherUsername"
     ).value =
-    teacher.username;
+    teacher.username || "";
 
 
     document.getElementById(
@@ -2028,7 +1809,6 @@ async function deleteTeacher(id){
     ){
 
         return;
-
     }
 
 
@@ -2041,12 +1821,9 @@ async function deleteTeacher(id){
 
     if(result.error){
 
-        alert(
-            result.error.message
-        );
+        alert(result.error.message);
 
         return;
-
     }
 
 
@@ -2060,9 +1837,7 @@ async function deleteTeacher(id){
 ========================================== */
 
 document
-.getElementById(
-    "teacherSearch"
-)
+.getElementById("teacherSearch")
 .addEventListener(
     "input",
     function(){
@@ -2076,7 +1851,7 @@ document
 
 
 /* ==========================================
-   RESULTS — LOAD STUDENTS
+   LOAD STUDENTS FOR RESULTS
 ========================================== */
 
 async function loadResultStudents(){
@@ -2093,21 +1868,10 @@ async function loadResultStudents(){
     );
 
 
-    if(!select){
-
-        return;
-
-    }
-
-
     select.innerHTML =
     `<option value="">
     Loading students...
     </option>`;
-
-
-    status.textContent =
-    "";
 
 
     const result =
@@ -2126,28 +1890,18 @@ async function loadResultStudents(){
 
     if(result.error){
 
-        console.error(
-            "Students error:",
-            result.error
-        );
-
-
         select.innerHTML =
         `<option value="">
         Failed to load students
         </option>`;
 
 
-        status.style.color =
-        "red";
-
+        status.style.color = "red";
 
         status.textContent =
         result.error.message;
 
-
         return;
-
     }
 
 
@@ -2161,9 +1915,7 @@ async function loadResultStudents(){
     </option>`;
 
 
-    if(
-        students.length === 0
-    ){
+    if(students.length === 0){
 
         select.innerHTML =
         `<option value="">
@@ -2171,16 +1923,10 @@ async function loadResultStudents(){
         </option>`;
 
 
-        status.style.color =
-        "#667085";
-
-
         status.textContent =
         "Register a student first.";
 
-
         return;
-
     }
 
 
@@ -2194,9 +1940,7 @@ async function loadResultStudents(){
 
 
             option.value =
-            String(
-                student.id
-            );
+            String(student.id);
 
 
             option.textContent =
@@ -2213,9 +1957,7 @@ async function loadResultStudents(){
     );
 
 
-    status.style.color =
-    "green";
-
+    status.style.color = "green";
 
     status.textContent =
     students.length +
@@ -2225,7 +1967,7 @@ async function loadResultStudents(){
 
 
 /* ==========================================
-   GRADE
+   RESULTS
 ========================================== */
 
 function calculateGrade(
@@ -2245,13 +1987,8 @@ function calculateGrade(
         return "D";
 
     return "F";
-
 }
 
-
-/* ==========================================
-   LOAD RESULTS
-========================================== */
 
 async function loadResults(
     searchText = ""
@@ -2283,30 +2020,29 @@ async function loadResults(
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
-
+        console.error(result.error);
 
         table.innerHTML = `
         <tr>
-        <td colspan="8"
-            class="empty">
-
+        <td colspan="8" class="empty">
         Failed to load results.
-
         </td>
         </tr>
         `;
 
-
         return;
-
     }
 
 
     let results =
     result.data || [];
+
+
+    document.getElementById(
+        "resultCount"
+    ).textContent =
+    results.length +
+    " Results";
 
 
     const search =
@@ -2326,24 +2062,16 @@ async function loadResults(
 
 
                 const text =
-
                 (
-                    student.full_name ||
-                    ""
+                    student.full_name || ""
                 ) +
-
                 " " +
-
                 (
-                    student.registration_no ||
-                    ""
+                    student.registration_no || ""
                 ) +
-
                 " " +
-
                 (
-                    item.term ||
-                    ""
+                    item.term || ""
                 );
 
 
@@ -2360,24 +2088,17 @@ async function loadResults(
     table.innerHTML = "";
 
 
-    if(
-        results.length === 0
-    ){
+    if(results.length === 0){
 
         table.innerHTML = `
         <tr>
-        <td colspan="8"
-            class="empty">
-
+        <td colspan="8" class="empty">
         No results found.
-
         </td>
         </tr>
         `;
 
-
         return;
-
     }
 
 
@@ -2385,9 +2106,7 @@ async function loadResults(
         function(item,index){
 
             const row =
-            document.createElement(
-                "tr"
-            );
+            document.createElement("tr");
 
 
             const student =
@@ -2396,9 +2115,7 @@ async function loadResults(
 
             row.innerHTML = `
 
-            <td>
-            ${index + 1}
-            </td>
+            <td>${index + 1}</td>
 
             <td>
             ${escapeHTML(
@@ -2434,12 +2151,8 @@ async function loadResults(
 
             <button
             class="btn delete"
-            onclick="
-            deleteResult(${item.id})
-            ">
-
+            onclick="deleteResult(${item.id})">
             Delete
-
             </button>
 
             </td>
@@ -2447,9 +2160,7 @@ async function loadResults(
             `;
 
 
-            table.appendChild(
-                row
-            );
+            table.appendChild(row);
 
         }
     );
@@ -2457,14 +2168,10 @@ async function loadResults(
 }
 
 
-/* ==========================================
-   SAVE RESULT
-========================================== */
+/* SAVE RESULT */
 
 document
-.getElementById(
-    "resultForm"
-)
+.getElementById("resultForm")
 .addEventListener(
     "submit",
     async function(event){
@@ -2486,14 +2193,12 @@ document
 
         if(!studentId){
 
-            message.style.color =
-            "red";
+            message.style.color = "red";
 
             message.textContent =
             "Please select a student.";
 
             return;
-
         }
 
 
@@ -2555,7 +2260,10 @@ document
         );
 
 
-        const resultData = {
+        const result =
+        await supabaseClient
+        .from("results")
+        .insert({
 
             student_id:
             Number(studentId),
@@ -2600,15 +2308,543 @@ document
             grade:
             grade
 
-        };
+        });
+
+
+        if(result.error){
+
+            message.style.color = "red";
+
+            message.textContent =
+            result.error.message;
+
+            return;
+        }
+
+
+        message.style.color = "green";
+
+        message.textContent =
+        "Result saved successfully.";
+
+
+        document.getElementById(
+            "resultForm"
+        ).reset();
+
+
+        document.getElementById(
+            "resultYear"
+        ).value =
+        "2026";
+
+
+        loadResults();
+
+    }
+);
+
+
+/* DELETE RESULT */
+
+async function deleteResult(id){
+
+    if(
+        !confirm(
+            "Delete this result?"
+        )
+    ){
+
+        return;
+    }
+
+
+    const result =
+    await supabaseClient
+    .from("results")
+    .delete()
+    .eq("id",id);
+
+
+    if(result.error){
+
+        alert(
+            result.error.message
+        );
+
+        return;
+    }
+
+
+    loadResults();
+
+}
+
+
+/* RESULT SEARCH */
+
+document
+.getElementById("resultSearch")
+.addEventListener(
+    "input",
+    function(){
+
+        loadResults(
+            this.value
+        );
+
+    }
+);
+
+
+/* ==========================================
+   ATTENDANCE — LOAD STUDENTS
+========================================== */
+
+async function loadAttendanceStudents(){
+
+    const select =
+    document.getElementById(
+        "attendanceStudent"
+    );
+
+
+    const status =
+    document.getElementById(
+        "attendanceStudentStatus"
+    );
+
+
+    if(!select)
+        return;
+
+
+    select.innerHTML =
+    `<option value="">
+    Loading students...
+    </option>`;
+
+
+    const result =
+    await supabaseClient
+    .from("students")
+    .select(
+        "id, registration_no, full_name"
+    )
+    .order(
+        "full_name",
+        {
+            ascending:true
+        }
+    );
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+
+        select.innerHTML =
+        `<option value="">
+        Failed to load students
+        </option>`;
+
+
+        status.style.color = "red";
+
+        status.textContent =
+        result.error.message;
+
+        return;
+    }
+
+
+    const students =
+    result.data || [];
+
+
+    select.innerHTML =
+    `<option value="">
+    Select student
+    </option>`;
+
+
+    if(students.length === 0){
+
+        select.innerHTML =
+        `<option value="">
+        No students registered
+        </option>`;
+
+
+        status.textContent =
+        "Register a student first.";
+
+        return;
+    }
+
+
+    students.forEach(
+        function(student){
+
+            const option =
+            document.createElement(
+                "option"
+            );
+
+
+            option.value =
+            String(student.id);
+
+
+            option.textContent =
+            student.registration_no +
+            " - " +
+            student.full_name;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    status.style.color = "green";
+
+    status.textContent =
+    students.length +
+    " student(s) available.";
+
+}
+
+
+/* ==========================================
+   ATTENDANCE — LOAD RECORDS
+========================================== */
+
+async function loadAttendance(
+    searchText = ""
+){
+
+    const table =
+    document.getElementById(
+        "attendanceTable"
+    );
+
+
+    const result =
+    await supabaseClient
+    .from("attendance")
+    .select(`
+        *,
+        students(
+            registration_no,
+            full_name
+        )
+    `)
+    .order(
+        "date",
+        {
+            ascending:false
+        }
+    );
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+
+        table.innerHTML = `
+        <tr>
+        <td colspan="6" class="empty">
+        Failed to load attendance.
+        </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    let records =
+    result.data || [];
+
+
+    document.getElementById(
+        "attendanceCount"
+    ).textContent =
+    records.length +
+    " Records";
+
+
+    const search =
+    searchText
+    .toLowerCase()
+    .trim();
+
+
+    if(search){
+
+        records =
+        records.filter(
+            function(record){
+
+                const student =
+                record.students || {};
+
+
+                const text =
+                (
+                    student.full_name || ""
+                ) +
+                " " +
+                (
+                    student.registration_no || ""
+                ) +
+                " " +
+                (
+                    record.status || ""
+                ) +
+                " " +
+                (
+                    record.date || ""
+                );
+
+
+                return text
+                .toLowerCase()
+                .includes(search);
+
+            }
+        );
+
+    }
+
+
+    table.innerHTML = "";
+
+
+    if(records.length === 0){
+
+        table.innerHTML = `
+        <tr>
+        <td colspan="6" class="empty">
+        No attendance records found.
+        </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+
+    records.forEach(
+        function(record,index){
+
+            const row =
+            document.createElement(
+                "tr"
+            );
+
+
+            const student =
+            record.students || {};
+
+
+            let statusClass = "";
+
+
+            if(
+                record.status ===
+                "Present"
+            ){
+
+                statusClass =
+                "present";
+
+            }
+            else if(
+                record.status ===
+                "Absent"
+            ){
+
+                statusClass =
+                "absent";
+
+            }
+            else if(
+                record.status ===
+                "Late"
+            ){
+
+                statusClass =
+                "late";
+
+            }
+
+
+            row.innerHTML = `
+
+            <td>
+            ${index + 1}
+            </td>
+
+            <td>
+            ${escapeHTML(
+                student.full_name || "-"
+            )}
+            </td>
+
+            <td>
+            ${escapeHTML(
+                record.date || "-"
+            )}
+            </td>
+
+            <td class="${statusClass}">
+            ${escapeHTML(
+                record.status || "-"
+            )}
+            </td>
+
+            <td>
+            ${escapeHTML(
+                record.remarks || "-"
+            )}
+            </td>
+
+            <td>
+
+            <button
+            class="btn delete"
+            onclick="
+            deleteAttendance(
+                ${record.id}
+            )
+            ">
+
+            Delete
+
+            </button>
+
+            </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   SAVE ATTENDANCE
+========================================== */
+
+document
+.getElementById(
+    "attendanceForm"
+)
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const message =
+        document.getElementById(
+            "attendanceMessage"
+        );
+
+
+        const studentId =
+        document.getElementById(
+            "attendanceStudent"
+        ).value;
+
+
+        const date =
+        document.getElementById(
+            "attendanceDate"
+        ).value;
+
+
+        const status =
+        document.getElementById(
+            "attendanceStatus"
+        ).value;
+
+
+        const remarks =
+        document.getElementById(
+            "attendanceRemarks"
+        ).value.trim();
+
+
+        if(!studentId){
+
+            message.style.color = "red";
+
+            message.textContent =
+            "Please select a student.";
+
+            return;
+        }
+
+
+        if(!date){
+
+            message.style.color = "red";
+
+            message.textContent =
+            "Please select a date.";
+
+            return;
+        }
+
+
+        if(!status){
+
+            message.style.color = "red";
+
+            message.textContent =
+            "Please select attendance status.";
+
+            return;
+        }
 
 
         const result =
         await supabaseClient
-        .from("results")
-        .insert(
-            resultData
-        );
+        .from("attendance")
+        .insert({
+
+            student_id:
+            Number(studentId),
+
+            date:
+            date,
+
+            status:
+            status,
+
+            remarks:
+            remarks || null
+
+        });
 
 
         if(result.error){
@@ -2627,7 +2863,6 @@ document
 
 
             return;
-
         }
 
 
@@ -2636,49 +2871,49 @@ document
 
 
         message.textContent =
-        "Result saved successfully.";
+        "Attendance saved successfully.";
 
 
         document
         .getElementById(
-            "resultForm"
+            "attendanceForm"
         )
         .reset();
 
 
-        document
-        .getElementById(
-            "resultYear"
+        document.getElementById(
+            "attendanceDate"
         ).value =
-        "2026";
+        new Date()
+        .toISOString()
+        .split("T")[0];
 
 
-        await loadResults();
+        loadAttendance();
 
     }
 );
 
 
 /* ==========================================
-   DELETE RESULT
+   DELETE ATTENDANCE
 ========================================== */
 
-async function deleteResult(id){
+async function deleteAttendance(id){
 
     if(
         !confirm(
-            "Delete this result?"
+            "Delete this attendance record?"
         )
     ){
 
         return;
-
     }
 
 
     const result =
     await supabaseClient
-    .from("results")
+    .from("attendance")
     .delete()
     .eq(
         "id",
@@ -2693,28 +2928,27 @@ async function deleteResult(id){
         );
 
         return;
-
     }
 
 
-    loadResults();
+    loadAttendance();
 
 }
 
 
 /* ==========================================
-   RESULT SEARCH
+   ATTENDANCE SEARCH
 ========================================== */
 
 document
 .getElementById(
-    "resultSearch"
+    "attendanceSearch"
 )
 .addEventListener(
     "input",
     function(){
 
-        loadResults(
+        loadAttendance(
             this.value
         );
 
@@ -2735,10 +2969,18 @@ function logout(){
 
 
 /* ==========================================
-   START EVERYTHING
+   START DASHBOARD
 ========================================== */
 
 async function startDashboard(){
+
+    document.getElementById(
+        "attendanceDate"
+    ).value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
 
     await loadStudents();
 
@@ -2748,15 +2990,16 @@ async function startDashboard(){
 
     await loadResults();
 
+    await loadAttendanceStudents();
+
+    await loadAttendance();
+
 }
 
 
 startDashboard();
 
-
 </script>
 
-
 </body>
-
-     </html>
+</html>
