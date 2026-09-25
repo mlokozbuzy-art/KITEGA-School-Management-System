@@ -24,207 +24,15 @@ content="width=device-width, initial-scale=1.0">
 body{
     background:#f4f7fb;
     color:#172033;
+    min-height:100vh;
 }
 
-/* ================= HEADER ================= */
+
+/* =================================================
+   HEADER
+================================================= */
 
 header{
-    background:#063b52;
-    color:white;
-    padding:16px 22px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    gap:15px;
-
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo-box{
-    width:45px;
-    height:45px;
-
-    background:#087ea4;
-
-    border-radius:10px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:24px;
-}
-
-.logo{
-    font-size:20px;
-    font-weight:bold;
-}
-
-.subtitle{
-    font-size:12px;
-    margin-top:4px;
-    opacity:.85;
-}
-
-.header-actions{
-    display:flex;
-    gap:8px;
-}
-
-.header-btn{
-    border:0;
-    padding:10px 14px;
-    border-radius:8px;
-
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.back-btn{
-    background:#087ea4;
-    color:white;
-}
-
-.logout-btn{
-    background:#d92d20;
-    color:white;
-}
-
-.header-btn:hover{
-    opacity:.9;
-}
-
-/* ================= LAYOUT ================= */
-
-.layout{
-    display:flex;
-    min-height:calc(100vh - 77px);
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar{
-    width:255px;
-    background:white;
-
-    border-right:1px solid #e4e7ec;
-
-    padding:20px 12px;
-
-    position:sticky;
-    top:77px;
-
-    height:calc(100vh - 77px);
-
-    overflow-y:auto;
-}
-
-.sidebar-title{
-    font-size:11px;
-    color:#98a2b3;
-
-    font-weight:bold;
-
-    padding:10px 14px;
-
-    letter-spacing:.5px;
-}
-
-.sidebar a{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    text-decoration:none;
-
-    color:#344054;
-
-    padding:12px 14px;
-
-    margin:4px 0;
-
-    border-radius:9px;
-
-    font-size:14px;
-
-    transition:.2s;
-}
-
-.sidebar a:hover{
-    background:#eef8fb;
-    color:#063b52;
-}
-
-.sidebar a.active{
-    background:#063b52;
-    color:white;
-}
-
-/* ================= CONTENT ================= */
-
-.content{
-    flex:1;
-    padding:28px;
-
-    max-width:1600px;
-}
-
-/* ================= PAGE TOP ================= */
-
-.page-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:22px;
-
-    gap:15px;
-}
-
-.page-top h1{
-    color:#063b52;
-    font-size:27px;
-}
-
-.page-top p{
-    color:#667085;
-    margin-top:6px;
-    font-size:14px;
-}
-
-.mobile-back{
-    display:none;
-
-    background:white;
-
-    border:1px solid #d0d5dd;
-
-    padding:9px 13px;
-
-    border-radius:8px;
-
-    color:#344054;
-
-    font-weight:bold;
-}
-
-/* ================= WELCOME ================= */
-
-.welcome{
     background:linear-gradient(
         135deg,
         #063b52,
@@ -233,68 +41,497 @@ header{
 
     color:white;
 
-    padding:28px;
+    padding:18px 25px;
 
-    border-radius:16px;
+    display:flex;
 
-    margin-bottom:24px;
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
 
     box-shadow:
-    0 8px 25px rgba(6,59,82,.15);
+    0 4px 15px rgba(0,0,0,.12);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
 }
 
-.welcome h2{
-    font-size:24px;
-    margin-bottom:8px;
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.school-logo{
+    width:48px;
+    height:48px;
+
+    background:white;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+}
+
+.logo-title{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.logo-subtitle{
+    font-size:12px;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.teacher-badge{
+    background:rgba(255,255,255,.14);
+
+    border:
+    1px solid rgba(255,255,255,.18);
+
+    padding:9px 13px;
+
+    border-radius:9px;
+
+    font-size:13px;
+}
+
+.logout{
+    background:#d92d20;
+
+    color:white;
+
+    border:0;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.logout:hover{
+    background:#b42318;
+}
+
+
+/* =================================================
+   NAVIGATION BAR
+================================================= */
+
+.navigation{
+
+    width:94%;
+
+    max-width:1250px;
+
+    margin:18px auto 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.nav-left,
+.nav-right{
+
+    display:flex;
+
+    gap:8px;
+}
+
+.nav-button{
+
+    border:1px solid #d0d5dd;
+
+    background:white;
+
+    color:#344054;
+
+    padding:10px 15px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+.nav-button:hover{
+
+    background:#eef8fb;
+
+    color:#063b52;
+
+    border-color:#087ea4;
+}
+
+.menu-button{
+
+    background:#063b52;
+
+    color:white;
+
+    border-color:#063b52;
+}
+
+
+/* =================================================
+   MENU DRAWER
+================================================= */
+
+.menu-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.4);
+
+    z-index:2000;
+
+    display:none;
+}
+
+.menu-overlay.show{
+    display:block;
+}
+
+.menu-drawer{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:300px;
+
+    max-width:85%;
+
+    height:100%;
+
+    background:white;
+
+    padding:22px;
+
+    overflow-y:auto;
+
+    box-shadow:
+    5px 0 25px rgba(0,0,0,.18);
+
+    animation:
+    slideMenu .2s ease;
+}
+
+@keyframes slideMenu{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(0);
+    }
+
+}
+
+.menu-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    padding-bottom:15px;
+
+    border-bottom:
+    1px solid #eaecf0;
+}
+
+.menu-header h2{
+
+    color:#063b52;
+
+    font-size:20px;
+}
+
+.close-menu{
+
+    border:0;
+
+    background:#f2f4f7;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+.menu-section{
+
+    margin-top:18px;
+
+    margin-bottom:7px;
+
+    color:#98a2b3;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.menu-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    width:100%;
+
+    padding:12px;
+
+    margin:4px 0;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    color:#344054;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.menu-link:hover{
+
+    background:#eef8fb;
+
+    color:#063b52;
+}
+
+.menu-link.active{
+
+    background:#063b52;
+
+    color:white;
+}
+
+
+/* =================================================
+   MAIN
+================================================= */
+
+.container{
+
+    width:94%;
+
+    max-width:1250px;
+
+    margin:22px auto 0;
+}
+
+
+/* =================================================
+   WELCOME
+================================================= */
+
+.welcome{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #eef8fb
+    );
+
+    border-radius:18px;
+
+    padding:27px;
+
+    margin-bottom:20px;
+
+    border:
+    1px solid #e4e7ec;
+
+    box-shadow:
+    0 5px 18px rgba(0,0,0,.06);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.welcome h1{
+
+    color:#063b52;
+
+    font-size:26px;
+
+    margin-bottom:7px;
 }
 
 .welcome p{
-    opacity:.9;
-    line-height:1.6;
+
+    color:#667085;
+
+    font-size:14px;
+
+    line-height:1.5;
 }
 
-/* ================= STATISTICS ================= */
+.date-time{
 
-.section-title{
+    text-align:right;
+
+    background:white;
+
+    padding:14px 17px;
+
+    border-radius:12px;
+
+    border:
+    1px solid #e4e7ec;
+
+    min-width:230px;
+}
+
+.current-date{
+
+    color:#344054;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.current-time{
+
     color:#063b52;
-    font-size:18px;
-    margin-bottom:14px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-top:5px;
 }
+
+
+/* =================================================
+   SECTION TITLE
+================================================= */
+
+.section-heading{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:25px 0 13px;
+}
+
+.section-heading h2{
+
+    color:#063b52;
+
+    font-size:18px;
+}
+
+.section-heading span{
+
+    color:#98a2b3;
+
+    font-size:12px;
+}
+
+
+/* =================================================
+   STATISTICS
+================================================= */
 
 .cards{
+
     display:grid;
 
     grid-template-columns:
     repeat(4,1fr);
 
-    gap:17px;
-
-    margin-bottom:25px;
+    gap:15px;
 }
 
 .card{
+
     background:white;
+
+    border:
+    1px solid #e4e7ec;
+
+    border-radius:15px;
 
     padding:20px;
 
-    border-radius:14px;
-
     box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
-
-    border:1px solid #eef0f3;
+    0 4px 15px rgba(0,0,0,.05);
 
     transition:.2s;
 }
 
 .card:hover{
-    transform:translateY(-2px);
+
+    transform:translateY(-3px);
 
     box-shadow:
-    0 8px 20px rgba(0,0,0,.09);
+    0 8px 20px rgba(0,0,0,.08);
 }
 
 .card-top{
+
     display:flex;
 
     justify-content:space-between;
@@ -303,21 +540,26 @@ header{
 }
 
 .card-icon{
-    width:43px;
-    height:43px;
 
-    border-radius:10px;
+    width:45px;
 
-    background:#eef8fb;
+    height:45px;
+
+    border-radius:11px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    font-size:23px;
+    font-size:24px;
+
+    background:#eef8fb;
 }
 
-.card-title{
+.card-label{
+
     color:#667085;
 
     font-size:13px;
@@ -326,19 +568,21 @@ header{
 }
 
 .card-number{
+
     color:#063b52;
 
-    font-size:27px;
+    font-size:28px;
 
     font-weight:bold;
 
-    margin-top:6px;
+    margin-top:5px;
 }
 
 .card-link{
+
     display:inline-block;
 
-    margin-top:13px;
+    margin-top:12px;
 
     color:#087ea4;
 
@@ -349,397 +593,390 @@ header{
     font-weight:bold;
 }
 
-/* ================= TWO COLUMN ================= */
-
-.dashboard-grid{
-    display:grid;
-
-    grid-template-columns:
-    1.5fr 1fr;
-
-    gap:20px;
-
-    margin-bottom:25px;
+.card-link:hover{
+    text-decoration:underline;
 }
 
-.panel{
-    background:white;
 
-    border-radius:15px;
+/* =================================================
+   TWO COLUMN
+================================================= */
 
-    padding:22px;
+.two-column{
 
-    box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
-
-    border:1px solid #eef0f3;
-}
-
-.panel-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:18px;
-}
-
-.panel-header h2{
-    color:#063b52;
-
-    font-size:18px;
-}
-
-.view-link{
-    color:#087ea4;
-
-    text-decoration:none;
-
-    font-size:13px;
-
-    font-weight:bold;
-}
-
-/* ================= REPORT ================= */
-
-.report-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.report-item{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:14px;
-
-    background:#f8fafc;
-
-    border-radius:10px;
-}
-
-.report-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.report-icon{
-    width:38px;
-    height:38px;
-
-    background:#eef8fb;
-
-    border-radius:8px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.report-name{
-    font-weight:bold;
-    color:#344054;
-    font-size:14px;
-}
-
-.report-desc{
-    font-size:12px;
-    color:#98a2b3;
-    margin-top:3px;
-}
-
-.report-number{
-    color:#063b52;
-    font-weight:bold;
-}
-
-/* ================= PAYMENT ================= */
-
-.payment-box{
-    background:
-    linear-gradient(
-        135deg,
-        #063b52,
-        #087ea4
-    );
-
-    color:white;
-
-    border-radius:15px;
-
-    padding:24px;
-}
-
-.payment-box h2{
-    font-size:19px;
-    margin-bottom:7px;
-}
-
-.payment-box p{
-    opacity:.85;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.payment-amount{
-    font-size:29px;
-
-    font-weight:bold;
-
-    margin:20px 0;
-}
-
-.payment-info{
     display:grid;
 
     grid-template-columns:
     1fr 1fr;
 
-    gap:10px;
+    gap:18px;
+
+    margin-top:20px;
 }
 
-.payment-stat{
-    background:rgba(255,255,255,.12);
-
-    padding:13px;
-
-    border-radius:9px;
-}
-
-.payment-stat span{
-    display:block;
-
-    font-size:11px;
-
-    opacity:.75;
-
-    margin-bottom:4px;
-}
-
-.payment-stat strong{
-    font-size:18px;
-}
-
-.payment-button{
-    display:inline-block;
-
-    margin-top:18px;
+.panel{
 
     background:white;
 
-    color:#063b52;
-
-    padding:10px 15px;
-
-    border-radius:8px;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    font-size:13px;
-}
-
-/* ================= QUICK ACCESS ================= */
-
-.quick-panel{
-    background:white;
+    border:
+    1px solid #e4e7ec;
 
     border-radius:15px;
 
     padding:22px;
 
     box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
-
-    border:1px solid #eef0f3;
-
-    margin-bottom:25px;
+    0 4px 15px rgba(0,0,0,.05);
 }
 
-.quick-grid{
-    display:grid;
+.panel h2{
 
-    grid-template-columns:
-    repeat(5,1fr);
+    color:#063b52;
 
-    gap:12px;
+    font-size:18px;
+
+    margin-bottom:8px;
 }
 
-.quick-button{
+.panel-description{
+
+    color:#667085;
+
+    font-size:13px;
+
+    margin-bottom:18px;
+}
+
+
+/* =================================================
+   ATTENDANCE
+================================================= */
+
+.attendance-row{
+
     display:flex;
+
+    justify-content:space-between;
 
     align-items:center;
 
-    gap:9px;
+    padding:12px 0;
 
-    padding:14px;
+    border-bottom:
+    1px solid #eaecf0;
+}
 
-    border:1px solid #e4e7ec;
+.attendance-row:last-child{
+    border-bottom:0;
+}
 
-    border-radius:10px;
+.attendance-label{
+    color:#475467;
+    font-size:13px;
+}
+
+.attendance-value{
+    font-weight:bold;
+    color:#063b52;
+}
+
+
+/* =================================================
+   PAYMENT
+================================================= */
+
+.payment-amount{
+
+    font-size:28px;
+
+    color:#063b52;
+
+    font-weight:bold;
+
+    margin:10px 0 5px;
+}
+
+.payment-small{
+
+    color:#667085;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+}
+
+.open-button{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    background:#063b52;
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.open-button:hover{
+    background:#087ea4;
+}
+
+
+/* =================================================
+   QUICK ACCESS
+================================================= */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(6,1fr);
+
+    gap:10px;
+}
+
+.quick-button{
+
+    background:white;
+
+    border:
+    1px solid #e4e7ec;
+
+    border-radius:11px;
+
+    padding:15px 10px;
+
+    text-align:center;
 
     text-decoration:none;
 
     color:#344054;
 
-    font-weight:bold;
+    font-size:12px;
 
-    font-size:13px;
+    font-weight:bold;
 
     transition:.2s;
 }
 
 .quick-button:hover{
-    background:#eef8fb;
 
-    border-color:#087ea4;
+    background:#eef8fb;
 
     color:#063b52;
 
-    transform:translateY(-1px);
+    border-color:#087ea4;
 }
 
-/* ================= FOOTER ================= */
+.quick-icon{
+
+    display:block;
+
+    font-size:24px;
+
+    margin-bottom:7px;
+}
+
+
+/* =================================================
+   RECENT ACTIVITY
+================================================= */
+
+.activity{
+
+    margin-top:20px;
+}
+
+.activity-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px 0;
+
+    border-bottom:
+    1px solid #eaecf0;
+}
+
+.activity-item:last-child{
+    border-bottom:0;
+}
+
+.activity-icon{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:9px;
+
+    background:#eef8fb;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+}
+
+.activity-text{
+
+    flex:1;
+
+    color:#344054;
+
+    font-size:13px;
+}
+
+.activity-time{
+
+    color:#98a2b3;
+
+    font-size:11px;
+}
+
+
+/* =================================================
+   FOOTER
+================================================= */
 
 footer{
+
     text-align:center;
 
-    padding:25px;
+    padding:30px 20px;
 
     color:#98a2b3;
 
     font-size:12px;
 }
 
-/* ================= RESPONSIVE ================= */
 
-@media(max-width:1100px){
+/* =================================================
+   RESPONSIVE
+================================================= */
+
+@media(max-width:1000px){
 
     .cards{
+
         grid-template-columns:
         repeat(2,1fr);
     }
 
     .quick-grid{
+
         grid-template-columns:
         repeat(3,1fr);
     }
 
-    .dashboard-grid{
+}
+
+
+@media(max-width:750px){
+
+    .header-right .teacher-badge{
+        display:none;
+    }
+
+    .welcome{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .date-time{
+
+        text-align:left;
+
+        min-width:0;
+    }
+
+    .two-column{
+
         grid-template-columns:1fr;
+    }
+
+    .quick-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .navigation{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .nav-left,
+    .nav-right{
+
+        justify-content:space-between;
     }
 
 }
 
-@media(max-width:750px){
+
+@media(max-width:500px){
 
     header{
-        padding:13px 15px;
+
+        padding:15px;
     }
 
-    .header-actions .back-btn{
-        display:none;
+    .logo-title{
+        font-size:16px;
     }
 
-    .layout{
-        display:block;
+    .school-logo{
+
+        width:42px;
+        height:42px;
+        font-size:21px;
     }
 
-    .sidebar{
-        position:static;
-
-        width:100%;
-
-        height:auto;
-
-        padding:8px;
-
-        border-right:0;
-
-        border-bottom:
-        1px solid #e4e7ec;
-
-        white-space:nowrap;
-
-        overflow-x:auto;
-    }
-
-    .sidebar-title{
-        display:none;
-    }
-
-    .sidebar a{
-        display:inline-flex;
-
-        width:auto;
-
-        margin:3px;
+    .logout{
 
         padding:9px 11px;
 
         font-size:12px;
     }
 
-    .content{
-        padding:17px;
-    }
+    .container{
 
-    .page-top{
-        align-items:flex-start;
-    }
-
-    .mobile-back{
-        display:block;
-    }
-
-    .page-top h1{
-        font-size:22px;
+        width:92%;
     }
 
     .cards{
+
         grid-template-columns:1fr;
     }
 
+    .welcome h1{
+
+        font-size:21px;
+    }
+
     .quick-grid{
+
         grid-template-columns:
         repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:450px){
-
-    .logo{
-        font-size:17px;
-    }
-
-    .logo-box{
-        width:39px;
-        height:39px;
-        font-size:20px;
-    }
-
-    .welcome{
-        padding:20px;
-    }
-
-    .welcome h2{
-        font-size:20px;
-    }
-
-    .quick-grid{
-        grid-template-columns:1fr;
-    }
-
-    .payment-info{
-        grid-template-columns:1fr;
     }
 
 }
@@ -758,183 +995,331 @@ footer{
 
 <header>
 
-<div class="brand">
+<div class="logo-area">
 
-<div class="logo-box">
-🏫
+    <div class="school-logo">
+        🏫
+    </div>
+
+    <div>
+
+        <div class="logo-title">
+            KITEGA SCHOOL
+        </div>
+
+        <div class="logo-subtitle">
+            School Management System
+        </div>
+
+    </div>
+
 </div>
 
-<div>
 
-<div class="logo">
-KITEGA SCHOOL
-</div>
+<div class="header-right">
 
-<div class="subtitle">
-School Management System
-</div>
+    <div
+    id="teacherBadge"
+    class="teacher-badge">
 
-</div>
+        👤 Teacher
 
-</div>
+    </div>
 
+    <button
+    class="logout"
+    onclick="logout()">
 
-<div class="header-actions">
+        Logout
 
-<button
-class="header-btn back-btn"
-onclick="goBack()">
-
-← Back
-
-</button>
-
-
-<button
-class="header-btn logout-btn"
-onclick="logout()">
-
-Logout
-
-</button>
+    </button>
 
 </div>
 
 </header>
 
 
-<div class="layout">
+
+<!-- =================================================
+     NAVIGATION
+================================================= -->
+
+<nav class="navigation">
+
+<div class="nav-left">
+
+    <button
+    class="nav-button"
+    onclick="goBack()">
+
+        ← Back
+
+    </button>
+
+
+    <button
+    class="nav-button"
+    onclick="goHome()">
+
+        🏠 Home
+
+    </button>
+
+</div>
+
+
+<div class="nav-right">
+
+    <button
+    class="nav-button menu-button"
+    onclick="openMenu()">
+
+        ☰ Menu
+
+    </button>
+
+</div>
+
+</nav>
+
 
 
 <!-- =================================================
-     SIDEBAR
+     MENU DRAWER
 ================================================= -->
 
-<aside class="sidebar">
+<div
+id="menuOverlay"
+class="menu-overlay"
+onclick="closeMenu(event)">
 
-<div class="sidebar-title">
-MAIN MENU
+<div
+class="menu-drawer"
+onclick="event.stopPropagation()">
+
+
+<div class="menu-header">
+
+    <h2>
+        ☰ Menu
+    </h2>
+
+    <button
+    class="close-menu"
+    onclick="closeMenu()">
+
+        ✕
+
+    </button>
+
+</div>
+
+
+<div class="menu-section">
+    MAIN
 </div>
 
 
 <a
 href="dashboard.html"
-class="active">
+class="menu-link active">
 
-🏠 Dashboard
+    🏠 Home
 
 </a>
 
 
-<a href="students.html">
-👨‍🎓 Students
+<a
+href="students.html"
+class="menu-link">
+
+    👨‍🎓 Students
+
 </a>
 
 
-<a href="teachers.html">
-👨‍🏫 Teachers
+<a
+href="teachers.html"
+class="menu-link">
+
+    👨‍🏫 Teachers
+
 </a>
 
 
-<a href="classes.html">
-🏫 Classes
+<a
+href="classes.html"
+class="menu-link">
+
+    🏫 Classes
+
 </a>
 
 
-<a href="subjects.html">
-📚 Subjects
+<a
+href="subjects.html"
+class="menu-link">
+
+    📚 Subjects
+
 </a>
 
 
-<a href="attendance.html">
-📋 Attendance
+<div class="menu-section">
+    ACADEMIC
+</div>
+
+
+<a
+href="attendance.html"
+class="menu-link">
+
+    📋 Attendance
+
 </a>
 
 
-<a href="results.html">
-📝 Results
+<a
+href="results.html"
+class="menu-link">
+
+    📝 Results
+
 </a>
 
 
-<a href="timetable.html">
-🗓️ Timetable
+<a
+href="timetable.html"
+class="menu-link">
+
+    🗓️ Timetable
+
 </a>
 
 
-<a href="announcements.html">
-📢 Announcements
+<div class="menu-section">
+    SCHOOL
+</div>
+
+
+<a
+href="announcements.html"
+class="menu-link">
+
+    📢 Announcements
+
 </a>
 
 
-<a href="payments.html">
-💰 Payments
+<a
+href="payments.html"
+class="menu-link">
+
+    💰 Fees / Payments
+
 </a>
 
 
-</aside>
+<a
+href="report.html"
+class="menu-link">
+
+    📄 Reports
+
+</a>
 
 
-<!-- =================================================
-     MAIN
-================================================= -->
-
-<main class="content">
+<div class="menu-section">
+    SYSTEM
+</div>
 
 
-<!-- PAGE TITLE -->
+<a
+href="#"
+class="menu-link"
+onclick="logout();return false;">
 
-<div class="page-top">
+    🚪 Logout
 
-<div>
+</a>
 
-<h1>
-Dashboard
-</h1>
 
-<p>
-KITEGA School Management System
-</p>
+</div>
 
 </div>
 
 
-<button
-class="mobile-back"
-onclick="goBack()">
-
-← Back
-
-</button>
-
-</div>
-
 
 <!-- =================================================
-     WELCOME
+     MAIN CONTENT
 ================================================= -->
+
+<main class="container">
+
+
+<!-- WELCOME -->
 
 <section class="welcome">
 
-<h2>
-Welcome to KITEGA School Management System 👋
-</h2>
+
+<div>
+
+<h1 id="welcomeText">
+
+    Good afternoon, Teacher 👋
+
+</h1>
+
 
 <p>
-Manage students, teachers, classes, subjects,
-attendance, results, timetable, announcements
-and school payments from one place.
+
+    Welcome to KITEGA School Management System.
+    Manage your school information from one place.
+
 </p>
+
+</div>
+
+
+<div class="date-time">
+
+<div
+id="currentDate"
+class="current-date">
+
+    Loading date...
+
+</div>
+
+
+<div
+id="currentTime"
+class="current-time">
+
+    --:--:--
+
+</div>
+
+</div>
+
 
 </section>
 
 
-<!-- =================================================
-     STATISTICS
-================================================= -->
 
-<h2 class="section-title">
-📊 School Overview
+<!-- SCHOOL OVERVIEW -->
+
+<div class="section-heading">
+
+<h2>
+    📊 School Overview
 </h2>
+
+<span>
+    Live data
+</span>
+
+</div>
 
 
 <section class="cards">
@@ -946,21 +1331,21 @@ and school payments from one place.
 
 <div class="card-top">
 
-<div class="card-icon">
-👨‍🎓
-</div>
+    <div class="card-icon">
+        👨‍🎓
+    </div>
 
 </div>
 
-<div class="card-title">
-Total Students
+<div class="card-label">
+    Total Students
 </div>
 
 <div
 id="studentCount"
 class="card-number">
 
-...
+    ...
 
 </div>
 
@@ -968,11 +1353,12 @@ class="card-number">
 href="students.html"
 class="card-link">
 
-Manage Students →
+    Manage Students →
 
 </a>
 
 </div>
+
 
 
 <!-- TEACHERS -->
@@ -981,21 +1367,21 @@ Manage Students →
 
 <div class="card-top">
 
-<div class="card-icon">
-👨‍🏫
-</div>
+    <div class="card-icon">
+        👨‍🏫
+    </div>
 
 </div>
 
-<div class="card-title">
-Total Teachers
+<div class="card-label">
+    Total Teachers
 </div>
 
 <div
 id="teacherCount"
 class="card-number">
 
-...
+    ...
 
 </div>
 
@@ -1003,11 +1389,12 @@ class="card-number">
 href="teachers.html"
 class="card-link">
 
-Manage Teachers →
+    Manage Teachers →
 
 </a>
 
 </div>
+
 
 
 <!-- CLASSES -->
@@ -1016,21 +1403,21 @@ Manage Teachers →
 
 <div class="card-top">
 
-<div class="card-icon">
-🏫
-</div>
+    <div class="card-icon">
+        🏫
+    </div>
 
 </div>
 
-<div class="card-title">
-Total Classes
+<div class="card-label">
+    Total Classes
 </div>
 
 <div
 id="classCount"
 class="card-number">
 
-...
+    ...
 
 </div>
 
@@ -1038,221 +1425,165 @@ class="card-number">
 href="classes.html"
 class="card-link">
 
-Manage Classes →
+    Manage Classes →
 
 </a>
 
 </div>
 
 
-<!-- PAYMENTS -->
+
+<!-- SUBJECTS -->
 
 <div class="card">
 
 <div class="card-top">
 
-<div class="card-icon">
-💰
-</div>
+    <div class="card-icon">
+        📚
+    </div>
 
 </div>
 
-<div class="card-title">
-Payment Records
+<div class="card-label">
+    Total Subjects
 </div>
 
 <div
-id="paymentCount"
+id="subjectCount"
 class="card-number">
 
-...
+    ...
 
 </div>
 
 <a
-href="payments.html"
+href="subjects.html"
 class="card-link">
 
-View Payments →
+    Manage Subjects →
 
 </a>
 
 </div>
 
+
 </section>
 
 
-<!-- =================================================
-     REPORT + PAYMENT
-================================================= -->
 
-<section class="dashboard-grid">
+<!-- TODAY -->
+
+<div class="section-heading">
+
+<h2>
+    📌 Today's Summary
+</h2>
+
+<span>
+    Current records
+</span>
+
+</div>
 
 
-<!-- REPORT -->
+<section class="two-column">
+
+
+<!-- ATTENDANCE -->
 
 <div class="panel">
 
-<div class="panel-header">
-
 <h2>
-📑 School Reports
+    📋 Attendance
 </h2>
 
-</div>
+<p class="panel-description">
+
+    Student attendance overview.
+
+</p>
 
 
-<div class="report-list">
+<div class="attendance-row">
 
-
-<div class="report-item">
-
-<div class="report-left">
-
-<div class="report-icon">
-👨‍🎓
-</div>
-
-<div>
-
-<div class="report-name">
-Students Report
-</div>
-
-<div class="report-desc">
-Registered students
-</div>
-
-</div>
-
-</div>
+<span class="attendance-label">
+    Total Records
+</span>
 
 <strong
-id="reportStudents"
-class="report-number">
+id="attendanceCount"
+class="attendance-value">
 
-0
+    ...
 
 </strong>
 
 </div>
 
 
-<div class="report-item">
+<div class="attendance-row">
 
-<div class="report-left">
-
-<div class="report-icon">
-📋
-</div>
-
-<div>
-
-<div class="report-name">
-Attendance
-</div>
-
-<div class="report-desc">
-Attendance records
-</div>
-
-</div>
-
-</div>
+<span class="attendance-label">
+    Present
+</span>
 
 <strong
-id="reportAttendance"
-class="report-number">
+id="presentCount"
+class="attendance-value">
 
-0
+    ...
 
 </strong>
 
 </div>
 
 
-<div class="report-item">
+<div class="attendance-row">
 
-<div class="report-left">
-
-<div class="report-icon">
-📝
-</div>
-
-<div>
-
-<div class="report-name">
-Results
-</div>
-
-<div class="report-desc">
-Student results
-</div>
-
-</div>
-
-</div>
+<span class="attendance-label">
+    Absent
+</span>
 
 <strong
-id="reportResults"
-class="report-number">
+id="absentCount"
+class="attendance-value">
 
-0
+    ...
 
 </strong>
 
 </div>
 
 
-<div class="report-item">
+<br>
 
-<div class="report-left">
 
-<div class="report-icon">
-📢
-</div>
+<a
+href="attendance.html"
+class="open-button">
 
-<div>
+    View Attendance →
 
-<div class="report-name">
-Announcements
-</div>
-
-<div class="report-desc">
-School announcements
-</div>
-
-</div>
-
-</div>
-
-<strong
-id="reportAnnouncements"
-class="report-number">
-
-0
-
-</strong>
+</a>
 
 </div>
 
 
-</div>
 
-</div>
+<!-- PAYMENTS -->
 
-
-<!-- PAYMENT -->
-
-<div class="payment-box">
+<div class="panel">
 
 <h2>
-💰 Payment Report
+    💰 Payments
 </h2>
 
-<p>
-Summary of payment records stored
-in the school database.
+<p class="panel-description">
+
+    Payment records currently stored
+    in the system.
+
 </p>
 
 
@@ -1260,54 +1591,25 @@ in the school database.
 id="totalPaymentAmount"
 class="payment-amount">
 
-TZS 0
+    TZS 0
 
 </div>
 
 
-<div class="payment-info">
+<div
+id="paymentRecordText"
+class="payment-small">
 
-
-<div class="payment-stat">
-
-<span>
-TOTAL RECORDS
-</span>
-
-<strong
-id="paymentRecords">
-
-0
-
-</strong>
-
-</div>
-
-
-<div class="payment-stat">
-
-<span>
-PAID RECORDS
-</span>
-
-<strong
-id="paidRecords">
-
-0
-
-</strong>
-
-</div>
-
+    0 payment records
 
 </div>
 
 
 <a
 href="payments.html"
-class="payment-button">
+class="open-button">
 
-Open Payment Report →
+    View Payments →
 
 </a>
 
@@ -1317,30 +1619,34 @@ Open Payment Report →
 </section>
 
 
-<!-- =================================================
-     QUICK ACCESS
-================================================= -->
 
-<section class="quick-panel">
+<!-- QUICK ACCESS -->
 
-
-<div class="panel-header">
+<div class="section-heading">
 
 <h2>
-⚡ Quick Access
+    ⚡ Quick Access
 </h2>
+
+<span>
+    Frequently used
+</span>
 
 </div>
 
 
-<div class="quick-grid">
+<section class="quick-grid">
 
 
 <a
 href="students.html"
 class="quick-button">
 
-👨‍🎓 Students
+<span class="quick-icon">
+    👨‍🎓
+</span>
+
+Students
 
 </a>
 
@@ -1349,7 +1655,11 @@ class="quick-button">
 href="teachers.html"
 class="quick-button">
 
-👨‍🏫 Teachers
+<span class="quick-icon">
+    👨‍🏫
+</span>
+
+Teachers
 
 </a>
 
@@ -1358,7 +1668,11 @@ class="quick-button">
 href="classes.html"
 class="quick-button">
 
-🏫 Classes
+<span class="quick-icon">
+    🏫
+</span>
+
+Classes
 
 </a>
 
@@ -1367,7 +1681,11 @@ class="quick-button">
 href="subjects.html"
 class="quick-button">
 
-📚 Subjects
+<span class="quick-icon">
+    📚
+</span>
+
+Subjects
 
 </a>
 
@@ -1376,7 +1694,11 @@ class="quick-button">
 href="attendance.html"
 class="quick-button">
 
-📋 Attendance
+<span class="quick-icon">
+    📋
+</span>
+
+Attendance
 
 </a>
 
@@ -1385,7 +1707,11 @@ class="quick-button">
 href="results.html"
 class="quick-button">
 
-📝 Results
+<span class="quick-icon">
+    📝
+</span>
+
+Results
 
 </a>
 
@@ -1394,7 +1720,11 @@ class="quick-button">
 href="timetable.html"
 class="quick-button">
 
-🗓️ Timetable
+<span class="quick-icon">
+    🗓️
+</span>
+
+Timetable
 
 </a>
 
@@ -1403,7 +1733,11 @@ class="quick-button">
 href="announcements.html"
 class="quick-button">
 
-📢 Announcements
+<span class="quick-icon">
+    📢
+</span>
+
+Announcements
 
 </a>
 
@@ -1412,7 +1746,11 @@ class="quick-button">
 href="payments.html"
 class="quick-button">
 
-💰 Payments
+<span class="quick-icon">
+    💰
+</span>
+
+Payments
 
 </a>
 
@@ -1421,19 +1759,110 @@ class="quick-button">
 href="report.html"
 class="quick-button">
 
-📑 Full Report
+<span class="quick-icon">
+    📄
+</span>
+
+Reports
 
 </a>
 
 
+</section>
+
+
+
+<!-- RECENT ACTIVITY -->
+
+<div class="section-heading">
+
+<h2>
+    🕒 Recent Activity
+</h2>
+
+<span>
+    Latest records
+</span>
+
 </div>
+
+
+<section class="panel activity">
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    👨‍🎓
+</div>
+
+<div class="activity-text">
+    Student Management
+</div>
+
+<div class="activity-time">
+    Open →
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    📝
+</div>
+
+<div class="activity-text">
+    Examination Results
+</div>
+
+<div class="activity-time">
+    Open →
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    📋
+</div>
+
+<div class="activity-text">
+    Student Attendance
+</div>
+
+<div class="activity-time">
+    Open →
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-icon">
+    💰
+</div>
+
+<div class="activity-text">
+    Fees & Payments
+</div>
+
+<div class="activity-time">
+    Open →
+</div>
+
+</div>
+
 
 </section>
 
 
 </main>
 
-</div>
 
 
 <!-- =================================================
@@ -1451,7 +1880,27 @@ Made by MsAbBe
 </footer>
 
 
+
 <script>
+
+/* =================================================
+   SESSION PROTECTION
+================================================= */
+
+const loggedIn =
+sessionStorage.getItem(
+    "kitiga_logged_in"
+);
+
+
+if(loggedIn !== "true"){
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
 
 /* =================================================
    SUPABASE
@@ -1471,20 +1920,376 @@ window.supabase.createClient(
 
 
 /* =================================================
-   LOGIN SECURITY
+   TEACHER NAME
 ================================================= */
 
-function checkLogin(){
+const username =
+sessionStorage.getItem(
+    "kitiga_username"
+);
 
-    const loggedIn =
-    sessionStorage.getItem(
-        "kitiga_logged_in"
+if(username){
+
+    document.getElementById(
+        "teacherBadge"
+    ).textContent =
+    "👤 " + username;
+
+}
+
+
+/* =================================================
+   DATE & TIME
+================================================= */
+
+function updateDateTime(){
+
+    const now =
+    new Date();
+
+
+    /*
+       Tanzania time:
+       Africa/Dar_es_Salaam
+    */
+
+    const dateText =
+    new Intl.DateTimeFormat(
+        "en-GB",
+        {
+            timeZone:
+            "Africa/Dar_es_Salaam",
+
+            weekday:"long",
+
+            day:"2-digit",
+
+            month:"long",
+
+            year:"numeric"
+        }
+    ).format(now);
+
+
+    const timeText =
+    new Intl.DateTimeFormat(
+        "en-GB",
+        {
+            timeZone:
+            "Africa/Dar_es_Salaam",
+
+            hour:"2-digit",
+
+            minute:"2-digit",
+
+            second:"2-digit",
+
+            hour12:false
+        }
+    ).format(now);
+
+
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+    "📅 " + dateText;
+
+
+    document.getElementById(
+        "currentTime"
+    ).textContent =
+    "🕐 " + timeText;
+
+
+    /*
+       Greeting
+    */
+
+    const hour =
+    Number(
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone:
+                "Africa/Dar_es_Salaam",
+
+                hour:"numeric",
+
+                hour12:false
+            }
+        ).format(now)
     );
 
-    if(loggedIn !== "true"){
 
-        window.location.replace(
-            "index.html"
+    let greeting;
+
+
+    if(hour < 12){
+
+        greeting =
+        "Good morning";
+
+    }
+
+    else if(hour < 17){
+
+        greeting =
+        "Good afternoon";
+
+    }
+
+    else{
+
+        greeting =
+        "Good evening";
+
+    }
+
+
+    document.getElementById(
+        "welcomeText"
+    ).textContent =
+    greeting +
+    ", Teacher 👋";
+
+}
+
+
+updateDateTime();
+
+
+setInterval(
+    updateDateTime,
+    1000
+);
+
+
+/* =================================================
+   LOAD DASHBOARD DATA
+================================================= */
+
+async function loadDashboardData(){
+
+    /* STUDENTS */
+
+    const students =
+    await supabaseClient
+
+    .from("students")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "studentCount"
+    ).textContent =
+    students.error
+    ? "0"
+    : (students.count || 0);
+
+
+    /* TEACHERS */
+
+    const teachers =
+    await supabaseClient
+
+    .from("teachers")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "teacherCount"
+    ).textContent =
+    teachers.error
+    ? "0"
+    : (teachers.count || 0);
+
+
+    /* CLASSES */
+
+    const classes =
+    await supabaseClient
+
+    .from("classes")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "classCount"
+    ).textContent =
+    classes.error
+    ? "0"
+    : (classes.count || 0);
+
+
+    /* SUBJECTS */
+
+    const subjects =
+    await supabaseClient
+
+    .from("subjects")
+
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "subjectCount"
+    ).textContent =
+    subjects.error
+    ? "0"
+    : (subjects.count || 0);
+
+
+    /* ATTENDANCE */
+
+    const attendance =
+    await supabaseClient
+
+    .from("attendance")
+
+    .select(
+        "id,status"
+    );
+
+
+    if(!attendance.error){
+
+        const records =
+        attendance.data || [];
+
+
+        document.getElementById(
+            "attendanceCount"
+        ).textContent =
+        records.length;
+
+
+        const present =
+        records.filter(
+            item =>
+            String(item.status)
+            .toLowerCase()
+            ===
+            "present"
+        ).length;
+
+
+        const absent =
+        records.filter(
+            item =>
+            String(item.status)
+            .toLowerCase()
+            ===
+            "absent"
+        ).length;
+
+
+        document.getElementById(
+            "presentCount"
+        ).textContent =
+        present;
+
+
+        document.getElementById(
+            "absentCount"
+        ).textContent =
+        absent;
+
+    }
+
+    else{
+
+        document.getElementById(
+            "attendanceCount"
+        ).textContent =
+        "0";
+
+        document.getElementById(
+            "presentCount"
+        ).textContent =
+        "0";
+
+        document.getElementById(
+            "absentCount"
+        ).textContent =
+        "0";
+
+    }
+
+
+    /* PAYMENTS */
+
+    const payments =
+    await supabaseClient
+
+    .from("payments")
+
+    .select(
+        "id,amount,status"
+    );
+
+
+    if(!payments.error){
+
+        const records =
+        payments.data || [];
+
+
+        const total =
+        records.reduce(
+            (sum,item) =>
+
+            sum +
+            Number(
+                item.amount || 0
+            ),
+
+            0
+        );
+
+
+        document.getElementById(
+            "totalPaymentAmount"
+        ).textContent =
+        "TZS " +
+        total.toLocaleString();
+
+
+        document.getElementById(
+            "paymentRecordText"
+        ).textContent =
+        records.length +
+        " payment record" +
+        (
+            records.length === 1
+            ? ""
+            : "s"
         );
 
     }
@@ -1492,53 +2297,74 @@ function checkLogin(){
 }
 
 
-/*
-   Check immediately
-*/
+/* =================================================
+   MENU
+================================================= */
 
-checkLogin();
+function openMenu(){
+
+    document.getElementById(
+        "menuOverlay"
+    ).classList.add("show");
+
+}
 
 
-/*
-   Check when page becomes visible again.
-   This prevents returning to dashboard
-   after logout using browser back.
-*/
+function closeMenu(event){
 
-window.addEventListener(
-    "pageshow",
-    function(){
+    if(
+        !event ||
+        event.target ===
+        document.getElementById(
+            "menuOverlay"
+        )
+    ){
 
-        checkLogin();
+        document.getElementById(
+            "menuOverlay"
+        ).classList.remove("show");
 
     }
-);
+
+}
 
 
 /* =================================================
-   BACK BUTTON
+   HOME
+================================================= */
+
+function goHome(){
+
+    window.location.replace(
+        "dashboard.html"
+    );
+
+}
+
+
+/* =================================================
+   BACK
 ================================================= */
 
 function goBack(){
 
-    /*
-       If there is a previous page,
-       go back normally.
-    */
-
     if(
-        document.referrer &&
-        document.referrer !== window.location.href
+        document.referrer
+        &&
+        document.referrer.indexOf(
+            location.origin
+        ) === 0
     ){
 
-        window.history.back();
+        history.back();
 
     }
 
     else{
 
-        window.location.href =
-        "index.html";
+        window.location.replace(
+            "dashboard.html"
+        );
 
     }
 
@@ -1551,25 +2377,34 @@ function goBack(){
 
 function logout(){
 
+    const confirmLogout =
+    confirm(
+        "Are you sure you want to logout?"
+    );
+
+
+    if(!confirmLogout)
+        return;
+
+
     /*
-       Remove login status
+       DELETE LOGIN SESSION
     */
 
     sessionStorage.removeItem(
         "kitiga_logged_in"
     );
 
-
-    /*
-       Clear all temporary login data
-    */
-
-    sessionStorage.clear();
+    sessionStorage.removeItem(
+        "kitiga_username"
+    );
 
 
     /*
-       Replace current page instead of
-       normal navigation.
+       Replace current page
+       so browser Back cannot
+       restore an authenticated
+       dashboard session.
     */
 
     window.location.replace(
@@ -1580,253 +2415,45 @@ function logout(){
 
 
 /* =================================================
-   LOAD COUNT
+   BACK CACHE PROTECTION
 ================================================= */
 
-async function getCount(
-    table
-){
+window.addEventListener(
+    "pageshow",
+    function(){
 
-    const result =
-    await supabaseClient
+        if(
+            sessionStorage.getItem(
+                "kitiga_logged_in"
+            ) !== "true"
+        ){
 
-    .from(table)
+            window.location.replace(
+                "index.html"
+            );
 
-    .select(
-        "id",
-        {
-            count:"exact",
-            head:true
         }
-    );
-
-
-    if(result.error){
-
-        console.error(
-            table,
-            result.error
-        );
-
-        return 0;
 
     }
-
-
-    return result.count || 0;
-
-}
-
-
-/* =================================================
-   LOAD DASHBOARD
-================================================= */
-
-async function loadDashboardStats(){
-
-    /*
-       STUDENTS
-    */
-
-    const students =
-    await getCount(
-        "students"
-    );
-
-
-    document.getElementById(
-        "studentCount"
-    ).textContent =
-    students;
-
-
-    document.getElementById(
-        "reportStudents"
-    ).textContent =
-    students;
-
-
-    /*
-       TEACHERS
-    */
-
-    const teachers =
-    await getCount(
-        "teachers"
-    );
-
-
-    document.getElementById(
-        "teacherCount"
-    ).textContent =
-    teachers;
-
-
-    /*
-       CLASSES
-    */
-
-    const classes =
-    await getCount(
-        "classes"
-    );
-
-
-    document.getElementById(
-        "classCount"
-    ).textContent =
-    classes;
-
-
-    /*
-       PAYMENTS
-    */
-
-    const paymentsResult =
-    await supabaseClient
-
-    .from("payments")
-
-    .select(
-        "id,amount,status"
-    );
-
-
-    if(!paymentsResult.error){
-
-        const payments =
-        paymentsResult.data || [];
-
-
-        /*
-           Payment records
-        */
-
-        document.getElementById(
-            "paymentCount"
-        ).textContent =
-        payments.length;
-
-
-        document.getElementById(
-            "paymentRecords"
-        ).textContent =
-        payments.length;
-
-
-        /*
-           Total amount
-        */
-
-        const total =
-        payments.reduce(
-            function(sum,item){
-
-                return sum +
-                Number(
-                    item.amount || 0
-                );
-
-            },
-            0
-        );
-
-
-        document.getElementById(
-            "totalPaymentAmount"
-        ).textContent =
-        "TZS " +
-        total.toLocaleString();
-
-
-        /*
-           Paid records
-        */
-
-        const paid =
-        payments.filter(
-            function(item){
-
-                return String(
-                    item.status || ""
-                ).toLowerCase() ===
-                "paid";
-
-            }
-        ).length;
-
-
-        document.getElementById(
-            "paidRecords"
-        ).textContent =
-        paid;
-
-    }
-
-    else{
-
-        console.error(
-            paymentsResult.error
-        );
-
-    }
-
-
-    /*
-       ATTENDANCE
-    */
-
-    const attendance =
-    await getCount(
-        "attendance"
-    );
-
-
-    document.getElementById(
-        "reportAttendance"
-    ).textContent =
-    attendance;
-
-
-    /*
-       RESULTS
-    */
-
-    const results =
-    await getCount(
-        "results"
-    );
-
-
-    document.getElementById(
-        "reportResults"
-    ).textContent =
-    results;
-
-
-    /*
-       ANNOUNCEMENTS
-    */
-
-    const announcements =
-    await getCount(
-        "announcements"
-    );
-
-
-    document.getElementById(
-        "reportAnnouncements"
-    ).textContent =
-    announcements;
-
-}
+);
 
 
 /* =================================================
    START
 ================================================= */
 
-loadDashboardStats();
+loadDashboardData();
+
+
+/*
+   Refresh database statistics
+   every 30 seconds.
+*/
+
+setInterval(
+    loadDashboardData,
+    30000
+);
 
 </script>
 
